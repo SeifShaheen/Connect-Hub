@@ -4,13 +4,18 @@
 
 package com.mycompany.connect.hub;
 
+import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
+
 /**
  *
  * @author seifs
  */
+
+//Files problem
+
 public class ConnectHub {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
     }
 }

@@ -5,6 +5,50 @@
     <artifactId>Connect-Hub</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.mail</groupId>
+            <artifactId>jakarta.mail-api</artifactId>
+            <version>1.6.7</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.clazzes.login</groupId>
+            <artifactId>htpasswd-jaas</artifactId>
+            <version>1.2.1</version>
+            <type>bundle</type>
+        </dependency>
+        <dependency>
+            <groupId>de.svenkubiak</groupId>
+            <artifactId>jBCrypt</artifactId>
+            <version>0.4.3</version>
+            <type>bundle</type>
+        </dependency>
+        <dependency>
+            <groupId>com.aerospike</groupId>
+            <artifactId>aerospike-client</artifactId>
+            <version>4.4.19</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.github.mwiede</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.61</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.connectbot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>1.0.2</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.sentrysoftware</groupId>
+            <artifactId>metricshub-oscommand-extension</artifactId>
+            <version>0.9.07</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>22</maven.compiler.source>

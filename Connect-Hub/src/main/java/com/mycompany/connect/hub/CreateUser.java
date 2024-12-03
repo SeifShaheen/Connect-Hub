@@ -4,6 +4,7 @@
  */
 package com.mycompany.connect.hub;
 
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
@@ -21,10 +22,12 @@ public class CreateUser {
     }
 
     //Method that gets information from the user and sent the data to validation function if needed to be validated or just assign
-    public User information(String email, String username, String password, String dateOfBirth) throws NoSuchAlgorithmException {
+    public User information(String email, String username, String password, String dateOfBirth) throws NoSuchAlgorithmException, IOException {
         if (validateEmail(email) && validateUserName(username) && validateAge(LocalDate.parse(dateOfBirth))) {
             builder.buildPassword(PasswordHashing.hashPassword(password));
-            return builder.Build();
+            User user= builder.Build();
+            FilesManagement.save(user);
+            return user;
         }
         return null;
     }

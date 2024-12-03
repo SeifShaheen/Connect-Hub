@@ -17,39 +17,45 @@ public class CreateUser {
 
     private User.UserBuilder builder = new User.UserBuilder();
 
-    //Method that gets information from the user and sent the data to validation function if needed to be validated or just assign
-    public User information(String email, String username, String password, LocalDate dateOfBirth) throws NoSuchAlgorithmException {
-        validateEmail(email);
-        validateUserName(username);
-        validateAge(dateOfBirth);
-        builder.buildPassword(PasswordHashing.hashPassword(password));
-        return builder.Build();
+    public CreateUser() {
     }
 
-    public void validateEmail(String email) {
+    //Method that gets information from the user and sent the data to validation function if needed to be validated or just assign
+    public User information(String email, String username, String password, String dateOfBirth) throws NoSuchAlgorithmException {
+        if (validateEmail(email) && validateUserName(username) && validateAge(LocalDate.parse(dateOfBirth))) {
+            builder.buildPassword(PasswordHashing.hashPassword(password));
+            return builder.Build();
+        }
+        return null;
+    }
+
+    public boolean validateEmail(String email) {
         boolean valid = Validation.validateEmail(email);
         if (valid) {
             builder.buildEmail(email);
         } else {
             JOptionPane.showMessageDialog(null, "Invalid Email Format! please enter a valid mail", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        return valid;
     }
 
-    public void validateUserName(String username) {
+    public boolean validateUserName(String username) {
         boolean valid = Validation.validateUserName(username);
         if (valid) {
             builder.buildUsername(username);
         } else {
             JOptionPane.showMessageDialog(null, "Invalid User Name! Only letters and spaces are allowed.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        return valid;
     }
 
-    public void validateAge(LocalDate dateOfBirth) {
+    public boolean validateAge(LocalDate dateOfBirth) {
         boolean valid = Validation.validateAge(dateOfBirth);
         if (valid) {
             builder.buildDateOfBirth(dateOfBirth);
         } else {
             JOptionPane.showMessageDialog(null, "Sorry, You must be at least 18 years old to create account!", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        return valid;
     }
 }

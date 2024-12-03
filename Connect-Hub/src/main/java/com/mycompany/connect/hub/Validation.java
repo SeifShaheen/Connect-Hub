@@ -17,16 +17,20 @@ public class Validation {
     //Method to validate email using class InternetAddress which is included in javax.mail library
     //Jakarta Mail (JavaMail) Library was downloaded for the library to work
     public static boolean validateEmail(String email) {
-        if (email.substring(0, '@') == null) {
-            return false;
-        } else if (email.substring('@', '.') == null) {
-            return false;
-        } else if (email.substring('.') == null) {
-            return false;
-        } else if (email.contains(" ")) {
+        try {
+            if (email.substring(0, email.indexOf('@')) == null) {
+                return false;
+            } else if (email.substring(email.indexOf('@'), email.indexOf('.')) == null) {
+                return false;
+            } else if (email.substring(email.indexOf('.')) == null) {
+                return false;
+            } else if (email.contains(" ")|| email.indexOf('@') <= 0 || email.indexOf('.') == -1 || email.indexOf('.') == email.length() - 1) {
+                return false;
+            }
+            return true;
+        } catch (StringIndexOutOfBoundsException e) {
             return false;
         }
-        return true;
     }
 
     //Method to validate the letters entered in name

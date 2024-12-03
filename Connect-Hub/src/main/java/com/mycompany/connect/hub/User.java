@@ -4,8 +4,11 @@
  */
 package com.mycompany.connect.hub;
 
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -52,11 +55,20 @@ public class User {
     public String getStatus() {
         return status;
     }
-    
+
     public String getUserId() {
         return userId;
     }
-    
+
+    @Override
+    public String toString() {
+        String line = "";
+        try {
+            line += "userId=" + userId + ",username=" + username + ",email=" + email + ",password=" + PasswordHashing.hashPassword(password) + ",dateOfBirth=" + dateOfBirth + ",status=" + status;
+        } catch (NoSuchAlgorithmException ex) {
+        }
+        return line;
+    }
 
     //Builder class
     //This class is the builder for User class
@@ -97,9 +109,9 @@ public class User {
             this.dateOfBirth = dateOfBirth;
             return this;
         }
-        
+
         public UserBuilder buildEmail(String email) {
-            this.email=email;
+            this.email = email;
             return this;
         }
 

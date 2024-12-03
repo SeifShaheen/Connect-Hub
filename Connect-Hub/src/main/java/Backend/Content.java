@@ -4,20 +4,12 @@
  */
 package Backend;
 
-/**
- *
- * @author amrze
- */
-public class Content {
+
+public interface Content {
     
+    void create(String text);
+    void create(String text, String imagePath);
+    void display();
     
-    public void post()
-    {
-        
-    }
-    public void story()
-    {
-        
-    }
-    
+   
 }

@@ -12,19 +12,22 @@ import java.util.TimerTask;
  * @author amrze
  */
 public class StoryMonitor {
+    Story story;
     
     Timer timer=new Timer();
     TimerTask task=new TimerTask(){
         @Override
         public void run() {
-            System.out.println("Stroy has been ended");
-            //delete the story
+            //delete the story from the frontend and from the json file         
+           // System.out.println("Stroy has been ended");
+            
         }
         
     };
-    public StoryMonitor()
+    public StoryMonitor(Story story)
     {
-        timer.schedule(task, 24 * 60 * 60 * 1000);
+        this.story=story;
+        timer.schedule(task, 24 * 60 * 60 * 1000); //to schedule for 24h
     }
     
    

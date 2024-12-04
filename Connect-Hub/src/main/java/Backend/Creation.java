@@ -4,10 +4,10 @@
  */
 package Backend;
 
-
-public interface Content {
-    
-    Content create(String text);
-    Content create(String text, String imagePath);
-    Content display();
+/**
+ *
+ * @author amrze
+ */
+public interface Creation {
+    Content createContent();
 }

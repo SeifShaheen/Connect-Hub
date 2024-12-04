@@ -4,10 +4,15 @@
  */
 package Backend;
 
+/**
+ *
+ * @author amrze
+ */
+public class StoriesFactory implements Creation{
 
-public interface Content {
-    
-    Content create(String text);
-    Content create(String text, String imagePath);
-    Content display();
+    @Override
+    public Content createContent() 
+    {
+            return new Story();
+    }   
 }

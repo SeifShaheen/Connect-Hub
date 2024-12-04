@@ -16,26 +16,28 @@ public class Post implements Content {
     private String imagePath;
     private String timestamp;
     
+    
     @Override
-    public void create(String text) {
-        this.text=text;
-        
+    public Content create(String text) {
+        this.text=text;   
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.timestamp = format.format(new Date());
+        return (Post)this;
     }
 
     @Override
-    public void create(String text, String imagePath) {
+    public Content create(String text, String imagePath) {
         this.text=text;
         this.imagePath=imagePath;
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.timestamp = format.format(new Date());
+        return(Post) this;
     }
-
+    // will be modified or deleted
     @Override
-    public void display() {
+    public Content display() {
         System.out.println("created:" + text);
-        
+        return this;       
     }
 
     public String getText() {

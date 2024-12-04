@@ -48,7 +48,7 @@ public class FilesManagement {
 
     //Public method to read data from file
     public static Map<String, Object> read() throws IOException {
-        String content = new String(Files.readAllBytes(Paths.get("database.json")));
+    String content = new String(Files.readAllBytes(Paths.get("database.json")));
         //checking if file is empty
         if (content.isEmpty()) {
             return null;

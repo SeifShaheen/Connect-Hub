@@ -18,7 +18,5 @@ import java.util.ArrayList;
 public class ConnectHub {
 
     public static void main(String[] args) throws NoSuchAlgorithmException, IOException {
-        User u= new CreateUser().information("reem@gmail.com", "rm","000","2004-10-20");
-        User x= new CreateUser().information("reem@gmail.com", "r","000","2004-10-22");
     }
 }

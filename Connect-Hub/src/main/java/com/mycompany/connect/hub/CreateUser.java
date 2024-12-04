@@ -55,7 +55,7 @@ public class CreateUser {
     public boolean validateAge(LocalDate dateOfBirth) {
         boolean valid = Validation.validateAge(dateOfBirth);
         if (valid) {
-            builder.buildDateOfBirth(dateOfBirth);
+            builder.buildDateOfBirth(dateOfBirth.toString());
         } else {
             JOptionPane.showMessageDialog(null, "Sorry, You must be at least 18 years old to create account!", "Error", JOptionPane.ERROR_MESSAGE);
         }

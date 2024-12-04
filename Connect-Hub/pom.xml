@@ -11,4 +11,12 @@
         <maven.compiler.target>23</maven.compiler.target>
         <exec.mainClass>com.mycompany.connect.hub.ConnectHub</exec.mainClass>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20210307</version>
+        </dependency>
+
+    </dependencies>
 </project>

@@ -14,8 +14,7 @@ import java.time.Period;
 //This class is made to validate all user inputs
 public class Validation {
 
-    //Method to validate email using class InternetAddress which is included in javax.mail library
-    //Jakarta Mail (JavaMail) Library was downloaded for the library to work
+    //Method to validate email
     public static boolean validateEmail(String email) {
         try {
             if (email.substring(0, email.indexOf('@')) == null) {

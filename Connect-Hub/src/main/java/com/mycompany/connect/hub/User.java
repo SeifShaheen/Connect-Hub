@@ -7,8 +7,6 @@ package com.mycompany.connect.hub;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -44,12 +42,12 @@ public class User {
         return username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPassword() throws NoSuchAlgorithmException {
+        return PasswordHashing.hashPassword(password);
     }
 
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
+    public String getDateOfBirth() {
+        return dateOfBirth.getYear()+"-"+dateOfBirth.getMonthValue()+"-"+dateOfBirth.getDayOfMonth();
     }
 
     public String getStatus() {

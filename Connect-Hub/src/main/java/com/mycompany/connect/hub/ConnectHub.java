@@ -4,8 +4,9 @@
 
 package com.mycompany.connect.hub;
 
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,7 +17,7 @@ import java.time.LocalDate;
 
 public class ConnectHub {
 
-    public static void main(String[] args) throws NoSuchAlgorithmException {
+    public static void main(String[] args) throws NoSuchAlgorithmException, IOException {
         User u= new CreateUser().information("reem@gmail.com", "reem","000","2004-10-20");
         System.out.println(u.toString());
         NewsfeedPage nfp = new NewsfeedPage();

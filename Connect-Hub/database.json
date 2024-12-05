@@ -1,0 +1,56 @@
+{
+  "caeafbac-a8ad-48ed-97b7-383f2c7c8939": {
+    "userId": "caeafbac-a8ad-48ed-97b7-383f2c7c8939",
+    "email": "reem@gmail.com",
+    "username": "reem",
+    "password": "$2a$10$Wye.14bx68KWyQX8cnuBlOmP0gaWfHy9kdhSzWvWprFy16My4RW9u",
+    "dateOfBirth": "2004-10-22",
+    "status": "Online",
+    "friends": [],
+    "requestsSent": [],
+    "requestsRecieved": [],
+    "friendSuggestions": [],
+    "blocked": []
+  },
+  "1956c8cd-6064-462c-8459-575102b563ae": {
+    "userId": "1956c8cd-6064-462c-8459-575102b563ae",
+    "email": "reem1@gmail.com",
+    "username": "reem",
+    "password": "$2a$10$UVCm7Az9.fzvf47hD4tb6ejyb6omypxR2NrZcTZy0m0OH1p9sBUIy",
+    "dateOfBirth": "2004-10-22",
+    "status": "Online",
+    "friends": [],
+    "requestsSent": [],
+    "requestsRecieved": [],
+    "friendSuggestions": [],
+    "blocked": []
+  },
+  "50fd991f-45b5-46c0-8e8d-1f364137bf97": {
+    "userId": "50fd991f-45b5-46c0-8e8d-1f364137bf97",
+    "email": "reem4@gmail.com",
+    "username": "reem",
+    "password": "$2a$10$2VzoNKZYDJDnXIugLPnIHudnqNd92GMwSXwZmfSctGXhd2rchd9Pm",
+    "dateOfBirth": "2004-10-22",
+    "status": "Online",
+    "friends": [],
+    "requestsSent": [],
+    "requestsRecieved": [],
+    "friendSuggestions": [],
+    "blocked": []
+  },
+  "92b4103c-74f4-425f-8575-46fdfd0ed5b8": {
+    "userId": "92b4103c-74f4-425f-8575-46fdfd0ed5b8",
+    "email": "reem5@gmail.com",
+    "username": "reem",
+    "password": "$2a$10$YPaOnNxE5umbb2tTryQU7O86j0JFSGY5DAwA7OnGLD2lVZdW7CEzm",
+    "dateOfBirth": "2004-10-22",
+    "status": "Online",
+    "friends": [],
+    "requestsSent": [],
+    "requestsRecieved": [],
+    "friendSuggestions": [],
+    "blocked": [
+      "50fd991f-45b5-46c0-8e8d-1f364137bf97"
+    ]
+  }
+}

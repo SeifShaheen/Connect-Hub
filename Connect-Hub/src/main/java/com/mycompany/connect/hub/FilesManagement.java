@@ -4,6 +4,7 @@
  */
 package com.mycompany.connect.hub;
 
+import Backend.Story;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,6 +15,7 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import java.util.ArrayList;
 
 /**
  *
@@ -35,7 +37,6 @@ public class FilesManagement {
         if (map == null) {
             map = new HashMap<>();
         }
-
         map.put(user.getUserId(), user);
         save(map); //calling the function that saves map in file
 

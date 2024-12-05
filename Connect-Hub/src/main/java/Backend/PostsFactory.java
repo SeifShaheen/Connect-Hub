@@ -5,7 +5,7 @@
 package Backend;
 
 
-public class PostsFactorty implements Creation {
+public class PostsFactory implements Creation {
 
     @Override
     public Contents createContent(String text) {

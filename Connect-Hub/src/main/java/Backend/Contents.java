@@ -5,7 +5,7 @@
 package Backend;
 
 //An interface to make the contents type inherit from
-public interface Content {
+public interface Contents {
 
     String getText();
     String getImagePath();

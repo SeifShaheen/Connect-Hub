@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author amrze
  */
-public class Story implements Content {
+public class Story implements Contents {
     private String text;
     private String imagePath;
     private String timestamp;

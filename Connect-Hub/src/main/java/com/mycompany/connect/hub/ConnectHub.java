@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 import java.util.ArrayList;
-import Backend.Content;
+import Backend.Contents;
 import Backend.Creation;
 import Backend.Post;
 import Backend.PostsFactorty;

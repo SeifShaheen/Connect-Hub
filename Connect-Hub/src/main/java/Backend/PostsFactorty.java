@@ -8,12 +8,12 @@ package Backend;
 public class PostsFactorty implements Creation {
 
     @Override
-    public Content createContent(String text) {
+    public Contents createContent(String text) {
         return new Post(text);
     }
 
     @Override
-    public Content createContent(String text, String imagePath) {
+    public Contents createContent(String text, String imagePath) {
         return new Post(text,imagePath);
     }
     

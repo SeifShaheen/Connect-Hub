@@ -27,6 +27,5 @@ public class ConnectHub {
         //new ProjectsOpening().setVisible(true);
         /*currentUser = null;*/
         System.out.println(FilesManagement.read().get("92b4103c-74f4-425f-8575-46fdfd0ed5b8").getFriendSuggestions());
-
     }
 }

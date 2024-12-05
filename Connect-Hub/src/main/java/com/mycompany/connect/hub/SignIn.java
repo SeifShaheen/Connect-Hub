@@ -21,6 +21,7 @@ public class SignIn {
 
         if (!checkDuplicated(email)) {
             user = new CreateUser().information(email, username, password, dateOfBirth);
+            ConnectHub.currentUser = user;
             JOptionPane.showMessageDialog(null, "Signed up successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "Email is already used! please try another one.", "Message", JOptionPane.ERROR_MESSAGE);

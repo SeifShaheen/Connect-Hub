@@ -6,7 +6,6 @@ package com.mycompany.connect.hub;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
-import java.util.ArrayList;
 
 /**
  *

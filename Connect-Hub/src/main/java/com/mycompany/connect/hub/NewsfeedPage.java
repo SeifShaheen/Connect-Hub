@@ -6,17 +6,23 @@ package com.mycompany.connect.hub;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.io.File;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author seifs
  */
 public class NewsfeedPage extends javax.swing.JFrame {
+
+    String ImagePath = null;
 
     /**
      * Creates new form NewsfeedPage
@@ -50,7 +56,7 @@ public class NewsfeedPage extends javax.swing.JFrame {
         for (int i = 0; i < 50; i++) {
             mainPanel.add(new postPanel("Title", "Content"));
         }
-        storyPanel.setLayout(new GridLayout(0,3));
+        storyPanel.setLayout(new GridLayout(0, 3));
         for (int i = 0; i < 50; i++) {
             storyPanel.add(new StoryPanel("Title", "Content"));
         }
@@ -257,31 +263,76 @@ public class NewsfeedPage extends javax.swing.JFrame {
 
     private void searchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbtnActionPerformed
         // TODO add your handling code here:
-
         //opens search page to search to a specific person
     }//GEN-LAST:event_searchbtnActionPerformed
 
     private void refreshbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshbtnActionPerformed
         // TODO add your handling code here:
-
-        //read again from file
+        FilesManagement.save(FilesManagement.map);
+        dispose();
+        setVisible(true);
     }//GEN-LAST:event_refreshbtnActionPerformed
 
     private void postbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postbtnActionPerformed
         // TODO add your handling code here:
         //Add new post and refresh
+        if (postField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "post must have text.", "Message", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (ImagePath == null) {
+                //creates a post with only text
+
+            } else {
+                //creates a post with the text and image
+
+            }
+        }
     }//GEN-LAST:event_postbtnActionPerformed
 
     private void logoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbtnActionPerformed
-        // TODO add your handling code here:
+        try {
+            LogOut.operate(ConnectHub.currentUser);
+            ConnectHub.currentUser = null;
+            new ProjectsOpening().setVisible(true);
+            dispose();
+        } catch (IOException | NoSuchAlgorithmException ex) {
+            Logger.getLogger(NewsfeedPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_logoutbtnActionPerformed
 
     private void addImagebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addImagebtnActionPerformed
         // TODO add your handling code here:
+        JFileChooser JFC = new JFileChooser();
+        int returnValue = JFC.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = JFC.getSelectedFile();
+            String extension = "";
+            int i = selectedFile.getName().lastIndexOf('.');
+            if (i > 0) {
+                extension = selectedFile.getName().substring(i + 1);
+            }
+            if ("png".equals(extension) || "jpg".equals(extension)) {
+                ImagePath = selectedFile.getPath();
+            } else {
+                JOptionPane.showMessageDialog(null, "Please choose png or jpg file!", "Message",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_addImagebtnActionPerformed
 
     private void storybtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storybtnActionPerformed
         // TODO add your handling code here:
+        if (postField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "story must have text.", "Message", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (ImagePath == null) {
+                //creates a post with only text
+
+            } else {
+                //creates a post with the text and image
+
+            }
+        }
     }//GEN-LAST:event_storybtnActionPerformed
 
     /**

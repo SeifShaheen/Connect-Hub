@@ -6,7 +6,8 @@ package com.mycompany.connect.hub;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
+import java.nio.charset.StandardCharsets;
+import org.mindrot.jbcrypt.BCrypt;
 /**
  *
  * @author Reem
@@ -14,10 +15,10 @@ import java.security.NoSuchAlgorithmException;
 //This class is responsible for password hashing management
 public class PasswordHashing {
 
-    //hashing
+    /*//hashing
     public static String hashPassword(String password) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        byte[] hashed = digest.digest(password.getBytes());
+        byte[] hashed = digest.digest(password.getBytes(StandardCharsets.UTF_8));
         StringBuilder string = new StringBuilder();
         for (byte b : hashed) {
             string.append(String.format("%02x", b));
@@ -30,5 +31,16 @@ public class PasswordHashing {
         String hashedEnteredPassword = hashPassword(password);
         return hashedEnteredPassword.equals(hashedPassword);
 
+    }*/
+    public static String hashPassword(String password) {
+        // Generate a salt and hash the password
+        String salt = BCrypt.gensalt();  // Default log_rounds is 10
+        return BCrypt.hashpw(password, salt);
+    }
+
+    // Check if a plain password matches the hashed password
+    public static boolean checkPassword(String password, String hashedPassword) {
+        // Compare the entered password with the stored hash
+        return BCrypt.checkpw(password, hashedPassword);
     }
 }

@@ -6,6 +6,8 @@ package com.mycompany.connect.hub;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author seifs
@@ -16,8 +18,6 @@ public class ConnectHub {
     static User currentUser = null;
 
     public static void main(String[] args) throws NoSuchAlgorithmException, IOException {
-        currentUser = new CreateUser().information("reem@gmail.com", "reem", "000", "2004-10-20");
-        System.out.println(currentUser.toString());
-        NewsfeedPage nfp = new NewsfeedPage();
+        new ProjectsOpening().setVisible(true);
     }
 }

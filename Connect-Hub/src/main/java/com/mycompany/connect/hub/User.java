@@ -7,8 +7,6 @@ package com.mycompany.connect.hub;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -22,7 +20,7 @@ public class User {
     private String email;
     private String username;
     private String password;
-    private LocalDate dateOfBirth;
+    private String dateOfBirth;
     private String status;
 
     //Private constructor to be accessed only be the builder
@@ -35,7 +33,7 @@ public class User {
         this.status = builder.status;
     }
 
-    //getters to be needed
+    //getters&Setters to be needed
     public String getEmail() {
         return email;
     }
@@ -44,11 +42,11 @@ public class User {
         return username;
     }
 
-    public String getPassword() {
+    public String getPassword() throws NoSuchAlgorithmException {
         return password;
     }
 
-    public LocalDate getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -60,13 +58,28 @@ public class User {
         return userId;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = PasswordHashing.hashPassword(password);
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    
+
     @Override
     public String toString() {
         String line = "";
-        try {
-            line += "userId=" + userId + ",username=" + username + ",email=" + email + ",password=" + PasswordHashing.hashPassword(password) + ",dateOfBirth=" + dateOfBirth + ",status=" + status;
-        } catch (NoSuchAlgorithmException ex) {
-        }
+        line += "userId=" + userId + ",username=" + username + ",email=" + email + ",password=" + PasswordHashing.hashPassword(password) + ",dateOfBirth=" + dateOfBirth + ",status=" + status;
         return line;
     }
 
@@ -79,7 +92,7 @@ public class User {
         private String email;
         private String username;
         private String password;
-        private LocalDate dateOfBirth;
+        private String dateOfBirth;
         private String status;
 
         //constructor for mandatory attributes
@@ -96,6 +109,7 @@ public class User {
 
         //setters for changable features
         public UserBuilder buildPassword(String password) {
+            PasswordHashing.hashPassword(password);
             this.password = password;
             return this;
         }
@@ -105,7 +119,7 @@ public class User {
             return this;
         }
 
-        public UserBuilder buildDateOfBirth(LocalDate dateOfBirth) {
+        public UserBuilder buildDateOfBirth(String dateOfBirth) {
             this.dateOfBirth = dateOfBirth;
             return this;
         }

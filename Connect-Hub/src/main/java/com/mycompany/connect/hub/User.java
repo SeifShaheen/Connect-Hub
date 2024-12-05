@@ -14,13 +14,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
 
-
 /**
  *
  * @author Reem
  */
 //This class is responsible for creating user object with all its attriputes using builder design pattern
-public class User extends FriendSpecifications{
+public class User extends FriendSpecifications {
 
     //User personal Info
     private final String userId;
@@ -29,19 +28,13 @@ public class User extends FriendSpecifications{
     private String password;
     private String dateOfBirth;
     private String status;
-    
+
     //User's attriputes that are related to other operations such as friends, posts, stories,.etc
-    //1-Friend management attributes:
-    ArrayList<User> friends;
-    ArrayList<User> requestsSent;
-    ArrayList<User> requestsRecieved;
-    ArrayList<User> friendSuggestions;
-    ArrayList<User> blocked=new ArrayList<User>();
-    //2-Contents attributes:
-    ArrayList<Post> posts=new ArrayList<>();
-    ArrayList<Story> stories=new ArrayList<>();
-    private transient PostsFactory postsFcatory=new PostsFactory(); //transient keyword used to not serialize this attribute in the file
-    private transient StoriesFactory storiesfactory=new StoriesFactory();
+    //Contents attributes:
+    ArrayList<Post> posts = new ArrayList<>();
+    ArrayList<Story> stories = new ArrayList<>();
+    private transient PostsFactory postsFcatory = new PostsFactory(); //transient keyword used to not serialize this attribute in the file
+    private transient StoriesFactory storiesfactory = new StoriesFactory();
 
     //Info such as photos and bio relates profile properties
     public String bio;
@@ -83,39 +76,18 @@ public class User extends FriendSpecifications{
         return userId;
     }
 
-    @Override
+    @Override //overridden bec. it needs the user obj.
     public ArrayList<String> getFriendSuggestions() throws IOException {
         FriendManagement.FriendSuggestions.common(this);
-        return friendSuggestions;
-    }
-
-    public ArrayList<User> getBlocked() {
-        return blocked;
+        return super.friendSuggestions;
     }
 
     public ArrayList<Post> getPosts() {
         return posts;
     }
-    
+
     public ArrayList<Story> getStories() {
         return stories;
-    }
-     
-    public void block(User user)
-    {
-        blocked.add(user);
-    }
-    
-    public void unBlock(User user)
-    {
-        blocked.remove(user);
-    }
-
-    public void addFriendSuggestions(User friendSuggestions) {
-        this.friendSuggestions.add(friendSuggestions);
-    }
-    public void addFriendSuggestions(ArrayList<User> friendSuggestions) {
-        this.friendSuggestions=friendSuggestions;
     }
 
     public void setUsername(String username) {
@@ -133,7 +105,7 @@ public class User extends FriendSpecifications{
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
     public void setPosts(ArrayList<Post> posts) {
         this.posts = posts;
     }
@@ -149,10 +121,7 @@ public class User extends FriendSpecifications{
     public void setStoriesfactory(StoriesFactory storiesfactory) {
         this.storiesfactory = storiesfactory;
     }
-    
 
-    public void addFriends(User friend) {
-        this.friends.add(friend);
     public String getBio() {
         return bio;
     }
@@ -176,37 +145,36 @@ public class User extends FriendSpecifications{
     public void setCoverPhotoPath(String coverPhotoPath) {
         this.coverPhotoPath = coverPhotoPath;
     }
+
     //Content creation methods
-    public void createPost(String text) throws IOException, NoSuchAlgorithmException
-    {
-        Post post=(Post) postsFcatory.createContent(text);
+    public void createPost(String text) throws IOException, NoSuchAlgorithmException {
+        Post post = (Post) postsFcatory.createContent(text);
         post.setAuthorID(userId);
-        posts.add(post);    
+        posts.add(post);
         FilesManagement.save(this);
     }
-    public void createPost(String text,String imagePath) throws NoSuchAlgorithmException, IOException
-    {  
-        Post post=(Post) postsFcatory.createContent(text,imagePath);
+
+    public void createPost(String text, String imagePath) throws NoSuchAlgorithmException, IOException {
+        Post post = (Post) postsFcatory.createContent(text, imagePath);
         post.setAuthorID(userId);
-        posts.add(post);    
+        posts.add(post);
         FilesManagement.save(this);
     }
-    
-    public void createStory(String text) throws NoSuchAlgorithmException, IOException
-    {
-        Story story=(Story)storiesfactory.createContent(text);
+
+    public void createStory(String text) throws NoSuchAlgorithmException, IOException {
+        Story story = (Story) storiesfactory.createContent(text);
         story.setAuthorID(userId);
-        stories.add(story);    
+        stories.add(story);
         FilesManagement.save(this);
     }
-    
-    public void createStory(String text,String imagepath) throws NoSuchAlgorithmException, IOException
-    {
-        Story story=(Story)storiesfactory.createContent(text,imagepath);
+
+    public void createStory(String text, String imagepath) throws NoSuchAlgorithmException, IOException {
+        Story story = (Story) storiesfactory.createContent(text, imagepath);
         story.setAuthorID(userId);
-        stories.add(story);       
+        stories.add(story);
         FilesManagement.save(this);
     }
+
     @Override
     public String toString() {
         String line = "";

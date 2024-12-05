@@ -1,6 +1,7 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
+package com.mycompany.connect.hub;
 
 import java.util.ArrayList;
 import Backend.Contents;
@@ -9,7 +10,8 @@ import Backend.Post;
 import Backend.PostsFactory;
 import Backend.Story;
 import Backend.StoryMonitor;
-package com.mycompany.connect.hub;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 
 /**

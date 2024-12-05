@@ -6,6 +6,7 @@ package com.mycompany.connect.hub;
 
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -15,13 +16,21 @@ import java.util.UUID;
 //This class is responsible for creating user object using builder design pattern
 public class User {
 
-    //User Info
+    //User personal Info
     private final String userId;
     private String email;
     private String username;
     private String password;
     private String dateOfBirth;
     private String status;
+    
+    //User's attriputes that are related to other operations such as friends, posts, stories,.etc
+    //1-Friend management attributes:
+    ArrayList<User> friends;
+    ArrayList<User> requestsSent;
+    ArrayList<User> requestsRecieved;
+    ArrayList<User> friendSuggestions;
+    ArrayList<User> blocked;
 
     //Private constructor to be accessed only be the builder
     private User(UserBuilder builder) {
@@ -58,6 +67,43 @@ public class User {
         return userId;
     }
 
+    public ArrayList<User> getFriends() {
+        return friends;
+    }
+
+    public ArrayList<User> getRequestsSent() {
+        return requestsSent;
+    }
+
+    public ArrayList<User> getRequestsRecieved() {
+        return requestsRecieved;
+    }
+
+    public ArrayList<User> getFriendSuggestions() {
+        return friendSuggestions;
+    }
+
+    public ArrayList<User> getBlocked() {
+        return blocked;
+    }
+    
+    public void block(User user)
+    {
+        blocked.add(user);
+    }
+    
+    public void unBlock(User user)
+    {
+        blocked.remove(user);
+    }
+
+    public void addFriendSuggestions(User friendSuggestions) {
+        this.friendSuggestions.add(friendSuggestions);
+    }
+    public void addFriendSuggestions(ArrayList<User> friendSuggestions) {
+        this.friendSuggestions=friendSuggestions;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -73,8 +119,29 @@ public class User {
     public void setStatus(String status) {
         this.status = status;
     }
-    
-    
+
+    public void addFriends(User friend) {
+        this.friends.add(friend);
+    }
+
+    public void addRequestsSent(User requestsSent) {
+        this.requestsSent.add(requestsSent);
+    }
+
+    public void addRequestsRecieved(User requestsRecieved) {
+        this.requestsRecieved.add(requestsRecieved);
+    }
+        public void removeFriends(User friend) {
+        this.friends.remove(friend);
+    }
+
+    public void removeRequestsSent(User requestsSent) {
+        this.requestsSent.remove(requestsSent);
+    }
+
+    public void removeRequestsRecieved(User requestsRecieved) {
+        this.requestsRecieved.remove(requestsRecieved);
+    }
 
     @Override
     public String toString() {

@@ -21,6 +21,10 @@ public class SignIn {
 
         if (!checkDuplicated(email)) {
             user = new CreateUser().information(email, username, password, dateOfBirth);
+            if (user != null) {
+                JOptionPane.showMessageDialog(null, "Signed up successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
+            }
+        } else if (checkDuplicated(email)) {
             ConnectHub.currentUser = user;
             JOptionPane.showMessageDialog(null, "Signed up successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
         } else {

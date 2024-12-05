@@ -4,6 +4,7 @@
  */
 package com.mycompany.connect.hub;
 
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,8 +14,8 @@ import java.util.UUID;
  *
  * @author Reem
  */
-//This class is responsible for creating user object using builder design pattern
-public class User {
+//This class is responsible for creating user object with all its attriputes using builder design pattern
+public class User extends FriendSpecifications{
 
     //User personal Info
     private final String userId;
@@ -23,14 +24,11 @@ public class User {
     private String password;
     private String dateOfBirth;
     private String status;
-    
-    //User's attriputes that are related to other operations such as friends, posts, stories,.etc
-    //1-Friend management attributes:
-    ArrayList<User> friends;
-    ArrayList<User> requestsSent;
-    ArrayList<User> requestsRecieved;
-    ArrayList<User> friendSuggestions;
-    ArrayList<User> blocked;
+
+    //Info such as photos and bio relates profile properties
+    public String bio;
+    public String profilePhotoPath;
+    public String coverPhotoPath;
 
     //Private constructor to be accessed only be the builder
     private User(UserBuilder builder) {
@@ -67,41 +65,10 @@ public class User {
         return userId;
     }
 
-    public ArrayList<User> getFriends() {
-        return friends;
-    }
-
-    public ArrayList<User> getRequestsSent() {
-        return requestsSent;
-    }
-
-    public ArrayList<User> getRequestsRecieved() {
-        return requestsRecieved;
-    }
-
-    public ArrayList<User> getFriendSuggestions() {
+    @Override
+    public ArrayList<String> getFriendSuggestions() throws IOException {
+        FriendManagement.FriendSuggestions.common(this);
         return friendSuggestions;
-    }
-
-    public ArrayList<User> getBlocked() {
-        return blocked;
-    }
-    
-    public void block(User user)
-    {
-        blocked.add(user);
-    }
-    
-    public void unBlock(User user)
-    {
-        blocked.remove(user);
-    }
-
-    public void addFriendSuggestions(User friendSuggestions) {
-        this.friendSuggestions.add(friendSuggestions);
-    }
-    public void addFriendSuggestions(ArrayList<User> friendSuggestions) {
-        this.friendSuggestions=friendSuggestions;
     }
 
     public void setUsername(String username) {
@@ -119,34 +86,36 @@ public class User {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    public void addFriends(User friend) {
-        this.friends.add(friend);
+    
+    public String getBio() {
+        return bio;
     }
 
-    public void addRequestsSent(User requestsSent) {
-        this.requestsSent.add(requestsSent);
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
-    public void addRequestsRecieved(User requestsRecieved) {
-        this.requestsRecieved.add(requestsRecieved);
-    }
-        public void removeFriends(User friend) {
-        this.friends.remove(friend);
+    public String getProfilePhotoPath() {
+        return profilePhotoPath;
     }
 
-    public void removeRequestsSent(User requestsSent) {
-        this.requestsSent.remove(requestsSent);
+    public void setProfilePhotoPath(String profilePhotoPath) {
+        this.profilePhotoPath = profilePhotoPath;
     }
 
-    public void removeRequestsRecieved(User requestsRecieved) {
-        this.requestsRecieved.remove(requestsRecieved);
+    public String getCoverPhotoPath() {
+        return coverPhotoPath;
     }
+
+    public void setCoverPhotoPath(String coverPhotoPath) {
+        this.coverPhotoPath = coverPhotoPath;
+    }
+    
 
     @Override
     public String toString() {
         String line = "";
-        line += "userId=" + userId + ",username=" + username + ",email=" + email + ",password=" + PasswordHashing.hashPassword(password) + ",dateOfBirth=" + dateOfBirth + ",status=" + status;
+        line += "userId=" + userId + ",username=" + username + ",email=" + email + ",password=" + password + ",dateOfBirth=" + dateOfBirth + ",status=" + status;
         return line;
     }
 

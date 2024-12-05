@@ -12,6 +12,7 @@ import Backend.Creation;
 import Backend.Post;
 import Backend.PostsFactorty;
 import Backend.Story;
+import java.util.Map;
 
 /**
  *
@@ -20,9 +21,12 @@ import Backend.Story;
 //Files problem
 public class ConnectHub {
 
-    static User currentUser = null;
+     public static User currentUser;
 
     public static void main(String[] args) throws NoSuchAlgorithmException, IOException, InterruptedException {
-        new ProjectsOpening().setVisible(true);
+        //new ProjectsOpening().setVisible(true);
+        /*currentUser = null;*/
+        System.out.println(FilesManagement.read().get("92b4103c-74f4-425f-8575-46fdfd0ed5b8").getFriendSuggestions());
+
     }
 }

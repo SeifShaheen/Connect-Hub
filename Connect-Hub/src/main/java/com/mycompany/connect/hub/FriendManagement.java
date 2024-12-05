@@ -5,8 +5,10 @@
 package com.mycompany.connect.hub;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,72 +22,82 @@ public class FriendManagement {
     public static class Request {
 
         // a method that sends request from user to other
-        public static boolean send(User from, User to) {
-            if (!from.getRequestsRecieved().contains(to) && !from.getRequestsSent().contains(to) && !from.getFriends().contains(to)) {
+        public static boolean send(User from, User to) throws NoSuchAlgorithmException, IOException {
+            if (!from.getRequestsRecieved().contains(to.getUserId()) && !from.getRequestsSent().contains(to.getUserId()) && !from.getFriends().contains(to.getUserId())) {
                 //send the request
-                from.addRequestsSent(to);
-                to.addRequestsRecieved(from);
-                save(from,to); //update database
+                from.addRequestsSent(to.getUserId());
+                to.addRequestsRecieved(from.getUserId());
+                save(from, to); //update database
                 return true; //indication
             }
             return false;
         }
 
         //a method that approves the request
-        public static boolean approve(User from, User to) {
+        public static boolean approve(User from, User to) throws NoSuchAlgorithmException, IOException {
             //check that the request already exists
-            if (from.getRequestsSent().contains(to) && to.getRequestsRecieved().contains(from)) {
-                from.removeRequestsSent(to);
-                to.removeRequestsRecieved(from);
+            if (from.getRequestsSent().contains(to.getUserId()) && to.getRequestsRecieved().contains(from.getUserId())) {
+                from.removeRequestsSent(to.getUserId());
+                to.removeRequestsRecieved(from.getUserId());
                 //remove the request from requests and move users to be friends
-                from.addFriends(to);
-                to.addFriends(from);
-                save(from,to);
+                from.addFriends(to.getUserId());
+                to.addFriends(from.getUserId());
+                save(from, to);
                 return true;//indication
             }
             return false;
         }
 
         //a method to decline the request
-        public static boolean decline(User from, User to) {
+        public static boolean decline(User from, User to) throws NoSuchAlgorithmException, IOException {
             //check that the request already exists
-            if (from.getRequestsSent().contains(to) && to.getRequestsRecieved().contains(from)) {
-                from.removeRequestsSent(to);
-                to.removeRequestsRecieved(from);
+            if (from.getRequestsSent().contains(to.getUserId()) && to.getRequestsRecieved().contains(from.getUserId())) {
+                from.removeRequestsSent(to.getUserId());
+                to.removeRequestsRecieved(from.getUserId());
                 //remove the request from requests only
-                save(from,to);
+                save(from, to);
                 return true;//indication
             }
             return false;
         }
 
         //a methos that unfriend two users
-        public static boolean unFriend(User from, User to) {
+        public static boolean unFriend(User from, User to) throws IOException, NoSuchAlgorithmException {
             //check that they are already fiends
-            if (from.getFriends().contains(to)) {
+            if (from.getFriends().contains(to.getUserId())) {
                 //remove both users from eachothers lists
-                from.removeFriends(to);
-                to.removeFriends(from);
-                save(from,to);
+                from.removeFriends(to.getUserId());
+                to.removeFriends(from.getUserId());
+                save(from, to);
                 return true;
             }
             return false;
         }
 
         //a method to block users
-        public static boolean block(User from, User to) {
+        public static boolean block(User from, User to) throws NoSuchAlgorithmException, IOException {
             //check that both users exist
             if (from == null || to == null) {
                 return false;
             } else {
+                if (from.getFriends().contains(to.getUserId())) {
+                    from.removeFriends(to.getUserId());
+                    to.removeFriends(from.getUserId());
+                } else if (from.getRequestsSent().contains(to.getUserId())) {
+                    from.removeRequestsSent(to.getUserId());
+                    to.removeRequestsRecieved(from.getUserId());
+                } else if (to.getRequestsSent().contains(from.getUserId())) {
+                    to.removeRequestsSent(from.getUserId());
+                    from.removeRequestsRecieved(to.getUserId());
+                }
                 from.block(to); //add user to block list
-                save(from);
+                save(from, to);
                 return true;
             }
         }
 
         //a method to unblock
-        public static boolean unBlock(User from, User to) {
+        public static boolean unBlock(User from, User to) throws NoSuchAlgorithmException, IOException {
             //check that both users exist
             if (from == null || to == null) {
                 return false;
@@ -95,17 +107,6 @@ public class FriendManagement {
                 return true;
             }
         }
-
-        //method to save the list if both users needs update
-        public static void save(User from, User to) {
-            FilesManagement.map.put(from.getUserId(), from);
-            FilesManagement.map.put(to.getUserId(), to);
-        }
-        //method to save the list if only one changed 
-        public static void save(User from) {
-            FilesManagement.map.put(from.getUserId(), from);
-        }
-
     }
 
     /*
@@ -133,28 +134,40 @@ public class FriendManagement {
                 allUsers.removeIf(u -> u.getUserId().equals(user.getUserId())); //execluds current user
                 //shuffle the list 
                 java.util.Collections.shuffle(allUsers);
-                user.addFriendSuggestions(new ArrayList<>(allUsers.subList(0, Math.min(10, allUsers.size())))); //suggest 10 users max
+                allUsers.removeIf(u -> user.getBlocked().contains(u.getUserId())); //exclude if blocked user
+                ArrayList<String> userIds = allUsers.subList(0, Math.min(10, allUsers.size())).stream().map(User::getUserId).collect(Collectors.toCollection(ArrayList::new)); //collect as a List
+                user.addFriendSuggestions(userIds);
                 return true;
             } else {
                 //It is the condition that user have friends and i want system to suggest him friends of friends
-                for (User friend : user.getFriends()) {
+                for (String friendId : user.getFriends()) {
                     //checks friend existance
-                    if (friend != null && friend.getFriends() != null) {
+                    if (!friendId.equals(null) && FilesManagement.read().containsKey(friendId)) {
                         //check for the friend's friends
-                        for (User friendOfFriend : friend.getFriends()) {
+                        for (String friendOfFriendId : FilesManagement.read().keySet()) {
                             //exclude the current user and his friends and block list
-                            if (!friendOfFriend.getUserId().equals(user.getUserId()) && !user.getFriends().contains(friendOfFriend) && !user.getBlocked().contains(friendOfFriend)) {
-                                User suggestedUser = users.get(friendOfFriend);
+                            if (!friendOfFriendId.equals(user.getUserId()) && !user.getFriends().contains(friendOfFriendId) && !user.getBlocked().contains(friendOfFriendId)) {
+                                User suggestedUser = users.get(friendOfFriendId);
                                 if (suggestedUser != null) { //check for existance and then add to suggestions
-                                    user.addFriendSuggestions(suggestedUser);
+                                    user.addFriendSuggestions(suggestedUser.getUserId());
                                 }
                             }
                         }
                     }
-
                 }
                 return true;
             }
         }
+    }
+
+    //method to save the list if both users needs update
+    public static void save(User from, User to) throws NoSuchAlgorithmException, IOException {
+        FilesManagement.save(from);
+        FilesManagement.save(to);
+    }
+
+    //method to save the list if only one changed 
+    public static void save(User from) throws NoSuchAlgorithmException, IOException {
+        FilesManagement.save(from);
     }
 }

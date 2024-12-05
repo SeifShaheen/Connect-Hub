@@ -4,6 +4,7 @@
  */
 package com.mycompany.connect.hub;
 
+import Backend.Post;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -27,14 +28,14 @@ import javax.swing.border.EmptyBorder;
  */
 public class postPanel extends JPanel {
 
-    public postPanel(String title, String content) throws IOException {
+    public postPanel(Post post) throws IOException {
         setLayout(new BorderLayout());
         //Adding Author
         JPanel author = new JPanel();
         author.setLayout(new FlowLayout(FlowLayout.LEADING));
         //Adding Author Photo
         BufferedImage authorPic = ImageIO.read(new File("src\\main\\java\\icons\\logout.png")); // temp Image
-        JLabel authorLabelPic = new JLabel(new ImageIcon(authorPic.getScaledInstance(20, 20 , java.awt.Image.SCALE_SMOOTH)));
+        JLabel authorLabelPic = new JLabel(new ImageIcon(authorPic.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
         author.add(authorLabelPic);
         this.add(author, BorderLayout.NORTH);
         //Adding Author data
@@ -42,12 +43,12 @@ public class postPanel extends JPanel {
         data.setLayout(new BoxLayout(data, BoxLayout.Y_AXIS));
         JLabel name = new JLabel("Seif");
         data.add(name);
-        JLabel date = new JLabel("time");
+        JLabel date = new JLabel(post.getTimestamp());
         date.setForeground(Color.gray);
         data.add(date);
         author.add(data);
         // Adding Content
-        JTextArea contentArea = new JTextArea(content);
+        JTextArea contentArea = new JTextArea(post.getText());
         contentArea.setEnabled(false);
         contentArea.setDisabledTextColor(Color.RED);
         contentArea.setFont(new Font("Serif", Font.ITALIC, 16));
@@ -55,9 +56,11 @@ public class postPanel extends JPanel {
         contentArea.setWrapStyleWord(true);
         add(new JScrollPane(contentArea), BorderLayout.CENTER);
         //Adding Image
-        BufferedImage pic = ImageIO.read(new File("src\\main\\java\\icons\\logout.png")); // temp Image
-        JLabel picLabel = new JLabel(new ImageIcon(pic.getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH)));
-        add(new JScrollPane(picLabel), BorderLayout.SOUTH);
-        setBorder(new EmptyBorder(7,5,7,5));
+        if (post.getImagePath() != null) {
+            BufferedImage pic = ImageIO.read(new File(post.getImagePath()));
+            JLabel picLabel = new JLabel(new ImageIcon(pic.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
+            add(new JScrollPane(picLabel), BorderLayout.SOUTH);
+        }
+        setBorder(new EmptyBorder(7, 5, 7, 5));
     }
 }

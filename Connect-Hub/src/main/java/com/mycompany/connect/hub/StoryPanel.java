@@ -4,6 +4,7 @@
  */
 package com.mycompany.connect.hub;
 
+import Backend.Story;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -19,6 +20,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -26,7 +28,7 @@ import javax.swing.JPanel;
  */
 public class StoryPanel extends JPanel {
 
-    public StoryPanel(String title, String content) throws IOException {
+    public StoryPanel(Story story) throws IOException {
         MouseListener ml = new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -48,11 +50,16 @@ public class StoryPanel extends JPanel {
         data.setLayout(new BoxLayout(data, BoxLayout.Y_AXIS));
         JLabel name = new JLabel("Seif");
         data.add(name);
-        JLabel date = new JLabel("time");
+        JLabel date = new JLabel(story.getTimestamp());
         date.setForeground(Color.gray);
         data.add(date);
         author.add(data);
+        //Adding Image
+        if (story.getImagePath() != null) {
+            BufferedImage pic = ImageIO.read(new File(story.getImagePath())); // temp Image
+            JLabel picLabel = new JLabel(new ImageIcon(pic.getScaledInstance(new ImageIcon(story.getImagePath()).getIconWidth(), new ImageIcon(story.getImagePath()).getIconHeight(), java.awt.Image.SCALE_SMOOTH)));
+            add(new JScrollPane(picLabel), BorderLayout.SOUTH);
+        }
         setBorder(BorderFactory.createLineBorder(Color.black));
-        
     }
 }

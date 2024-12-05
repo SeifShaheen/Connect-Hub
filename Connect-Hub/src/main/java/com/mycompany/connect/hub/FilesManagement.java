@@ -65,7 +65,7 @@ public class FilesManagement {
 
             //If the file is empty it returns null
             if (content.isEmpty()) {
-                return null;
+                return new HashMap<>();
             }
 
             //Use Gson to deserialize the content into a Map

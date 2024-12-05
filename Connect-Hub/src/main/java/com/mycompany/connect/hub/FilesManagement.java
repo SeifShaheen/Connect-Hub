@@ -22,11 +22,13 @@ import com.google.gson.reflect.TypeToken;
 //This class is responsible for dealing with files
 public class FilesManagement {
 
+    static Map<String, User> map = null;
+
     //Public method to save one new user to the file or to edit one needed to be edited
     public static void save(User user) throws NoSuchAlgorithmException, IOException {
 
         //Creating a map to map each ID with its properties
-        Map<String, User> map = read();
+        map = read();
 
         //cheching for existing values
         if (map == null) {
@@ -56,7 +58,7 @@ public class FilesManagement {
     //A method to read whole data from the file and returns map
     public static Map<String, User> read() throws IOException {
         try {
-//Read the content of the file
+            //Read the content of the file
             String content = new String(Files.readAllBytes(Paths.get("database.json")));
 
             //If the file is empty it returns null

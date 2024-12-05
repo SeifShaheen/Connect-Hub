@@ -115,18 +115,20 @@ public class LoginWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        if(emailField.getText().isEmpty())
-        {
+        if (emailField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter email address!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if(passField.getText().isEmpty())
-        {
+        if (passField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter password!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         try {
-            User user = Login.operate(emailField.getText(), passField.getText());
+            ConnectHub.currentUser = Login.operate(emailField.getText(), passField.getText());
+            if (ConnectHub.currentUser != null) {
+                NewsfeedPage nfs = new NewsfeedPage();
+                dispose();
+            }
         } catch (IOException ex) {
             Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {

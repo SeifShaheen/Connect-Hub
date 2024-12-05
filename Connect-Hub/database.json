@@ -27,5 +27,47 @@
     "username": "reem desouky abo",
     "password": "$2a$10$u9Jkf3wbLfw2HtWYBFAZHe2ij65H42QhleDfpk.55Xfj91RKLXIV2",
     "dateOfBirth": "2004-10-22"
+    "username": "fss",
+    "password": "$2a$10$6VD.C2ScKLH8lGKX660NwenEgMOKkuP5tsDgrv/we9szww8XOqcSW",
+    "dateOfBirth": "2004-10-10"
+  },
+  "e5051709-4210-40a7-bca1-ef7ff953cf6e": {
+    "userId": "e5051709-4210-40a7-bca1-ef7ff953cf6e",
+    "email": "seifshaheen11@gmail.com",
+    "username": "SeifShaheen",
+    "password": "$2a$10$moF2VWwdtkqmf146q69l7O6n7D2cONj4jNgC09TScWMXxsDgI5s0C",
+    "dateOfBirth": "2003-12-29",
+    "status": "Online"
+  },
+  "de2973b3-2664-44ea-977e-6f6fd0bcba67": {
+    "userId": "de2973b3-2664-44ea-977e-6f6fd0bcba67",
+    "email": "seifshaheen10@gmail.com",
+    "username": "seifshaheen",
+    "password": "$2a$10$CEbm7jgkzOFzJm/qagRzbuGtoMHHELOUi085E1fTCvhSwIY23uKl6",
+    "dateOfBirth": "2003-12-29",
+    "status": "Offline"
+  },
+  "7111753b-faa4-4b17-8afd-ffffedd616dc": {
+    "userId": "7111753b-faa4-4b17-8afd-ffffedd616dc",
+    "email": "seiffff@gmail.com",
+    "username": "seif",
+    "password": "$2a$10$2as74N.p06sHxc8Q2cGyY.H/B0RmfCmWjFAhoqThimI1N2/nSW8eO",
+    "dateOfBirth": "2003-02-09"
+  },
+  "6bcdfe92-9371-4852-bb09-814b21ad7a36": {
+    "userId": "6bcdfe92-9371-4852-bb09-814b21ad7a36",
+    "email": "ssss@ggg.com",
+    "username": "seif",
+    "password": "$2a$10$IC94Qyx6q5aOWh2V6PCkXOusyjaCKYTWgneXPE8WzjDyYs/rgUZ4S",
+    "dateOfBirth": "2003-12-29",
+    "status": "Online"
+  },
+  "bd463709-1561-4b82-a04d-852292cabef3": {
+    "userId": "bd463709-1561-4b82-a04d-852292cabef3",
+    "email": "ssssssssss@gmail.com",
+    "username": "seif",
+    "password": "$2a$10$1Y94uZXqI01mjSMmt.yB4O3v3l1DMDqZsNoyUrZg21eW4gCtbbKua",
+    "dateOfBirth": "2003-12-29",
+    "status": "Offline"
   }
 }

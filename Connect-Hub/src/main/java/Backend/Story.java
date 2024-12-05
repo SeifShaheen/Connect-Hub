@@ -6,6 +6,7 @@ package Backend;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 
 /**
@@ -16,17 +17,24 @@ public class Story implements Contents {
     private String text;
     private String imagePath;
     private String timestamp;
+    private String contentID;
+    private String authorID;
+    private StoryMonitor storyMonitor;
     
+    //overloaded constructors for stories based on the passed arguments 
     public Story(String text)
     {
       this.text=text;
       this.timestamp=DateFormating.date(new Date());
+      this.contentID=UUID.randomUUID().toString();
+      
     }
     public Story(String text, String imagePath)
     {
       this.text=text;
       this.imagePath=imagePath;
       this.timestamp=DateFormating.date(new Date());
+      this.contentID=UUID.randomUUID().toString();
     }
         
     @Override
@@ -43,6 +51,17 @@ public class Story implements Contents {
     public String getTimestamp() {
         return timestamp;
     }
+
+    public void setAuthorID(String authorID) {
+        this.authorID = authorID;
+    }
+
+    public String getContentID() {
+        return contentID;
+    }
+
+    
+    
 
     
 }

@@ -4,27 +4,61 @@
  */
 package Backend;
 
+import com.mycompany.connect.hub.FilesManagement;
+import com.mycompany.connect.hub.User;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 
 public class StoryMonitor {
-    private Story story;
-    private Timer timer=new Timer();
     
-    public StoryMonitor(Story story) {
-        this.story = story;
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                deleteStory();
+    public static void checkExpiredStories()
+    {
+        try{
+            Map<String, User> users=FilesManagement.read();
+            if(users!=null)
+            {
+                for(User user:users.values())
+                {
+                    ArrayList<Story> stories = user.getStories();
+                    for(int i=0; i<stories.size();i++)
+                    {
+                        if(isStoryExpired(stories.get(i).getTimestamp()))
+                            stories.remove(i);
+                    }                  
+                }
+                FilesManagement.save(users);
             }
-        }, 24 * 60 * 60 * 1000); // Schedule for 24 hours
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
     }
     
-    private void deleteStory() {
-        // remove from JSON and newsfeed page
-        System.out.println("Story has expired and has been deleted.");
+    private static boolean isStoryExpired(String timestamp) {
+    String currentTime = DateFormating.date(new Date());  // Get formatted current date-time
+    // Use SimpleDateFormat to parse both the current time and the story's timestamp
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    try {
+        Date storyDate = format.parse(timestamp);  // Parse story's timestamp
+        Date currentDate = format.parse(currentTime);  // Parse current time
+        
+        // Check if the story is more than 24 hours old
+        return storyDate.getTime() + 24 * 60 * 60 * 1000 <= currentDate.getTime(); // 24 hours in milliseconds
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;  // If parsing fails
     }
+}
+    
+    
    
 }

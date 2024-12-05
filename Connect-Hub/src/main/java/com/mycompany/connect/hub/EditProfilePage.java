@@ -30,12 +30,13 @@ public class EditProfilePage extends javax.swing.JFrame {
         bioText.setLineWrap(true);
         bioText.setWrapStyleWord(true);
         bioText.setRows(1);
+         // User user=ConnectHub.CurrentUser;
         //...............add  current cover photo.............
-        //Strig imagepath =user.getCoverPath();
+        //Strig imagepath =user.getCoverPhotoPath();
         //coverPhoto.setIcon(section(path, null,coverPhoto.getWidth(), coverPhoto.getHeight()));
         
         //..............add current profile photo................
-        //String profilePath=user.getProfilePath();
+        //String profilePath=user.getProfilePhotoPath();
         //profilePicture.setIcon(section(path, null,profilePicture.getWidth(), profilePicture.getHeight()));
         
         
@@ -145,7 +146,7 @@ public class EditProfilePage extends javax.swing.JFrame {
         jScrollPane1.setViewportView(bioText);
 
         label4.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
-        label4.setText("Password");
+        label4.setText("Change Password");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -240,7 +241,7 @@ public class EditProfilePage extends javax.swing.JFrame {
             File f = fc.getSelectedFile();
             String path = f.getAbsolutePath();
             profilePicture.setIcon(section(path, null,profilePicture.getWidth(), profilePicture.getHeight()));
-            //user.setProfilePath(path);
+            //user.setProfilePhotoPath(path);
             //FileManagment.map.put(user.getUserId,user);
         //FileManagment.Save(map);
         }
@@ -257,7 +258,7 @@ public class EditProfilePage extends javax.swing.JFrame {
             File f = fc.getSelectedFile();
             String path = f.getAbsolutePath();
             coverPhoto.setIcon(section(path, null,coverPhoto.getWidth(), coverPhoto.getHeight()));
-            //user.setCoverPath(path);
+            //user.setCoverPhotoPath(path);
             //FileManagment.map.put(user.getUserId,user);
         //FileManagment.Save(map);
         }

@@ -26,21 +26,34 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
         setVisible(true);
           setTitle("...UserName...");
           partOfFriends.setVisible(true);
-//          setSize(new Dimension(600, 600));
+// 
+setSize(new Dimension(600, 600));
 //..............add cover Photo..............
-//String coverPath=user.getCoverPath();
-// coverPh.setIcon(section(coverPath, null,coverPh.getWidth(), coverPh.getHeight()));
+ // User user=ConnectHub.CurrentUser;
+   //String coverPath=user.getCoverPhotoPath();
+   //coverPh.setIcon(EditProfilePage.section(coverPath, null,coverPh.getWidth(), coverPh.getHeight()));
 
 //............add profile photo..............
-//String profilePhoPath=user.getProfilePath();
-// profilePh.setIcon(section(profilePhoPath, null,profilePh.getWidth(), profilePh.getHeight()));
+//String profilePhoPath=user.getProfilePhotoPath();
+// profilePh.setIcon(EditProfilePage.section(profilePhoPath, null,profilePh.getWidth(), profilePh.getHeight()));
 
 //...................add user name......................
-//String user=(String) mainJsonObject.get("userName");
+//String user=user.getUsername();
 //userName.setText(user);
 
+
+
+ //............add the current bio..............
+          //String bio =user.getBio();
+        // bioText.setText(bio);
+      //  bioText.setLineWrap(true);
+      //  bioText.setWrapStyleWord(true);
+      //  bioText.setRows(1);
+      
+      
 // ....................add friends ..................
-// ArrayList friends=user.getFriends();
+   //FriendSpecifications friendSpecifications=new FriendSpecifications();
+          //ArrayList friends=friendSpecifications.getFriends();
 //partOfFriends.setLayout(new BoxLayout(partOfFriends,BoxLayout.X_AXIS));
 //for(int i=0;i<3;1++ )
 //{ user friend=fileManagment.Map.get(friends[i]);
@@ -50,7 +63,7 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
 //         newpanel.setPreferredSize(new Dimension(150, 200)); 
 //         newpanel.setLayout(new FlowLayout());
 //        JLabel friendImage = new JLabel();
-//       friendImage.setIcon(friend.getProfilePath(), null,profilePh.getWidth(), profilePh.getHeight()));
+//       friendImage.setIcon(EditProfilePage.section(friend.getProfilePath(), null,profilePh.getWidth(), profilePh.getHeight())));
 //         friendImage.setPreferredSize(new Dimension(20, 20)); 
 //        JLabel friendUserName = new JLabel();
 //        String userf=friend.getUserName();   
@@ -70,54 +83,23 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
 //      partOfFriends.revalidate();
 //   partOfFriends.repaint();    
 //
+
 //...............add Posts...................
-//ArrayList posts=user.getPosts();
+//ArrayList posts=user.getPosts;
 //for(Post post: posts)
 //{postsPanel.add(new postPanel(post));
 //}
-//}
+}
 
 
 
 
-//read friends from Json in ArrayList (friends)
-//for(ArrayList friend: friends)
-//{function read friend()=subJsonObject;
-// JPanel newpanel = new JPanel();
-// newpanel.setLayout(new BoxLayout(newpanel, BoxLayout.Y_AXIS)); 
-
-//reaad pasts from Json
-
-    partOfFriends.setLayout(new BoxLayout(partOfFriends,BoxLayout.X_AXIS));
 
 
-          
-          for(int i=0;i<3;i++){
-              JPanel newpanel = new JPanel();
-        newpanel.setLayout(new BoxLayout(newpanel, BoxLayout.Y_AXIS)); 
-        newpanel.setBackground(Color.WHITE);
-         newpanel.setPreferredSize(new Dimension(150, 200)); 
-            
-        
-         newpanel.setLayout(new FlowLayout());
-        JLabel friendImage = new JLabel("User Image");//image
-         friendImage.setPreferredSize(new Dimension(20, 20)); 
-        friendImage.setBackground(Color.gray);
-        JLabel friendUserName = new JLabel("Friend " + (i+1));
-        JLabel friendStatus = new JLabel("Status: " + (i % 2 == 0 ? "Online" : "Offline"));
-      
-         newpanel.add(friendImage); 
-        newpanel.add(friendUserName);
-         newpanel.add(friendStatus);
-       
-        
-     
-        partOfFriends.add(newpanel);
- 
-    }
-      partOfFriends.revalidate();
-   partOfFriends.repaint();    
-    }
+   
+
+
+    
 
     
     /**
@@ -141,6 +123,7 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         profilePh = new javax.swing.JLabel();
         coverPh = new javax.swing.JLabel();
+        currentBio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -177,7 +160,7 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
         partOfFriends.setLayout(partOfFriendsLayout);
         partOfFriendsLayout.setHorizontalGroup(
             partOfFriendsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 281, Short.MAX_VALUE)
         );
         partOfFriendsLayout.setVerticalGroup(
             partOfFriendsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,11 +177,11 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
         postsPanel.setLayout(postsPanelLayout);
         postsPanelLayout.setHorizontalGroup(
             postsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 281, Short.MAX_VALUE)
         );
         postsPanelLayout.setVerticalGroup(
             postsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 172, Short.MAX_VALUE)
+            .addGap(0, 189, Short.MAX_VALUE)
         );
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -223,15 +206,25 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
                                     .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(28, 28, 28)
                                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(postsPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(partOfFriends, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(184, 184, 184))))
+                        .addContainerGap(21, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(219, 219, 219))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(partOfFriends, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(currentBio, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(postsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,6 +236,8 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
                     .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(currentBio, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(partOfFriends, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -251,8 +246,8 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(postsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(23, 23, 23))
+                .addComponent(postsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
 
         scrollPane1.add(jPanel1);
@@ -270,7 +265,7 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+                .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -323,6 +318,7 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel coverPh;
+    private javax.swing.JLabel currentBio;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel3;

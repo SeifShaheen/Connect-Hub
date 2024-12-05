@@ -31,8 +31,8 @@ public class FriendsPage extends javax.swing.JFrame {
      mainPanel.setVisible(true);
     mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
 
-            
-           //ArrayList friends=user.getFriends();
+            //FriendSpecifications friendSpecifications=new FriendSpecifications();
+          //ArrayList friends=friendSpecifications.getFriends();
            //for(ArrayList f:friends){
            //user friend=fileManagment.Map.get(f);
            // mainPanel.add(new FriendPanel(friend.getUSerName,friend.getStaus,friend.getProfilePath));

@@ -17,38 +17,29 @@ public class Story implements Content {
     private String imagePath;
     private String timestamp;
     
-    @Override
-    public Content create(String text) {
-        this.text=text;   
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        this.timestamp = format.format(new Date());
-        return (Story) this;
+    public Story(String text)
+    {
+      this.text=text;
+      this.timestamp=DateFormating.date(new Date());
     }
-
-    @Override
-    public Content create(String text, String imagePath) {
-        this.text=text;
-        this.imagePath=imagePath;
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        this.timestamp = format.format(new Date());
-        return (Story) this;
+    public Story(String text, String imagePath)
+    {
+      this.text=text;
+      this.imagePath=imagePath;
+      this.timestamp=DateFormating.date(new Date());
     }
-    // will be modified or deleted
-    @Override
-    public Content display() {
-        System.out.println("created:" + text);
-        return this;
         
-    }
-
+    @Override
     public String getText() {
         return text;
     }
 
+    @Override
     public String getImagePath() {
         return imagePath;
     }
 
+    @Override
     public String getTimestamp() {
         return timestamp;
     }

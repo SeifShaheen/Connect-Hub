@@ -4,10 +4,11 @@
  */
 package Backend;
 
-
+//An interface to make the contents type inherit from
 public interface Content {
-    
-    Content create(String text);
-    Content create(String text, String imagePath);
-    Content display();
+
+    String getText();
+    String getImagePath();
+    String getTimestamp();
+
 }

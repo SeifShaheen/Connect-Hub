@@ -4,15 +4,17 @@
  */
 package Backend;
 
-/**
- *
- * @author amrze
- */
+
 public class PostsFactorty implements Creation {
 
     @Override
-    public Content createContent() {
-        return new Post();
+    public Content createContent(String text) {
+        return new Post(text);
+    }
+
+    @Override
+    public Content createContent(String text, String imagePath) {
+        return new Post(text,imagePath);
     }
     
 }

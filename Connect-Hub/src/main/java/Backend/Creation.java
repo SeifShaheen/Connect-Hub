@@ -4,10 +4,9 @@
  */
 package Backend;
 
-/**
- *
- * @author amrze
- */
+//An interface for the the factories of contents to inherit from 
 public interface Creation {
-    Content createContent();
+
+    Content createContent(String text);
+    Content createContent(String text, String imagePath);
 }

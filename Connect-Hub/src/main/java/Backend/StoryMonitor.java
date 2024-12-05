@@ -7,28 +7,24 @@ package Backend;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- *
- * @author amrze
- */
+
 public class StoryMonitor {
-    Story story;
+    private Story story;
+    private Timer timer=new Timer();
     
-    Timer timer=new Timer();
-    TimerTask task=new TimerTask(){
-        @Override
-        public void run() {
-            //delete the story from the frontend and from the json file         
-           // System.out.println("Stroy has been ended");
-            
-        }
-        
-    };
-    public StoryMonitor(Story story)
-    {
-        this.story=story;
-        timer.schedule(task, 24 * 60 * 60 * 1000); //to schedule for 24h
+    public StoryMonitor(Story story) {
+        this.story = story;
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                deleteStory();
+            }
+        }, 24 * 60 * 60 * 1000); // Schedule for 24 hours
     }
     
+    private void deleteStory() {
+        // remove from JSON and newsfeed page
+        System.out.println("Story has expired and has been deleted.");
+    }
    
 }

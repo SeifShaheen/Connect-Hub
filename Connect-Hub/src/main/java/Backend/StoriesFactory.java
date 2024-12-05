@@ -4,15 +4,18 @@
  */
 package Backend;
 
-/**
- *
- * @author amrze
- */
+
 public class StoriesFactory implements Creation{
 
     @Override
-    public Content createContent() 
-    {
-            return new Story();
-    }   
+    public Content createContent(String text) {
+        return new Story(text);
+    }
+
+    @Override
+    public Content createContent(String text, String imagePath) {
+        return new Story(text,imagePath);
+    }
+
+    
 }

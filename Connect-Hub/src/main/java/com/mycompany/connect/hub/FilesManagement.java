@@ -22,6 +22,7 @@ import java.util.ArrayList;
  * @author Reem
  */
 //This class is responsible for dealing with files
+
 public class FilesManagement {
 
     static Map<String, User> map = null;
@@ -72,7 +73,7 @@ public class FilesManagement {
             return gson.fromJson(content, new TypeToken<Map<String, User>>() {
             }.getType());
         } catch (IOException e) {
-            return null;
+            return new HashMap<>();
         }
     }
 

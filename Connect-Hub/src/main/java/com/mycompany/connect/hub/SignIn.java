@@ -17,20 +17,23 @@ import javax.swing.JOptionPane;
 public class SignIn {
 
     //A method to sign in by creating user account;
-    public static void operate(User user, String email, String username, String password, String dateOfBirth) throws IOException, NoSuchAlgorithmException {
+    public static User operate(User user, String email, String username, String password, String dateOfBirth) throws IOException, NoSuchAlgorithmException {
 
         if (!checkDuplicated(email)) {
             user = new CreateUser().information(email, username, password, dateOfBirth);
             if (user != null) {
+                ConnectHub.currentUser = user;
                 JOptionPane.showMessageDialog(null, "Signed up successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
             }
         } else if (checkDuplicated(email)) {
-            ConnectHub.currentUser = user;
-            JOptionPane.showMessageDialog(null, "Signed up successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
-        } else {
             JOptionPane.showMessageDialog(null, "Email is already used! please try another one.", "Message", JOptionPane.ERROR_MESSAGE);
             user = null;
+
+        } else {
+            ConnectHub.currentUser = user;
+            JOptionPane.showMessageDialog(null, "Signed up successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
         }
+        return user;
     }
 
     private static boolean checkDuplicated(String email) throws IOException {

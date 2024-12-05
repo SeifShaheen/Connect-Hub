@@ -19,8 +19,8 @@ import java.util.UUID;
  *
  * @author Reem
  */
-//This class is responsible for creating user object using builder design pattern
-public class User {
+//This class is responsible for creating user object with all its attriputes using builder design pattern
+public class User extends FriendSpecifications{
 
     //User personal Info
     private final String userId;
@@ -42,6 +42,11 @@ public class User {
     ArrayList<Story> stories=new ArrayList<>();
     private transient PostsFactory postsFcatory=new PostsFactory(); //transient keyword used to not serialize this attribute in the file
     private transient StoriesFactory storiesfactory=new StoriesFactory();
+
+    //Info such as photos and bio relates profile properties
+    public String bio;
+    public String profilePhotoPath;
+    public String coverPhotoPath;
 
     //Private constructor to be accessed only be the builder
     private User(UserBuilder builder) {
@@ -78,19 +83,9 @@ public class User {
         return userId;
     }
 
-    public ArrayList<User> getFriends() {
-        return friends;
-    }
-
-    public ArrayList<User> getRequestsSent() {
-        return requestsSent;
-    }
-
-    public ArrayList<User> getRequestsRecieved() {
-        return requestsRecieved;
-    }
-
-    public ArrayList<User> getFriendSuggestions() {
+    @Override
+    public ArrayList<String> getFriendSuggestions() throws IOException {
+        FriendManagement.FriendSuggestions.common(this);
         return friendSuggestions;
     }
 
@@ -158,25 +153,28 @@ public class User {
 
     public void addFriends(User friend) {
         this.friends.add(friend);
+    public String getBio() {
+        return bio;
     }
 
-    public void addRequestsSent(User requestsSent) {
-        this.requestsSent.add(requestsSent);
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
-    public void addRequestsRecieved(User requestsRecieved) {
-        this.requestsRecieved.add(requestsRecieved);
-    }
-        public void removeFriends(User friend) {
-        this.friends.remove(friend);
+    public String getProfilePhotoPath() {
+        return profilePhotoPath;
     }
 
-    public void removeRequestsSent(User requestsSent) {
-        this.requestsSent.remove(requestsSent);
+    public void setProfilePhotoPath(String profilePhotoPath) {
+        this.profilePhotoPath = profilePhotoPath;
     }
 
-    public void removeRequestsRecieved(User requestsRecieved) {
-        this.requestsRecieved.remove(requestsRecieved);
+    public String getCoverPhotoPath() {
+        return coverPhotoPath;
+    }
+
+    public void setCoverPhotoPath(String coverPhotoPath) {
+        this.coverPhotoPath = coverPhotoPath;
     }
     //Content creation methods
     public void createPost(String text) throws IOException, NoSuchAlgorithmException
@@ -209,11 +207,10 @@ public class User {
         stories.add(story);       
         FilesManagement.save(this);
     }
-
     @Override
     public String toString() {
         String line = "";
-        line += "userId=" + userId + ",username=" + username + ",email=" + email + ",password=" + PasswordHashing.hashPassword(password) + ",dateOfBirth=" + dateOfBirth + ",status=" + status;
+        line += "userId=" + userId + ",username=" + username + ",email=" + email + ",password=" + password + ",dateOfBirth=" + dateOfBirth + ",status=" + status;
         return line;
     }
 

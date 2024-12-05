@@ -7,6 +7,6 @@ package Backend;
 //An interface for the the factories of contents to inherit from 
 public interface Creation {
 
-    Content createContent(String text);
-    Content createContent(String text, String imagePath);
+    Contents createContent(String text);
+    Contents createContent(String text, String imagePath);
 }

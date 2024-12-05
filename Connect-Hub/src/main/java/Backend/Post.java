@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class Post implements Content {
+public class Post implements Contents {
     private String text;
     private String imagePath;
     private String timestamp;

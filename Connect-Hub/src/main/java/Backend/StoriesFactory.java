@@ -8,12 +8,12 @@ package Backend;
 public class StoriesFactory implements Creation{
 
     @Override
-    public Content createContent(String text) {
+    public Contents createContent(String text) {
         return new Story(text);
     }
 
     @Override
-    public Content createContent(String text, String imagePath) {
+    public Contents createContent(String text, String imagePath) {
         return new Story(text,imagePath);
     }
 

@@ -21,7 +21,7 @@ public class FriendPanel extends JPanel{
     
     public FriendPanel(String userName,String status,String imagePath)
     {
-            
+           // User user=ConnectHub.CurrentUser;  
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS)); 
         this.setBackground(Color.WHITE);
           JPanel nameStatusPanel = new JPanel();
@@ -31,15 +31,15 @@ public class FriendPanel extends JPanel{
         this.setPreferredSize(new Dimension(20, 60));
         this.setLayout(new FlowLayout());
          JLabel friendImage = new JLabel();
-         //friendImage.setIcon(section(imagePath, null,40, 40));
+         //friendImage.setIcon(EditProfilePage.section(user.getProfilePhotoPath(), null,40, 40));
        
          //friendImage.setPreferredSize(new Dimension(50, 50)); 
         friendImage.setHorizontalAlignment(JLabel.LEFT); 
         //friendImage.setBackground(Color.gray);
-        JLabel friendUserName = new JLabel(userName);
-        JLabel friendStatus = new JLabel(status);
-       nameStatusPanel.add(friendUserName);
-        nameStatusPanel.add(friendStatus);
+        //JLabel friendUserName = new JLabel(user.getUsername());
+       // JLabel friendStatus = new JLabel(user.getStatus());
+      // nameStatusPanel.add(friendUserName);
+      //  nameStatusPanel.add(friendStatus);
          nameStatusPanel.add(friendImage); 
         nameStatusPanel.add(nameStatusPanel);
        

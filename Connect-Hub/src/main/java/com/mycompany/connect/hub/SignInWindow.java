@@ -235,8 +235,12 @@ public class SignInWindow extends javax.swing.JFrame {
         }
 
         try {
-            User user = null ;
-            new SignIn().operate(user, emailField.getText(), usernameField.getText(), passField.getText(), date);
+            User user = null;
+            SignIn.operate(user, emailField.getText(), usernameField.getText(), passField.getText(), date);
+            if (ConnectHub.currentUser != null) {
+                NewsfeedPage nfs = new NewsfeedPage();
+                dispose();
+            }
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(SignInWindow.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

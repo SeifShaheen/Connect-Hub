@@ -21,8 +21,10 @@ public class SignIn {
 
         if (!checkDuplicated(email)) {
             user = new CreateUser().information(email, username, password, dateOfBirth);
-            JOptionPane.showMessageDialog(null, "Signed up successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
-        } else {
+            if (user != null) {
+                JOptionPane.showMessageDialog(null, "Signed up successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
+            }
+        } else if (checkDuplicated(email)) {
             JOptionPane.showMessageDialog(null, "Email is already used! please try another one.", "Message", JOptionPane.ERROR_MESSAGE);
             user = null;
         }

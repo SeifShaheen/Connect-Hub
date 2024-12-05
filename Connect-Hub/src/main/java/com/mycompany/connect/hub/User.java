@@ -30,6 +30,7 @@ public class User {
     ArrayList<User> requestsSent;
     ArrayList<User> requestsRecieved;
     ArrayList<User> friendSuggestions;
+    ArrayList<User> blocked;
 
     //Private constructor to be accessed only be the builder
     private User(UserBuilder builder) {
@@ -82,8 +83,25 @@ public class User {
         return friendSuggestions;
     }
 
+    public ArrayList<User> getBlocked() {
+        return blocked;
+    }
+    
+    public void block(User user)
+    {
+        blocked.add(user);
+    }
+    
+    public void unBlock(User user)
+    {
+        blocked.remove(user);
+    }
+
     public void addFriendSuggestions(User friendSuggestions) {
         this.friendSuggestions.add(friendSuggestions);
+    }
+    public void addFriendSuggestions(ArrayList<User> friendSuggestions) {
+        this.friendSuggestions=friendSuggestions;
     }
 
     public void setUsername(String username) {

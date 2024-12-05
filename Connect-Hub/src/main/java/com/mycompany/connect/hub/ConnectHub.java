@@ -6,13 +6,6 @@ package com.mycompany.connect.hub;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
-import java.util.ArrayList;
-import Backend.Contents;
-import Backend.Creation;
-import Backend.Post;
-import Backend.PostsFactorty;
-import Backend.Story;
-
 /**
  *
  * @author seifs
@@ -23,6 +16,8 @@ public class ConnectHub {
     static User currentUser = null;
 
     public static void main(String[] args) throws NoSuchAlgorithmException, IOException, InterruptedException {
-        new ProjectsOpening().setVisible(true);
+          new ProjectsOpening().setVisible(true);
+//        new NewsfeedPage().setVisible(true);
+
     }
 }

@@ -63,7 +63,7 @@ public class FilesManagement {
 
             //If the file is empty it returns null
             if (content.isEmpty()) {
-                return null;
+                return new HashMap<>();
             }
 
             //Use Gson to deserialize the content into a Map
@@ -71,7 +71,7 @@ public class FilesManagement {
             return gson.fromJson(content, new TypeToken<Map<String, User>>() {
             }.getType());
         } catch (IOException e) {
-            return null;
+            return new HashMap<>();
         }
     }
 

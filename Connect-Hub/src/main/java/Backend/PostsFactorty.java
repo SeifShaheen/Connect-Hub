@@ -9,7 +9,7 @@ public class PostsFactorty implements Creation {
 
     @Override
     public Contents createContent(String text) {
-        return new Post(text);
+        return new Post(text);  
     }
 
     @Override

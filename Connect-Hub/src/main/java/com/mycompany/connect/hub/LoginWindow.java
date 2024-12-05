@@ -126,7 +126,7 @@ public class LoginWindow extends javax.swing.JFrame {
         try {
             ConnectHub.currentUser = Login.operate(emailField.getText(), passField.getText());
             if (ConnectHub.currentUser != null) {
-                NewsfeedPage nfs = new NewsfeedPage();
+                NewsfeedPage nfp = new NewsfeedPage();
                 dispose();
             }
         } catch (IOException ex) {

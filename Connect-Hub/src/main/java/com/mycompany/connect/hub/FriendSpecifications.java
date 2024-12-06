@@ -11,7 +11,6 @@ import java.util.ArrayList;
  *
  * @author Reem
  */
-
 // this class is responsible for all friends operations
 public abstract class FriendSpecifications {
     // Friend management attributes:
@@ -21,6 +20,7 @@ public abstract class FriendSpecifications {
     public ArrayList<String> requestsRecieved = new ArrayList<>();
     public ArrayList<String> friendSuggestions = new ArrayList<>();
     public ArrayList<String> blocked = new ArrayList<>();
+    public ArrayList<String> blockedBy = new ArrayList<>();
 
     public ArrayList<String> getFriends() {
         return friends;
@@ -39,7 +39,17 @@ public abstract class FriendSpecifications {
     public ArrayList<String> getBlocked() {
         return blocked;
     }
-
+    public ArrayList<String> getBlockedBy() {
+        return blockedBy;
+    }
+    public void setBlockedBy(User blockedBy) {
+        this.blockedBy.add(blockedBy.getUserId());
+    }
+    
+    public void removeBlockedBy(User blockedBy) {
+        this.blockedBy.remove(blockedBy.getUserId());
+    }
+    
     public void block(User user) {
         blocked.add(user.getUserId());
     }

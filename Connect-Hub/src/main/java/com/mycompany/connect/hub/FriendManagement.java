@@ -154,7 +154,9 @@ public class FriendManagement {
                             // exclude the current user and his friends and block list
                             if (!friendOfFriendId.equals(user.getUserId())
                                     && !user.getFriends().contains(friendOfFriendId)
-                                    && !user.getBlocked().contains(friendOfFriendId)) {
+                                    && !user.getBlocked().contains(friendOfFriendId)
+                                    && !user.getRequestsRecieved().contains(friendOfFriendId)
+                                    && !user.getRequestsSent().contains(friendOfFriendId)) {
                                 User suggestedUser = users.get(friendOfFriendId);
                                 if (suggestedUser != null) { // check for existance and then add to suggestions
                                     user.addFriendSuggestions(suggestedUser.getUserId());

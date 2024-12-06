@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,6 +38,7 @@ public class NewsfeedPage extends javax.swing.JFrame {
         initComponents();
         setTitle("Newsfeed");
         setSize(new Dimension(1000, 319));
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         userbtn.setText(ConnectHub.currentUser.getUsername());// here we put the name of the current user
         postField.setLineWrap(true);
         postField.setWrapStyleWord(true);
@@ -64,6 +66,8 @@ public class NewsfeedPage extends javax.swing.JFrame {
         logoutbtn.setIcon(new ImageIcon(new ImageIcon("src\\main\\java\\icons\\logout.png").getImage()
                 .getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
         friendsbtn.setIcon(new ImageIcon(new ImageIcon("src\\main\\java\\icons\\high-five.png").getImage()
+                .getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
+        blockedbtn.setIcon(new ImageIcon(new ImageIcon("src\\main\\java\\icons\\block.png").getImage()
                 .getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
         // temporary true (if the user has no requests)
         if (ConnectHub.currentUser.getRequestsRecieved().isEmpty()) {
@@ -96,6 +100,7 @@ public class NewsfeedPage extends javax.swing.JFrame {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -116,6 +121,7 @@ public class NewsfeedPage extends javax.swing.JFrame {
         storybtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         friendsbtn = new javax.swing.JButton();
+        blockedbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -232,6 +238,12 @@ public class NewsfeedPage extends javax.swing.JFrame {
             }
         });
 
+        blockedbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blockedbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -274,6 +286,8 @@ public class NewsfeedPage extends javax.swing.JFrame {
                                         .addComponent(searchbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50,
                                                 Short.MAX_VALUE)
                                         .addComponent(friendsbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 0,
+                                                Short.MAX_VALUE)
+                                        .addComponent(blockedbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 0,
                                                 Short.MAX_VALUE))
                                 .addContainerGap()));
         layout.setVerticalGroup(
@@ -352,10 +366,19 @@ public class NewsfeedPage extends javax.swing.JFrame {
                                                                 .addComponent(friendsbtn,
                                                                         javax.swing.GroupLayout.PREFERRED_SIZE, 37,
                                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(blockedbtn,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 37,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addGap(0, 0, Short.MAX_VALUE)))))));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void blockedbtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_blockedbtnActionPerformed
+        new BlockedPage();
+    }// GEN-LAST:event_blockedbtnActionPerformed
 
     private void friendsbtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_friendsbtnActionPerformed
         new FriendsPage();
@@ -510,6 +533,7 @@ public class NewsfeedPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addImagebtn;
+    private javax.swing.JButton blockedbtn;
     private javax.swing.JButton friendRequestsbtn;
     private javax.swing.JButton friendSuggestion;
     private javax.swing.JButton friendsbtn;

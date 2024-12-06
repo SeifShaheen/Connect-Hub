@@ -55,6 +55,7 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="searchbtn" pref="50" max="32767" attributes="0"/>
                   <Component id="friendsbtn" pref="0" max="32767" attributes="0"/>
+                  <Component id="blockedbtn" pref="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -98,6 +99,8 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="friendsbtn" min="-2" pref="37" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="blockedbtn" min="-2" pref="37" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -219,6 +222,11 @@
     <Component class="javax.swing.JButton" name="friendsbtn">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="friendsbtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="blockedbtn">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="blockedbtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

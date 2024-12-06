@@ -94,6 +94,7 @@ public class FriendManagement {
                     from.removeRequestsRecieved(to.getUserId());
                 }
                 from.block(to); // add user to block list
+                to.setBlockedBy(from);
                 save(from, to);
                 return true;
             }
@@ -106,6 +107,7 @@ public class FriendManagement {
                 return false;
             } else {
                 from.unBlock(to); // remove user from block list
+                to.removeBlockedBy(from);
                 save(from);
                 return true;
             }
@@ -137,6 +139,7 @@ public class FriendManagement {
                 // suggest random accounts. Max 10
                 ArrayList<User> allUsers = new ArrayList<>(users.values());
                 allUsers.removeIf(u -> u.getUserId().equals(user.getUserId())); // execluds current user
+                allUsers.removeIf(u -> u.getBlockedBy().contains(user.getUserId())); // execluds blocked by user
                 // shuffle the list
                 java.util.Collections.shuffle(allUsers);
                 allUsers.removeIf(u -> user.getBlocked().contains(u.getUserId())); // exclude if blocked user
@@ -151,7 +154,7 @@ public class FriendManagement {
                 // friends of friends
                 for (String friendId : user.getFriends()) {
                     // checks friend existance
-                    if (friendId!=null && FilesManagement.read().containsKey(friendId)) {
+                    if (friendId != null && FilesManagement.read().containsKey(friendId)) {
                         // check for the friend's friends
                         for (String friendOfFriendId : FilesManagement.read().get(friendId).getFriends()) {
                             // exclude the current user and his friends and block list

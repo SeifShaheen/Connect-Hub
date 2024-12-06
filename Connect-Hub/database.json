@@ -1,9 +1,9 @@
 {
-  "d5604c60-7511-4353-bcf8-c90b55b95322": {
-    "userId": "d5604c60-7511-4353-bcf8-c90b55b95322",
+  "a1959bc4-8af8-4f8f-b022-bff1f62916dd": {
+    "userId": "a1959bc4-8af8-4f8f-b022-bff1f62916dd",
     "email": "seif@gmail.com",
-    "username": "Seif",
-    "password": "$2a$10$t/9SVFK1.BteBZXwMe2hNeV.HNf/yhP6.FeiIP3UOxUCd6w/hyN5a",
+    "username": "seif",
+    "password": "$2a$10$LvhHlL.gwo0dP.4Y7lmfkuDCD84MqT5J693M7Mo.gek25Xj3aK.gO",
     "dateOfBirth": "2003-12-29",
     "status": "Offline",
     "posts": [],
@@ -13,35 +13,26 @@
     "requestsRecieved": [],
     "friendSuggestions": [],
     "blocked": [
-      "6a413e10-2563-4c95-8099-fc7d65ea0af9"
-    ]
+      "1bd2de40-3173-462c-aa47-e358643d00d1"
+    ],
+    "blockedBy": []
   },
-  "6a413e10-2563-4c95-8099-fc7d65ea0af9": {
-    "userId": "6a413e10-2563-4c95-8099-fc7d65ea0af9",
+  "1bd2de40-3173-462c-aa47-e358643d00d1": {
+    "userId": "1bd2de40-3173-462c-aa47-e358643d00d1",
     "email": "nada@gmail.com",
     "username": "nada",
-    "password": "$2a$10$adFQr.mpOZh9Fw15oAFbwucPQxCPknFAg8M/crXAo2C97mioJDTGG",
+    "password": "$2a$10$JMMjGMRaZnFFLfarxu71q.yx1bMUOhMyEgs/ZtScQVCT/A1JEBdf.",
     "dateOfBirth": "2004-04-13",
-    "status": "Online",
-    "posts": [
-      {
-        "text": "hi all",
-        "timestamp": "2024-12-06 21:27:57",
-        "contentID": "76de3379-e10c-4473-a8c6-86fa3ca840f6",
-        "authorID": "6a413e10-2563-4c95-8099-fc7d65ea0af9"
-      },
-      {
-        "text": "hi seif",
-        "timestamp": "2024-12-06 22:18:00",
-        "contentID": "bee0f575-6ad7-46ea-9c52-3627a21ae2da",
-        "authorID": "6a413e10-2563-4c95-8099-fc7d65ea0af9"
-      }
-    ],
+    "status": "Offline",
+    "posts": [],
     "stories": [],
     "friends": [],
     "requestsSent": [],
     "requestsRecieved": [],
     "friendSuggestions": [],
-    "blocked": []
+    "blocked": [],
+    "blockedBy": [
+      "a1959bc4-8af8-4f8f-b022-bff1f62916dd"
+    ]
   }
 }

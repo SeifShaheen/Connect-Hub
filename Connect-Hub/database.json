@@ -1,99 +1,64 @@
 {
-  "54680621-50d1-4b87-ad66-e6dea3a04b41": {
-    "userId": "54680621-50d1-4b87-ad66-e6dea3a04b41",
-    "email": "reem@gmail.com",
-    "username": "reem ibrahim",
-    "password": "$2a$10$ZOJm/tgeYr2Vym5uUrsgNuLDIVwjjaXG4kK1Z0yjCs6vCbfinToFS",
-    "dateOfBirth": "2004-10-22",
+  "83e33768-c74a-4f85-9278-fd43812e89c9": {
+    "userId": "83e33768-c74a-4f85-9278-fd43812e89c9",
+    "email": "seifshaheen11@gmail.com",
+    "username": "SeifShaheen",
+    "password": "$2a$10$6dHqW5zOiFVeNbWkmWH7i.3QeAz.omUCp0rAz/6wE2./z90B/NdCa",
+    "dateOfBirth": "2003-12-29",
     "status": "Online",
-    "blocked": [],
     "posts": [
       {
-        "text": "yarab satrak",
-        "timestamp": "2024-12-05 21:52:55",
-        "contentID": "0231ffce-441a-4a8d-bb38-d511255a564a",
-        "authorID": "54680621-50d1-4b87-ad66-e6dea3a04b41"
-      }
-    ],
-    "stories": []
-  },
-  "6049e442-11ed-4b4d-b84c-1f77c18e8ec5": {
-    "userId": "6049e442-11ed-4b4d-b84c-1f77c18e8ec5",
-    "email": "reem@gmail.com",
-    "username": "reem ibrahim",
-    "password": "$2a$10$mZi0s5g2Kguj.aFEAWYLQu.TtQndOeR7g4mv04LSkn9It/Fh9UAge",
-    "dateOfBirth": "2004-10-22",
-    "status": "Online",
-    "blocked": [],
-    "posts": [
+        "text": "seif\t\t",
+        "timestamp": "2024-12-06 12:03:27",
+        "contentID": "b5825f8f-9c2f-4a2b-a756-d226bb97aedf",
+        "authorID": "83e33768-c74a-4f85-9278-fd43812e89c9"
+      },
       {
-        "text": "yarab satrak",
-        "timestamp": "2024-12-07 21:54:26",
-        "contentID": "0afa8bc2-546a-45a0-979f-0fca5c884b89",
-        "authorID": "6049e442-11ed-4b4d-b84c-1f77c18e8ec5"
+        "text": "seif is coming",
+        "timestamp": "2024-12-06 12:10:06",
+        "contentID": "4bc4bdb1-4bbc-4644-8a22-dca47128290e",
+        "authorID": "83e33768-c74a-4f85-9278-fd43812e89c9"
+      },
+      {
+        "text": "hi",
+        "timestamp": "2024-12-06 13:08:37",
+        "contentID": "eb651dc7-ba6e-4e09-9e6f-7fbac22eb217",
+        "authorID": "83e33768-c74a-4f85-9278-fd43812e89c9"
+      },
+      {
+        "text": "hello i am seif from اسكندريه",
+        "timestamp": "2024-12-06 13:37:26",
+        "contentID": "0d23370f-fc0d-408f-8893-9539aa128a5b",
+        "authorID": "83e33768-c74a-4f85-9278-fd43812e89c9"
+      },
+      {
+        "text": "يشرللايىكلاةمىسنبكيولةىنركيشمنيلاىميلنكبةسشنميلبىيمسمرطيشةنملنسملانىليبنكيملةنىيبميةلالنىكيبيلمةىينكابلمولاصةلنىباكيلمىنبكاميلىويةنابك",
+        "timestamp": "2024-12-06 13:37:44",
+        "contentID": "94729683-aebe-43e3-a88e-92a94fd997f9",
+        "authorID": "83e33768-c74a-4f85-9278-fd43812e89c9"
+      },
+      {
+        "text": "seif",
+        "imagePath": "C:\\Users\\seifs\\OneDrive\\Desktop\\HackerCup.png",
+        "timestamp": "2024-12-06 13:39:21",
+        "contentID": "92c556de-ebc3-43e4-ac02-6185a8bb1608",
+        "authorID": "83e33768-c74a-4f85-9278-fd43812e89c9"
       }
     ],
     "stories": [
       {
-        "text": "ostor yarab",
-        "timestamp": "2024-12-07 21:54:26",
-        "contentID": "362cfbe2-ac40-4d40-8d82-b9b449e6d948",
-        "authorID": "6049e442-11ed-4b4d-b84c-1f77c18e8ec5"
+        "text": "hi",
+        "timestamp": "2024-12-06 12:05:28",
+        "contentID": "ff4bfd97-4ba9-49ff-adfe-725e1d378647",
+        "authorID": "83e33768-c74a-4f85-9278-fd43812e89c9"
       }
-    ]
-  },
-  "caeafbac-a8ad-48ed-97b7-383f2c7c8939": {
-    "userId": "caeafbac-a8ad-48ed-97b7-383f2c7c8939",
-    "email": "reem@gmail.com",
-    "username": "reem",
-    "password": "$2a$10$Wye.14bx68KWyQX8cnuBlOmP0gaWfHy9kdhSzWvWprFy16My4RW9u",
-    "dateOfBirth": "2004-10-22",
-    "status": "Online",
+    ],
+    "bio": "hello from Seif\u0027s profile",
+    "profilePhotoPath": "C:\\Users\\seifs\\OneDrive\\Desktop\\HackerCup.png",
     "friends": [],
     "requestsSent": [],
     "requestsRecieved": [],
     "friendSuggestions": [],
     "blocked": []
-  },
-  "1956c8cd-6064-462c-8459-575102b563ae": {
-    "userId": "1956c8cd-6064-462c-8459-575102b563ae",
-    "email": "reem1@gmail.com",
-    "username": "reem",
-    "password": "$2a$10$UVCm7Az9.fzvf47hD4tb6ejyb6omypxR2NrZcTZy0m0OH1p9sBUIy",
-    "dateOfBirth": "2004-10-22",
-    "status": "Online",
-    "friends": [],
-    "requestsSent": [],
-    "requestsRecieved": [],
-    "friendSuggestions": [],
-    "blocked": []
-  },
-  "50fd991f-45b5-46c0-8e8d-1f364137bf97": {
-    "userId": "50fd991f-45b5-46c0-8e8d-1f364137bf97",
-    "email": "reem4@gmail.com",
-    "username": "reem",
-    "password": "$2a$10$2VzoNKZYDJDnXIugLPnIHudnqNd92GMwSXwZmfSctGXhd2rchd9Pm",
-    "dateOfBirth": "2004-10-22",
-    "status": "Online",
-    "friends": [],
-    "requestsSent": [],
-    "requestsRecieved": [],
-    "friendSuggestions": [],
-    "blocked": []
-  },
-  "92b4103c-74f4-425f-8575-46fdfd0ed5b8": {
-    "userId": "92b4103c-74f4-425f-8575-46fdfd0ed5b8",
-    "email": "reem5@gmail.com",
-    "username": "reem",
-    "password": "$2a$10$YPaOnNxE5umbb2tTryQU7O86j0JFSGY5DAwA7OnGLD2lVZdW7CEzm",
-    "dateOfBirth": "2004-10-22",
-    "status": "Online",
-    "friends": [],
-    "requestsSent": [],
-    "requestsRecieved": [],
-    "friendSuggestions": [],
-    "blocked": [
-      "50fd991f-45b5-46c0-8e8d-1f364137bf97"
-    ]
   }
 }

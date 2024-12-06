@@ -28,20 +28,25 @@ import javax.swing.border.EmptyBorder;
  */
 public class postPanel extends JPanel {
 
-    public postPanel(Post post) throws IOException {
+    public postPanel(Post post, User user) throws IOException {
         setLayout(new BorderLayout());
         //Adding Author
         JPanel author = new JPanel();
         author.setLayout(new FlowLayout(FlowLayout.LEADING));
         //Adding Author Photo
-        BufferedImage authorPic = ImageIO.read(new File("src\\main\\java\\icons\\logout.png")); // temp Image
+        BufferedImage authorPic;
+        if (user.getProfilePhotoPath() != null) {
+            authorPic = ImageIO.read(new File(user.getProfilePhotoPath())); // temp Image
+        } else {
+            authorPic = ImageIO.read(new File("src\\main\\java\\icons\\profile-user.png")); // temp Image
+        }
         JLabel authorLabelPic = new JLabel(new ImageIcon(authorPic.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
         author.add(authorLabelPic);
         this.add(author, BorderLayout.NORTH);
         //Adding Author data
         JPanel data = new JPanel();
         data.setLayout(new BoxLayout(data, BoxLayout.Y_AXIS));
-        JLabel name = new JLabel("Seif");
+        JLabel name = new JLabel(user.getUsername());
         data.add(name);
         JLabel date = new JLabel(post.getTimestamp());
         date.setForeground(Color.gray);

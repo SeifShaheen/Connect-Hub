@@ -13,7 +13,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -30,20 +29,21 @@ public class postPanel extends JPanel {
 
     public postPanel(Post post, User user) throws IOException {
         setLayout(new BorderLayout());
-        //Adding Author
+        // Adding Author
         JPanel author = new JPanel();
         author.setLayout(new FlowLayout(FlowLayout.LEADING));
-        //Adding Author Photo
+        // Adding Author Photo
         BufferedImage authorPic;
         if (user.getProfilePhotoPath() != null) {
             authorPic = ImageIO.read(new File(user.getProfilePhotoPath())); // temp Image
         } else {
             authorPic = ImageIO.read(new File("src\\main\\java\\icons\\profile-user.png")); // temp Image
         }
-        JLabel authorLabelPic = new JLabel(new ImageIcon(authorPic.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
+        JLabel authorLabelPic = new JLabel(
+                new ImageIcon(authorPic.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
         author.add(authorLabelPic);
         this.add(author, BorderLayout.NORTH);
-        //Adding Author data
+        // Adding Author data
         JPanel data = new JPanel();
         data.setLayout(new BoxLayout(data, BoxLayout.Y_AXIS));
         JLabel name = new JLabel(user.getUsername());
@@ -60,7 +60,7 @@ public class postPanel extends JPanel {
         contentArea.setLineWrap(true);
         contentArea.setWrapStyleWord(true);
         add(new JScrollPane(contentArea), BorderLayout.CENTER);
-        //Adding Image
+        // Adding Image
         if (post.getImagePath() != null) {
             BufferedImage pic = ImageIO.read(new File(post.getImagePath()));
             JLabel picLabel = new JLabel(new ImageIcon(pic.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));

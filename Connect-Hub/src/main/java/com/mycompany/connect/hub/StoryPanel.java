@@ -37,15 +37,21 @@ public class StoryPanel extends JPanel {
         };
         addMouseListener(ml);
         setLayout(new BorderLayout());
-        //Adding Author
+        // Adding Author
         JPanel author = new JPanel();
         author.setLayout(new FlowLayout(FlowLayout.LEADING));
-        //Adding Author Photo
-        BufferedImage authorPic = ImageIO.read(new File("src\\main\\java\\icons\\logout.png")); // temp Image
-        JLabel authorLabelPic = new JLabel(new ImageIcon(authorPic.getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
+        // Adding Author Photo
+        BufferedImage authorPic;
+        if (ConnectHub.currentUser.profilePhotoPath != null) {
+            authorPic = ImageIO.read(new File("src\\main\\java\\icons\\profile-user.png")); // temp Image
+        } else {
+            authorPic = ImageIO.read(new File(ConnectHub.currentUser.profilePhotoPath)); // temp Image
+        }
+        JLabel authorLabelPic = new JLabel(
+                new ImageIcon(authorPic.getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
         author.add(authorLabelPic);
         this.add(author, BorderLayout.NORTH);
-        //Adding Author data
+        // Adding Author data
         JPanel data = new JPanel();
         data.setLayout(new BoxLayout(data, BoxLayout.Y_AXIS));
         JLabel name = new JLabel("Seif");
@@ -54,10 +60,12 @@ public class StoryPanel extends JPanel {
         date.setForeground(Color.gray);
         data.add(date);
         author.add(data);
-        //Adding Image
+        // Adding Image
         if (story.getImagePath() != null) {
             BufferedImage pic = ImageIO.read(new File(story.getImagePath())); // temp Image
-            JLabel picLabel = new JLabel(new ImageIcon(pic.getScaledInstance(new ImageIcon(story.getImagePath()).getIconWidth(), new ImageIcon(story.getImagePath()).getIconHeight(), java.awt.Image.SCALE_SMOOTH)));
+            JLabel picLabel = new JLabel(
+                    new ImageIcon(pic.getScaledInstance(new ImageIcon(story.getImagePath()).getIconWidth(),
+                            new ImageIcon(story.getImagePath()).getIconHeight(), java.awt.Image.SCALE_SMOOTH)));
             add(new JScrollPane(picLabel), BorderLayout.SOUTH);
         }
         setBorder(BorderFactory.createLineBorder(Color.black));

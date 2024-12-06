@@ -23,9 +23,9 @@ import javax.swing.JPanel;
  *
  * @author Etijah
  */
-public class FriendPanel extends JPanel {
+public class BlockedPanel extends JPanel {
 
-    public FriendPanel(User user) {
+    public BlockedPanel(User user) {
         // User user=ConnectHub.CurrentUser;
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.setBackground(Color.white);
@@ -34,40 +34,19 @@ public class FriendPanel extends JPanel {
         nameStatusPanel.setBackground(Color.WHITE);
         this.setLayout(new FlowLayout(FlowLayout.LEADING));
         JLabel friendImage = new JLabel();
-        JButton remove = new JButton("Remove");
-        JButton block = new JButton("Block");
+        JButton unblock = new JButton("Unblock");
         if (user.profilePhotoPath != null) {
             friendImage.setIcon(EditProfilePage.section(user.profilePhotoPath, null, 25, 25));
         } else {
             friendImage.setIcon(EditProfilePage.section("src\\main\\java\\icons\\profile-user.png", null, 25, 25));
         }
-        remove.addActionListener(new ActionListener() {
+        unblock.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    boolean sen = FriendManagement.Request.unFriend(ConnectHub.currentUser, user);
+                    boolean sen = FriendManagement.Request.unBlock(ConnectHub.currentUser, user);
                     if (sen) {
-                        JOptionPane.showMessageDialog(null, "Removed " + user.getUsername(), "Message",
-                                JOptionPane.INFORMATION_MESSAGE);
-                        FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
-                        FilesManagement.map.put(user.getUserId(), user);
-                        FilesManagement.save(FilesManagement.map);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "There was an error.", "Message",
-                                JOptionPane.ERROR_MESSAGE);
-                    }
-                } catch (NoSuchAlgorithmException | IOException ex) {
-                    Logger.getLogger(NotificationsPanel.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-        block.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    boolean sen = FriendManagement.Request.block(ConnectHub.currentUser, user);
-                    if (sen) {
-                        JOptionPane.showMessageDialog(null, "Blocked " + user.getUsername(), "Message",
+                        JOptionPane.showMessageDialog(null, "Unblocked " + user.getUsername(), "Message",
                                 JOptionPane.INFORMATION_MESSAGE);
                         FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
                         FilesManagement.map.put(user.getUserId(), user);
@@ -90,8 +69,7 @@ public class FriendPanel extends JPanel {
         nameStatusPanel.add(friendStatus);
         this.add(friendImage);
         this.add(nameStatusPanel);
-        this.add(block);
-        this.add(remove);
+        this.add(unblock);
         setBorder(BorderFactory.createLineBorder(Color.black));
     }
 

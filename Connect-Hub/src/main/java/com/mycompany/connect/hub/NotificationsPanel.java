@@ -75,6 +75,8 @@ public class NotificationsPanel extends JPanel {
                     if (acc) {
                         JOptionPane.showMessageDialog(null, user.getUsername() + " became a friend", "Message",
                                 JOptionPane.INFORMATION_MESSAGE);
+                        ConnectHub.currentUser.friendSuggestions.remove(user.getUserId());
+                        user.friendSuggestions.remove(ConnectHub.currentUser.getUserId());
                         FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
                         FilesManagement.map.put(user.getUserId(), user);
                         FilesManagement.save(FilesManagement.map);
@@ -95,6 +97,8 @@ public class NotificationsPanel extends JPanel {
                     if (dec) {
                         JOptionPane.showMessageDialog(null, user.getUsername() + " was declined", "Message",
                                 JOptionPane.INFORMATION_MESSAGE);
+                        ConnectHub.currentUser.friendSuggestions.remove(user.getUserId());
+                        user.friendSuggestions.remove(ConnectHub.currentUser.getUserId());
                         FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
                         FilesManagement.map.put(user.getUserId(), user);
                         FilesManagement.save(FilesManagement.map);

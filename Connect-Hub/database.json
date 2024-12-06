@@ -1,62 +1,47 @@
 {
-  "61d090d6-a6dc-41b2-b7eb-ed7901f95c7f": {
-    "userId": "61d090d6-a6dc-41b2-b7eb-ed7901f95c7f",
+  "d5604c60-7511-4353-bcf8-c90b55b95322": {
+    "userId": "d5604c60-7511-4353-bcf8-c90b55b95322",
     "email": "seif@gmail.com",
-    "username": "nada",
-    "password": "$2a$10$68Hjra1EgzfhgkQmAVhsYeSkSeIhibwzYwQcvCUnA6EE7XKo0cMDK",
+    "username": "Seif",
+    "password": "$2a$10$t/9SVFK1.BteBZXwMe2hNeV.HNf/yhP6.FeiIP3UOxUCd6w/hyN5a",
     "dateOfBirth": "2003-12-29",
-    "status": "Online",
-    "posts": [
-      {
-        "text": "hiii",
-        "timestamp": "2024-12-06 20:40:46",
-        "contentID": "eee783b9-9fc7-4091-abb2-6ff7b4bf1a7c",
-        "authorID": "61d090d6-a6dc-41b2-b7eb-ed7901f95c7f"
-      }
-    ],
-    "stories": [
-      {
-        "text": "i am nada",
-        "imagePath": "C:\\Users\\seifs\\OneDrive\\Desktop\\HackerCup.png",
-        "timestamp": "2024-12-06 20:40:12",
-        "contentID": "92f1c857-cd4f-4e96-a287-adaf20293dfc",
-        "authorID": "61d090d6-a6dc-41b2-b7eb-ed7901f95c7f"
-      }
-    ],
-    "friends": [
-      "a9ba8da4-36f7-4b71-9e57-6305a23051c5"
-    ],
+    "status": "Offline",
+    "posts": [],
+    "stories": [],
+    "friends": [],
     "requestsSent": [],
     "requestsRecieved": [],
-    "friendSuggestions": [
-      "a9ba8da4-36f7-4b71-9e57-6305a23051c5"
-    ],
-    "blocked": []
+    "friendSuggestions": [],
+    "blocked": [
+      "6a413e10-2563-4c95-8099-fc7d65ea0af9"
+    ]
   },
-  "a9ba8da4-36f7-4b71-9e57-6305a23051c5": {
-    "userId": "a9ba8da4-36f7-4b71-9e57-6305a23051c5",
+  "6a413e10-2563-4c95-8099-fc7d65ea0af9": {
+    "userId": "6a413e10-2563-4c95-8099-fc7d65ea0af9",
     "email": "nada@gmail.com",
-    "username": "seif",
-    "password": "$2a$10$wd5gDRibPoxHtAO3d1Dz5O.VzgNN5qbJWyBeoLdFbqH1OYviki9W2",
-    "dateOfBirth": "2004-04-12",
+    "username": "nada",
+    "password": "$2a$10$adFQr.mpOZh9Fw15oAFbwucPQxCPknFAg8M/crXAo2C97mioJDTGG",
+    "dateOfBirth": "2004-04-13",
     "status": "Online",
     "posts": [
       {
-        "text": "hii",
-        "timestamp": "2024-12-06 20:39:45",
-        "contentID": "4204cdfe-f9fc-4a7e-95b4-f8142576b6f5",
-        "authorID": "a9ba8da4-36f7-4b71-9e57-6305a23051c5"
+        "text": "hi all",
+        "timestamp": "2024-12-06 21:27:57",
+        "contentID": "76de3379-e10c-4473-a8c6-86fa3ca840f6",
+        "authorID": "6a413e10-2563-4c95-8099-fc7d65ea0af9"
+      },
+      {
+        "text": "hi seif",
+        "timestamp": "2024-12-06 22:18:00",
+        "contentID": "bee0f575-6ad7-46ea-9c52-3627a21ae2da",
+        "authorID": "6a413e10-2563-4c95-8099-fc7d65ea0af9"
       }
     ],
     "stories": [],
-    "friends": [
-      "61d090d6-a6dc-41b2-b7eb-ed7901f95c7f"
-    ],
+    "friends": [],
     "requestsSent": [],
     "requestsRecieved": [],
-    "friendSuggestions": [
-      "61d090d6-a6dc-41b2-b7eb-ed7901f95c7f"
-    ],
+    "friendSuggestions": [],
     "blocked": []
   }
 }

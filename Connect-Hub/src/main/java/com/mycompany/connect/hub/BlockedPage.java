@@ -15,12 +15,12 @@ import javax.swing.JFrame;
  *
  * @author Etijah
  */
-public class FriendsPage extends javax.swing.JFrame {
+public class BlockedPage extends javax.swing.JFrame {
 
     /**
      * Creates new form FriendsPage
      */
-    public FriendsPage() {
+    public BlockedPage() {
         initComponents();
         setVisible(true);
         setTitle(ConnectHub.currentUser.getUsername() + "'s Friends");
@@ -28,12 +28,12 @@ public class FriendsPage extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(new Dimension(500,200));
         this.setLayout(new GridLayout());
-        jLabel1.setText("Friends: " + ConnectHub.currentUser.getFriends().size());
+        jLabel1.setText("Blocked: " + ConnectHub.currentUser.getBlocked().size());
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-        ArrayList<String> friends = ConnectHub.currentUser.getFriends();
-        for (String f : friends) {
-            User friend = FilesManagement.map.get(f);
-            mainPanel.add(new FriendPanel(friend),BoxLayout.Y_AXIS);
+        ArrayList<String> blocked = ConnectHub.currentUser.getBlocked();
+        for (String f : blocked) {
+            User block = FilesManagement.map.get(f);
+            mainPanel.add(new BlockedPanel(block),BoxLayout.Y_AXIS);
         }
         mainPanel.setVisible(true);
         mainPanel.revalidate();
@@ -148,24 +148,25 @@ public class FriendsPage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FriendsPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(BlockedPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FriendsPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(BlockedPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FriendsPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(BlockedPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FriendsPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(BlockedPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         }
+        // </editor-fold>
         // </editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FriendsPage().setVisible(true);
+                new BlockedPage().setVisible(true);
             }
         });
     }

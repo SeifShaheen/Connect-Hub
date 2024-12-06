@@ -64,6 +64,8 @@ public class SendRequestPanel extends JPanel {
                     if (sen) {
                         JOptionPane.showMessageDialog(null, "Sent a request to " + user.getUsername(), "Message",
                                 JOptionPane.INFORMATION_MESSAGE);
+                        ConnectHub.currentUser.friendSuggestions.remove(user.getUserId());
+                        user.friendSuggestions.remove(ConnectHub.currentUser.getUserId());
                         FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
                         FilesManagement.map.put(user.getUserId(), user);
                         FilesManagement.save(FilesManagement.map);

@@ -42,7 +42,7 @@ public class StoryPanel extends JPanel {
         author.setLayout(new FlowLayout(FlowLayout.LEADING));
         // Adding Author Photo
         BufferedImage authorPic;
-        if (ConnectHub.currentUser.profilePhotoPath != null) {
+        if (ConnectHub.currentUser.profilePhotoPath == null) {
             authorPic = ImageIO.read(new File("src\\main\\java\\icons\\profile-user.png")); // temp Image
         } else {
             authorPic = ImageIO.read(new File(ConnectHub.currentUser.profilePhotoPath)); // temp Image

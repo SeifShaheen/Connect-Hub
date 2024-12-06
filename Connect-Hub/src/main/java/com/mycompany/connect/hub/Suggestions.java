@@ -27,8 +27,9 @@ public class Suggestions extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         mainPanel.setVisible(true);
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-        FriendSpecifications friendSpecifications = ConnectHub.currentUser;
-        ArrayList<String> requests = friendSpecifications.getFriendSuggestions();
+        User user = ConnectHub.currentUser;
+        ArrayList<String> requests = user.getFriendSuggestions();
+        System.out.println(requests);
         for (String f : requests) {
             User friend = FilesManagement.map.get(f);
             mainPanel.add(new SendRequestPanel(friend));

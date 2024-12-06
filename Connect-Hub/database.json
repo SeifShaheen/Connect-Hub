@@ -27,7 +27,9 @@
       "a9ba8da4-36f7-4b71-9e57-6305a23051c5"
     ],
     "requestsSent": [],
-    "requestsRecieved": [],
+    "requestsRecieved": [
+      "23627e4f-6655-42c5-9f54-f46e587ee715"
+    ],
     "friendSuggestions": [
       "a9ba8da4-36f7-4b71-9e57-6305a23051c5"
     ],
@@ -53,9 +55,52 @@
       "61d090d6-a6dc-41b2-b7eb-ed7901f95c7f"
     ],
     "requestsSent": [],
-    "requestsRecieved": [],
+    "requestsRecieved": [
+      "23627e4f-6655-42c5-9f54-f46e587ee715"
+    ],
     "friendSuggestions": [
       "61d090d6-a6dc-41b2-b7eb-ed7901f95c7f"
+    ],
+    "blocked": []
+  },
+  "23627e4f-6655-42c5-9f54-f46e587ee715": {
+    "userId": "23627e4f-6655-42c5-9f54-f46e587ee715",
+    "email": "reem@gmail.com",
+    "username": "reem",
+    "password": "$2a$10$bIQjF27SdgDPUVL0jJdWt.QLssBu6sWemixZJotFVISxbeJlsr2S2",
+    "dateOfBirth": "2004-10-22",
+    "status": "Online",
+    "posts": [],
+    "stories": [],
+    "friends": [
+      "1b279c67-0e3a-4147-ab57-c5beaf80e2fa"
+    ],
+    "requestsSent": [
+      "61d090d6-a6dc-41b2-b7eb-ed7901f95c7f",
+      "a9ba8da4-36f7-4b71-9e57-6305a23051c5"
+    ],
+    "requestsRecieved": [],
+    "friendSuggestions": [],
+    "blocked": []
+  },
+  "1b279c67-0e3a-4147-ab57-c5beaf80e2fa": {
+    "userId": "1b279c67-0e3a-4147-ab57-c5beaf80e2fa",
+    "email": "reem1@gmail.com",
+    "username": "reemm",
+    "password": "$2a$10$OU74WDPhYIT3ND0nn4hRFOE5voywQF/OfArcRw5.2MXpd/Le6F9a6",
+    "dateOfBirth": "2004-10-22",
+    "status": "Online",
+    "posts": [],
+    "stories": [],
+    "friends": [
+      "23627e4f-6655-42c5-9f54-f46e587ee715"
+    ],
+    "requestsSent": [],
+    "requestsRecieved": [],
+    "friendSuggestions": [
+      "61d090d6-a6dc-41b2-b7eb-ed7901f95c7f",
+      "23627e4f-6655-42c5-9f54-f46e587ee715",
+      "a9ba8da4-36f7-4b71-9e57-6305a23051c5"
     ],
     "blocked": []
   }

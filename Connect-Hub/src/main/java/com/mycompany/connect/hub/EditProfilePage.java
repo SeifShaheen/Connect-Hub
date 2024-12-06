@@ -4,10 +4,14 @@
  */
 package com.mycompany.connect.hub;
 
+import static com.mycompany.connect.hub.FilesManagement.map;
 import java.awt.Image;
 import java.io.File;
+import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -16,7 +20,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class EditProfilePage extends javax.swing.JFrame {
 
-   //String imagepath = "";
+    //String imagepath = "";
     static ImageIcon myimage;// To display the image in Swing components
 
     /**
@@ -24,29 +28,33 @@ public class EditProfilePage extends javax.swing.JFrame {
      */
     public EditProfilePage() {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
-          setTitle("Edilt Profile");
-        
+        setTitle("Edilt Profile");
         bioText.setLineWrap(true);
         bioText.setWrapStyleWord(true);
         bioText.setRows(1);
-         // User user=ConnectHub.CurrentUser;
+        User user = ConnectHub.currentUser;
         //...............add  current cover photo.............
-        //Strig imagepath =user.getCoverPhotoPath();
-        //coverPhoto.setIcon(section(path, null,coverPhoto.getWidth(), coverPhoto.getHeight()));
-        
+        String imagepath = user.getCoverPhotoPath();
+        if (imagepath != null) {
+            coverPhoto.setIcon(section(imagepath, null, coverPhoto.getWidth(), coverPhoto.getHeight()));
+        }
+
         //..............add current profile photo................
-        //String profilePath=user.getProfilePhotoPath();
-        //profilePicture.setIcon(section(path, null,profilePicture.getWidth(), profilePicture.getHeight()));
-        
-        
+        String profilePath = user.getProfilePhotoPath();
+        if (profilePath != null) {
+            profilePicture.setIcon(section(profilePath, null, profilePicture.getWidth(), profilePicture.getHeight()));
+        } else {
+            profilePicture.setIcon(section("src\\main\\java\\icons\\profile-user.png", null, profilePicture.getWidth(), profilePicture.getHeight()));
+        }
+
     }
 
     // Method to resize the image and return it as an ImageIcon
-    public static ImageIcon section(String imag, byte[] image,int width,int height ) {
+    public static ImageIcon section(String imag, byte[] image, int width, int height) {
         if (imag != null) {
             myimage = new ImageIcon(imag);
-           // this.imagepath=myimage;
         } else {
             myimage = new ImageIcon(image);// If no path, create ImageIcon using binary data
         }
@@ -98,7 +106,7 @@ public class EditProfilePage extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(0, 204, 255));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Edilt");
+        jButton1.setText("Edit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -110,7 +118,7 @@ public class EditProfilePage extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(0, 204, 255));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Edilt");
+        jButton2.setText("Edit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -152,35 +160,39 @@ public class EditProfilePage extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(coverPhoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(profilePicture, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(profilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(6, 6, 6)))
                                 .addComponent(jButton2)))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(password)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(password, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(coverPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton4))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -191,7 +203,7 @@ public class EditProfilePage extends javax.swing.JFrame {
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(profilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -231,7 +243,7 @@ public class EditProfilePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+
         JFileChooser fc = new JFileChooser();
         // Add a filter to allow only image files (png, jpeg, gif)
         FileNameExtensionFilter filter = new FileNameExtensionFilter("All Pic", "png", "jpeg", "gif");
@@ -240,16 +252,16 @@ public class EditProfilePage extends javax.swing.JFrame {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File f = fc.getSelectedFile();
             String path = f.getAbsolutePath();
-            profilePicture.setIcon(section(path, null,profilePicture.getWidth(), profilePicture.getHeight()));
-            //user.setProfilePhotoPath(path);
-            //FileManagment.map.put(user.getUserId,user);
-        //FileManagment.Save(map);
+            profilePicture.setIcon(section(path, null, profilePicture.getWidth(), profilePicture.getHeight()));
+            ConnectHub.currentUser.setProfilePhotoPath(path);
+            FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
+            FilesManagement.save(map);
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       JFileChooser fc = new JFileChooser();
+        JFileChooser fc = new JFileChooser();
         // Add a filter to allow only image files (png, jpeg, gif)
         FileNameExtensionFilter filter = new FileNameExtensionFilter("All Pic", "png", "jpeg", "gif");
 
@@ -257,24 +269,31 @@ public class EditProfilePage extends javax.swing.JFrame {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File f = fc.getSelectedFile();
             String path = f.getAbsolutePath();
-            coverPhoto.setIcon(section(path, null,coverPhoto.getWidth(), coverPhoto.getHeight()));
-            //user.setCoverPhotoPath(path);
-            //FileManagment.map.put(user.getUserId,user);
-        //FileManagment.Save(map);
+            coverPhoto.setIcon(section(path, null, coverPhoto.getWidth(), coverPhoto.getHeight()));
+            ConnectHub.currentUser.setCoverPhotoPath(path);
+            FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
+            FilesManagement.save(map);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        //user.setBio=bioText.getText();
-        //FileManagment.map.put(user.getUserId,user);
-        //FileManagment.Save(map);
+        ConnectHub.currentUser.setBio(bioText.getText());
+        FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
+        FilesManagement.save(map);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       String newPassword = password.getText();
-      // user.setPassword(newPassword);
-       //FileManagment.map.put(user.getUserId,user);
-        //FileManagment.Save(map);
+        if (password.isValid() && !password.getText().isEmpty()) {
+            String newPassword = new String(password.getPassword());
+            ConnectHub.currentUser.setPassword(newPassword);
+            FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
+            FilesManagement.save(map);
+            JOptionPane.showMessageDialog(null, "Password Changed", "Message",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please Enter a valid password!", "Message",
+                    JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**

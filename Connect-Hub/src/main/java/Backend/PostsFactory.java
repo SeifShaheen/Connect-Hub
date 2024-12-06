@@ -4,17 +4,14 @@
  */
 package Backend;
 
+public class PostsFactory {
 
-public class PostsFactory implements Creation {
-
-    @Override
-    public Contents createContent(String text) {
+    public static Contents createContent(String text) {
         return new Post(text);
     }
 
-    @Override
-    public Contents createContent(String text, String imagePath) {
-        return new Post(text,imagePath);
+    public static Contents createContent(String text, String imagePath) {
+        return new Post(text, imagePath);
     }
-    
+
 }

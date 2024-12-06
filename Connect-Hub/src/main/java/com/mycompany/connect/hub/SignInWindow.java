@@ -181,7 +181,7 @@ public class SignInWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please enter email address!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (passField.getText().isEmpty()) {
+        if (passwordField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter password!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -236,7 +236,7 @@ public class SignInWindow extends javax.swing.JFrame {
 
         try {
             User user = null;
-            SignIn.operate(user, emailField.getText(), usernameField.getText(), passField.getText(), date);
+            SignIn.operate(user, emailField.getText(), usernameField.getText(), new String(passwordField.getPassword()), date);
             if (ConnectHub.currentUser != null) {
                 NewsfeedPage nfs = new NewsfeedPage();
                 dispose();

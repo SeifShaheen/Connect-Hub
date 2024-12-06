@@ -17,35 +17,36 @@ import javax.swing.JSeparator;
  *
  * @author Etijah
  */
-public class FriendPanel extends JPanel{
-    
-    public FriendPanel(String userName,String status,String imagePath)
-    {
-           // User user=ConnectHub.CurrentUser;  
-        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS)); 
+public class FriendPanel extends JPanel {
+
+    public FriendPanel(String userName, String status, String imagePath) {
+        // User user=ConnectHub.CurrentUser; 
+        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.setBackground(Color.WHITE);
-          JPanel nameStatusPanel = new JPanel();
+        JPanel nameStatusPanel = new JPanel();
         nameStatusPanel.setLayout(new BoxLayout(nameStatusPanel, BoxLayout.Y_AXIS));
-        nameStatusPanel.setBackground(Color.WHITE); 
-            
+        nameStatusPanel.setBackground(Color.WHITE);
+
         this.setPreferredSize(new Dimension(20, 60));
         this.setLayout(new FlowLayout());
-         JLabel friendImage = new JLabel();
-         //friendImage.setIcon(EditProfilePage.section(user.getProfilePhotoPath(), null,40, 40));
-       
-         //friendImage.setPreferredSize(new Dimension(50, 50)); 
-        friendImage.setHorizontalAlignment(JLabel.LEFT); 
-        //friendImage.setBackground(Color.gray);
-        //JLabel friendUserName = new JLabel(user.getUsername());
-       // JLabel friendStatus = new JLabel(user.getStatus());
-      // nameStatusPanel.add(friendUserName);
-      //  nameStatusPanel.add(friendStatus);
-         nameStatusPanel.add(friendImage); 
+        JLabel friendImage = new JLabel();
+        if (imagePath != null) {
+            friendImage.setIcon(EditProfilePage.section(imagePath, null, 40, 40));
+        } else {
+            friendImage.setIcon(EditProfilePage.section("src\\main\\java\\icons\\profile-user.png", null, 40, 40));
+        }
+
+//        friendImage.setPreferredSize(new Dimension(50, 50));
+        friendImage.setHorizontalAlignment(JLabel.LEFT);
+        friendImage.setBackground(Color.gray);
+        JLabel friendUserName = new JLabel(userName);
+        JLabel friendStatus = new JLabel(status);
+        nameStatusPanel.add(friendUserName);
+        nameStatusPanel.add(friendStatus);
         nameStatusPanel.add(nameStatusPanel);
-       
-         JSeparator separator = new JSeparator(JSeparator.HORIZONTAL);
-       this.add(separator);
+
+        JSeparator separator = new JSeparator(JSeparator.HORIZONTAL);
+        this.add(separator);
     }
 
-    
 }

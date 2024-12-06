@@ -5,15 +5,13 @@
 package Backend;
 
 
-public class StoriesFactory implements Creation{
+public class StoriesFactory {
 
-    @Override
-    public Contents createContent(String text) {
+    public static Contents createContent(String text) {
         return new Story(text);
     }
 
-    @Override
-    public Contents createContent(String text, String imagePath) {
+    public static Contents createContent(String text, String imagePath) {
         return new Story(text,imagePath);
     }
 

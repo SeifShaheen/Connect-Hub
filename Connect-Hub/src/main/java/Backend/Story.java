@@ -4,10 +4,8 @@
  */
 package Backend;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
-
 
 /**
  *
@@ -18,25 +16,26 @@ public class Story implements Contents {
     private String imagePath;
     private String timestamp;
     private String contentID;
+    @SuppressWarnings("unused")
     private String authorID;
+    @SuppressWarnings("unused")
     private StoryMonitor storyMonitor;
-    
-    //overloaded constructors for stories based on the passed arguments 
-    public Story(String text)
-    {
-      this.text=text;
-      this.timestamp=DateFormating.date(new Date());
-      this.contentID=UUID.randomUUID().toString();
-      
+
+    // overloaded constructors for stories based on the passed arguments
+    public Story(String text) {
+        this.text = text;
+        this.timestamp = DateFormating.date(new Date());
+        this.contentID = UUID.randomUUID().toString();
+
     }
-    public Story(String text, String imagePath)
-    {
-      this.text=text;
-      this.imagePath=imagePath;
-      this.timestamp=DateFormating.date(new Date());
-      this.contentID=UUID.randomUUID().toString();
+
+    public Story(String text, String imagePath) {
+        this.text = text;
+        this.imagePath = imagePath;
+        this.timestamp = DateFormating.date(new Date());
+        this.contentID = UUID.randomUUID().toString();
     }
-        
+
     @Override
     public String getText() {
         return text;
@@ -60,8 +59,4 @@ public class Story implements Contents {
         return contentID;
     }
 
-    
-    
-
-    
 }

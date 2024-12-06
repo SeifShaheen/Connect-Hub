@@ -10,7 +10,6 @@ import Backend.StoriesFactory;
 import Backend.Story;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -18,10 +17,11 @@ import java.util.UUID;
  *
  * @author Reem
  */
-//This class is responsible for creating user object with all its attriputes using builder design pattern
+// This class is responsible for creating user object with all its attriputes
+// using builder design pattern
 public class User extends FriendSpecifications {
 
-    //User personal Info
+    // User personal Info
     private final String userId;
     private String email;
     private String username;
@@ -29,17 +29,18 @@ public class User extends FriendSpecifications {
     private String dateOfBirth;
     private String status;
 
-    //User's attriputes that are related to other operations such as friends, posts, stories,.etc
-    //Contents attributes:
+    // User's attriputes that are related to other operations such as friends,
+    // posts, stories,.etc
+    // Contents attributes:
     ArrayList<Post> posts;
     ArrayList<Story> stories;
 
-    //Info such as photos and bio relates profile properties
+    // Info such as photos and bio relates profile properties
     public String bio;
     public String profilePhotoPath;
     public String coverPhotoPath;
 
-    //Private constructor to be accessed only be the builder
+    // Private constructor to be accessed only be the builder
     private User(UserBuilder builder) {
         this.userId = builder.userId;
         this.email = builder.email;
@@ -49,9 +50,14 @@ public class User extends FriendSpecifications {
         this.status = builder.status;
         this.stories = new ArrayList<>();
         this.posts = new ArrayList<>();
+        friends = new ArrayList<>();
+        requestsSent = new ArrayList<>();
+        requestsRecieved = new ArrayList<>();
+        friendSuggestions = new ArrayList<>();
+        blocked = new ArrayList<>();
     }
 
-    //getters&Setters to be needed
+    // getters&Setters to be needed
     public String getEmail() {
         return email;
     }
@@ -76,7 +82,7 @@ public class User extends FriendSpecifications {
         return userId;
     }
 
-    @Override //overridden bec. it needs the user obj.
+    @Override // overridden bec. it needs the user obj.
     public ArrayList<String> getFriendSuggestions() throws IOException {
         FriendManagement.FriendSuggestions.common(this);
         return super.friendSuggestions;
@@ -144,7 +150,7 @@ public class User extends FriendSpecifications {
         this.coverPhotoPath = coverPhotoPath;
     }
 
-    //Content creation methods
+    // Content creation methods
     public void createPost(String text) throws IOException, NoSuchAlgorithmException {
         Post post = (Post) PostsFactory.createContent(text);
         post.setAuthorID(userId);
@@ -176,15 +182,16 @@ public class User extends FriendSpecifications {
     @Override
     public String toString() {
         String line = "";
-        line += "userId=" + userId + ",username=" + username + ",email=" + email + ",password=" + password + ",dateOfBirth=" + dateOfBirth + ",status=" + status;
+        line += "userId=" + userId + ",username=" + username + ",email=" + email + ",password=" + password
+                + ",dateOfBirth=" + dateOfBirth + ",status=" + status;
         return line;
     }
 
-    //Builder class
-    //This class is the builder for User class
+    // Builder class
+    // This class is the builder for User class
     public static class UserBuilder {
 
-        //User Info
+        // User Info
         private String userId;
         private String email;
         private String username;
@@ -192,19 +199,20 @@ public class User extends FriendSpecifications {
         private String dateOfBirth;
         private String status;
 
-        //constructor for mandatory attributes
+        // constructor for mandatory attributes
         public UserBuilder() {
-            //Universally Unique Identifier method ensuring unique user ID for each user
+            // Universally Unique Identifier method ensuring unique user ID for each user
             this.userId = UUID.randomUUID().toString();
         }
 
-        //setters for the system setting attributes 'attributes to be set by the system itself not the user'
+        // setters for the system setting attributes 'attributes to be set by the system
+        // itself not the user'
         public UserBuilder buildStatus(String status) {
             this.status = status;
             return this;
         }
 
-        //setters for changable features
+        // setters for changable features
         public UserBuilder buildPassword(String password) {
             PasswordHashing.hashPassword(password);
             this.password = password;
@@ -226,7 +234,7 @@ public class User extends FriendSpecifications {
             return this;
         }
 
-        //Build Method
+        // Build Method
         public User Build() {
             return new User(this);
         }

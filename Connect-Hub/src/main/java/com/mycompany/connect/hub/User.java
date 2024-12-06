@@ -85,7 +85,7 @@ public class User extends FriendSpecifications {
     @Override // overridden bec. it needs the user obj.
     public ArrayList<String> getFriendSuggestions() throws IOException {
         FriendManagement.FriendSuggestions.common(this);
-        return friendSuggestions;
+        return super.friendSuggestions;
     }
 
     public ArrayList<Post> getPosts() {

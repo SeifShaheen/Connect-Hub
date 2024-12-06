@@ -123,7 +123,6 @@ public class FriendManagement {
 
         // a method to retrieve a list of friends of the friends as suggestions
         public static boolean common(User user) throws IOException {
-            user.addFriendSuggestions(new ArrayList<>());
             Map<String, User> users = FilesManagement.read();
             // check all possible states of database
             if (users.isEmpty() || users == null) {
@@ -133,15 +132,13 @@ public class FriendManagement {
                         JOptionPane.INFORMATION_MESSAGE);
                 return false;
             } else if (user.getFriends().isEmpty() || user.getFriends() == null) {
-                // this means that user does not have any friends 
+                // this means that user does not have any friends
                 // suggest random accounts. Max 10
                 ArrayList<User> allUsers = new ArrayList<>(users.values());
                 allUsers.removeIf(u -> u.getUserId().equals(user.getUserId())); // execluds current user
                 // shuffle the list
                 java.util.Collections.shuffle(allUsers);
                 allUsers.removeIf(u -> user.getBlocked().contains(u.getUserId())); // exclude if blocked user
-                allUsers.removeIf(u -> user.getRequestsSent().contains(u.getUserId())); //execlude if user send request
-                allUsers.removeIf(u -> user.getRequestsRecieved().contains(u.getUserId()));//execlude if user recieve request
                 ArrayList<String> userIds = allUsers.subList(0, Math.min(10, allUsers.size())).stream()
                         .map(User::getUserId).collect(Collectors.toCollection(ArrayList::new)); // collect as a List
                 user.addFriendSuggestions(userIds);
@@ -151,13 +148,13 @@ public class FriendManagement {
                 // friends of friends
                 for (String friendId : user.getFriends()) {
                     // checks friend existance
-                    if (friendId!=null && FilesManagement.read().containsKey(friendId)) {
+                    if (!friendId.equals(null) && FilesManagement.read().containsKey(friendId)) {
                         // check for the friend's friends
-                        for (String friendOfFriendId : FilesManagement.read().get(friendId).getFriends()) {
+                        for (String friendOfFriendId : FilesManagement.read().keySet()) {
                             // exclude the current user and his friends and block list
                             if (!friendOfFriendId.equals(user.getUserId())
                                     && !user.getFriends().contains(friendOfFriendId)
-                                    && !user.getBlocked().contains(friendOfFriendId) && !user.getRequestsRecieved().contains(friendOfFriendId) && !user.getRequestsSent().contains(friendOfFriendId)) {
+                                    && !user.getBlocked().contains(friendOfFriendId)) {
                                 User suggestedUser = users.get(friendOfFriendId);
                                 if (suggestedUser != null) { // check for existance and then add to suggestions
                                     user.addFriendSuggestions(suggestedUser.getUserId());

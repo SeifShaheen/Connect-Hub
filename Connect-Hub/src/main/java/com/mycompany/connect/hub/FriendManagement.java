@@ -45,6 +45,7 @@ public class FriendManagement {
                 from.addFriends(to.getUserId());
                 to.addFriends(from.getUserId());
                 save(from, to);
+                
                 return true;// indication
             }
             return false;

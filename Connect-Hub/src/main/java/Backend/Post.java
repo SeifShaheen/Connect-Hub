@@ -49,4 +49,14 @@ public class Post implements Contents {
         this.authorID = authorID;
     }
 
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+    
+    
+
 }

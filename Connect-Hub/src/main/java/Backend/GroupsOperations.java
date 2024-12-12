@@ -15,6 +15,7 @@ import java.util.logging.Logger;
  *
  * @author amrze
  */
+
 //This calss is used as a connection between group object and the operations performed
 public class GroupsOperations implements Operations {
 

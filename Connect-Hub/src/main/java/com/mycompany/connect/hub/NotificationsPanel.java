@@ -4,6 +4,7 @@
  */
 package com.mycompany.connect.hub;
 
+import Backend.Group;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -113,6 +114,35 @@ public class NotificationsPanel extends JPanel {
         });
 
         setBorder(BorderFactory.createLineBorder(Color.black));
+    }
+    
+    public NotificationsPanel(String line)
+    {
+       setLayout(new BorderLayout());
+        //adding the notification
+        JPanel author = new JPanel();
+        author.setLayout(new FlowLayout(FlowLayout.LEADING)); 
+        JLabel name = new JLabel();
+        name.setText(line); //putting the line
+        author.add(name);
+        JButton view = new JButton(); //adding the view button
+        view.setText("View");
+        //setting the sizes
+        JPanel but = new JPanel();
+        but.setLayout(new BoxLayout(but, BoxLayout.Y_AXIS));
+        but.add(view);
+        but.setSize(new Dimension(100, 100));
+        add(but);
+        setBorder(new EmptyBorder(7, 5, 7, 5));
+        view.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                /*
+                
+                should open the group panel
+                */
+            }
+        });
     }
 
 }

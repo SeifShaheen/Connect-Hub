@@ -48,6 +48,10 @@ public class Post implements Contents {
     public void setAuthorID(String authorID) {
         this.authorID = authorID;
     }
+    
+    public String getAuthorID() {
+        return authorID;
+    }
 
     public void setText(String text) {
         this.text = text;

@@ -8,6 +8,7 @@ import com.mycompany.connect.hub.User;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,10 +23,11 @@ public class GroupsOperations implements Operations {
 
     //CHECK IN THE DATA BASE if the user is normal, admin or primary
     @Override
-    public void approveMember(String admin,String member, String groupID ) {
-        try {         
-            GroupsDataBase.read().get(groupID).approveMember(member);
-            save(groupID);
+    public void approveMember(String admin, String member, String groupID) {
+        try {
+            Group group = GroupsDataBase.read().get(groupID);
+            group.approveMember(member);
+            save(group);
         } catch (IOException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -34,10 +36,11 @@ public class GroupsOperations implements Operations {
     }
 
     @Override
-    public void declineMember(String admin,String member, String groupID ) {
+    public void declineMember(String admin, String member, String groupID) {
         try {
-            GroupsDataBase.read().get(groupID).declineMember(member);
-            save(groupID);
+            Group group = GroupsDataBase.read().get(groupID);
+            group.declineMember(member);
+            save(group);
         } catch (IOException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -46,21 +49,23 @@ public class GroupsOperations implements Operations {
     }
 
     @Override
-    public void removeMember(String admin,String member, String groupID) {
+    public void removeMember(String admin, String member, String groupID) {
         try {
-            GroupsDataBase.read().get(groupID).removeMember(member);
-            save(groupID);
+            Group group = GroupsDataBase.read().get(groupID);
+            group.removeMember(member);
+            save(group);
         } catch (IOException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void removeAdmin(String admin,String member, String groupID)
-    {
+
+    public void removeAdmin(String admin, String member, String groupID) {
         try {
-            GroupsDataBase.read().get(groupID).removeAdmin(member);
-            save(groupID);
+            Group group = GroupsDataBase.read().get(groupID);
+            group.removeAdmin(member);
+            save(group);
         } catch (IOException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -69,10 +74,11 @@ public class GroupsOperations implements Operations {
     }
 
     @Override
-    public void promoteAdmin(String primaryAdmin,String admin, String groupID) {
+    public void promoteAdmin(String primaryAdmin, String admin, String groupID) {
         try {
-            GroupsDataBase.read().get(groupID).promoteAdmin(admin);
-            save(groupID);
+            Group group = GroupsDataBase.read().get(groupID);
+            group.promoteAdmin(admin);
+            save(group);
         } catch (IOException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -81,10 +87,11 @@ public class GroupsOperations implements Operations {
     }
 
     @Override
-    public void demoteAdmin(String primaryAdmin,String admin, String groupID) {
+    public void demoteAdmin(String primaryAdmin, String admin, String groupID) {
         try {
-            GroupsDataBase.read().get(groupID).demoteAdmin(admin);
-            save(groupID);
+            Group group = GroupsDataBase.read().get(groupID);
+            group.demoteAdmin(admin);
+            save(group);
         } catch (IOException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -92,12 +99,12 @@ public class GroupsOperations implements Operations {
         }
     }
 
-    
     @Override
     public void deleteGroup(String UserID, String groupID) {
         try {
-            GroupsDataBase.read().remove(groupID);
-            save(groupID);
+            Map<String, Group> map = GroupsDataBase.read();
+            map.remove(groupID);
+            save(map);
         } catch (IOException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -108,8 +115,9 @@ public class GroupsOperations implements Operations {
     @Override
     public void leaveGroup(String UserID, String groupID) {
         try {
-            GroupsDataBase.read().get(groupID).leaveGroup(UserID);
-            save(groupID);
+            Group group = GroupsDataBase.read().get(groupID);
+            group.leaveGroup(UserID);
+            save(group);
         } catch (IOException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -121,8 +129,10 @@ public class GroupsOperations implements Operations {
     @Override
     public void createPost(String UserID, String groupID, String text) {
         try {
-            GroupsDataBase.read().get(groupID).createPost(UserID, text);
-            save(groupID);
+            Group group = GroupsDataBase.read().get(groupID);
+
+            group.createPost(UserID, text);
+            save(group);
         } catch (IOException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -133,8 +143,10 @@ public class GroupsOperations implements Operations {
     @Override
     public void createPost(String UserID, String groupID, String text, String imagePath) {
         try {
-            GroupsDataBase.read().get(groupID).createPost(UserID, text,imagePath);
-            save(groupID);
+            Group group = GroupsDataBase.read().get(groupID);
+
+            group.createPost(UserID, text, imagePath);
+            save(group);
         } catch (IOException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -143,23 +155,25 @@ public class GroupsOperations implements Operations {
     }
 
     @Override
-    public void editPost(Post post,String UserId, String groupID, String text) {
+    public void editPost(Post post, String UserId, String groupID, String text) {
         try {
-            GroupsDataBase.read().get(groupID).editPost(post, text);
-            save(groupID);
+            Group group = GroupsDataBase.read().get(groupID);
+            group.editPost(post, text);
+            save(group);
         } catch (IOException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     @Override
-    public void editPost(Post post,String UserID, String groupID, String text, String imagePath) {
+    public void editPost(Post post, String UserID, String groupID, String text, String imagePath) {
         try {
-            GroupsDataBase.read().get(groupID).editPost(post, text, imagePath);
-            save(groupID);
+            Group group = GroupsDataBase.read().get(groupID);
+            group.editPost(post, text, imagePath);
+            save(group);
         } catch (IOException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -170,22 +184,9 @@ public class GroupsOperations implements Operations {
     @Override
     public void deletePost(Post post, String UserID, String groupID) {
         try {
-            GroupsDataBase.read().get(groupID).removePost(post);
-            save(groupID);
-        } catch (IOException ex) {
-            Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
-    
-    @Override
-    public void approvePost(String UserID, String groupID, Post post)  {
-          
-        try {
-            GroupsDataBase.read().get(groupID).getWaitingPosts().remove(post);
-            save(groupID);
+            Group group = GroupsDataBase.read().get(groupID);
+            group.removePost(post);
+            save(group);
         } catch (IOException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -193,13 +194,43 @@ public class GroupsOperations implements Operations {
         }
 
     }
-    
-    public void save(String groupId) throws IOException, NoSuchAlgorithmException
-    {
-        Group group=GroupsDataBase.read().get(groupId);
+
+    @Override
+    public void approvePost(String UserID, String groupID, Post post) {
+
+        try {
+            Group group = GroupsDataBase.read().get(groupID);
+            group.getWaitingPosts().remove(post);
+            save(group);
+        } catch (IOException ex) {
+            Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void save(Group group) throws IOException, NoSuchAlgorithmException {
         GroupsDataBase.save(group);
     }
-        
-    
+
+    public void save(Map<String, Group> map) throws IOException, NoSuchAlgorithmException {
+        GroupsDataBase.save(map);
+    }
+
+    @Override
+    public void requestJoin(String member, String groupID) {
+
+        try {
+            Group group = GroupsDataBase.read().get(groupID);
+            group.requestJoin(member, groupID);
+            save(group);
+        } catch (IOException ex) {
+            Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
 }

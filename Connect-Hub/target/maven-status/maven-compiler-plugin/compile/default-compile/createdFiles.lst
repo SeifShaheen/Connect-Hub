@@ -9,7 +9,6 @@ com\mycompany\connect\hub\ProjectsOpening$3.class
 com\mycompany\connect\hub\ProfileManagmentPage$3.class
 com\mycompany\connect\hub\NewsfeedPage$12.class
 com\mycompany\connect\hub\Suggestions.class
-Backend\GroupAdmin.class
 com\mycompany\connect\hub\NewsfeedPage$9.class
 com\mycompany\connect\hub\LoginWindow$2.class
 com\mycompany\connect\hub\NewsfeedPage$2.class
@@ -33,7 +32,6 @@ com\mycompany\connect\hub\FriendsPage$1.class
 com\mycompany\connect\hub\BlockedPanel.class
 com\mycompany\connect\hub\FriendManagement$Request.class
 com\mycompany\connect\hub\FriendManagement$FriendSuggestions.class
-Backend\GroupMember.class
 com\mycompany\connect\hub\Login.class
 com\mycompany\connect\hub\NewsfeedPage$8.class
 Backend\StoryMonitor.class
@@ -44,15 +42,16 @@ com\mycompany\connect\hub\EditProfilePage$1.class
 com\mycompany\connect\hub\ProfileManagmentPage.class
 Backend\Contents.class
 com\mycompany\connect\hub\ProjectsOpening$1.class
+Backend\GroupsDataBase$1.class
 com\mycompany\connect\hub\FilesManagement.class
 Backend\GroupsOperations.class
 com\mycompany\connect\hub\NewsfeedPage$1.class
 com\mycompany\connect\hub\FriendsPage.class
-Backend\GroupDeletion.class
 com\mycompany\connect\hub\LoginWindow$1.class
 com\mycompany\connect\hub\postPanel.class
 com\mycompany\connect\hub\Notifications$1.class
 com\mycompany\connect\hub\EditProfilePage$5.class
+Backend\GroupsDataBase.class
 com\mycompany\connect\hub\FilesManagement$1.class
 com\mycompany\connect\hub\NewsfeedPage$4.class
 com\mycompany\connect\hub\SignInWindow$2.class
@@ -72,7 +71,6 @@ com\mycompany\connect\hub\User.class
 com\mycompany\connect\hub\EditProfilePage$4.class
 com\mycompany\connect\hub\FriendPanel.class
 com\mycompany\connect\hub\LoginWindow.class
-Backend\PrimaryGroupAdmin.class
 com\mycompany\connect\hub\CreateUser.class
 com\mycompany\connect\hub\FriendManagement.class
 com\mycompany\connect\hub\ConnectHub.class

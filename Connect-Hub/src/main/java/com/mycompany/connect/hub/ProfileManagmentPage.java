@@ -29,36 +29,37 @@ import javax.swing.JPanel;
  * @author Etijah
  */
 public class ProfileManagmentPage extends javax.swing.JFrame {
-        static User user;
 
-        /**
-         * Creates new form ProfileManagmentPage
-         */
-        public ProfileManagmentPage(User user) throws IOException {
-                initComponents();
-                ProfileManagmentPage.user = user;
-                this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                setVisible(true);
-                // setResizable(false);
-                setTitle(user.getUsername());
-                partOfFriends1.setVisible(true);
-                setSize(new Dimension(420, 643));
-                // ..............add cover Photo..............
-                String coverPath = user.getCoverPhotoPath();
-                if (coverPath != null) {
-                        coverPh1.setIcon(EditProfilePage.section(coverPath, null, coverPh1.getWidth(),
-                                        coverPh1.getHeight()));
-                }
+    static User user;
 
-                // ............add profile photo..............
-                String profilePhoPath = user.getProfilePhotoPath();
-                if (profilePhoPath != null) {
-                        profilePh1.setIcon(
-                                        EditProfilePage.section(profilePhoPath, null, profilePh1.getWidth(),
-                                                        profilePh1.getHeight()));
-                } else {
-                        profilePh1.setIcon(EditProfilePage.section("src\\main\\java\\icons\\profile-user.png", null,
-                                        profilePh1.getWidth() + 1, profilePh1.getHeight() + 1));
+    /**
+     * Creates new form ProfileManagmentPage
+     */
+    public ProfileManagmentPage(User user) throws IOException {
+        initComponents();
+        ProfileManagmentPage.user = user;
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setVisible(true);
+        // setResizable(false);
+        setTitle(user.getUsername());
+        partOfFriends1.setVisible(true);
+        setSize(new Dimension(420, 643));
+        // ..............add cover Photo..............
+        String coverPath = user.getCoverPhotoPath();
+        if (coverPath != null) {
+            coverPh1.setIcon(EditProfilePage.section(coverPath, null, coverPh1.getWidth(),
+                    coverPh1.getHeight()));
+        }
+
+        // ............add profile photo..............
+        String profilePhoPath = user.getProfilePhotoPath();
+        if (profilePhoPath != null) {
+            profilePh1.setIcon(
+                    EditProfilePage.section(profilePhoPath, null, profilePh1.getWidth(),
+                            profilePh1.getHeight()));
+        } else {
+            profilePh1.setIcon(EditProfilePage.section("src\\main\\java\\icons\\profile-user.png", null,
+                    profilePh1.getWidth() + 1, profilePh1.getHeight() + 1));
         }
         // ...................add user name......................
         String use = user.getUsername();
@@ -114,69 +115,68 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
         newPanel3.setLayout(new BoxLayout(newPanel3, BoxLayout.X_AXIS));
         newPanel3.setVisible(false);
         changePanel1.setVisible(false);
-        if(user.getUserId().equals(ConnectHub.currentUser.getUserId())){
+        if (user.getUserId().equals(ConnectHub.currentUser.getUserId())) {
             changePanel1.setVisible(true);
-        }
-        else if (ConnectHub.currentUser.getRequestsRecieved().contains(user)) {
+        } else if (ConnectHub.currentUser.getRequestsRecieved().contains(user)) {
             JButton accept = new JButton("accept");
-            accept.setForeground(new Color(255,255,255));
-            accept.setBackground(new Color(0,204,255));
-             JButton  decline = new JButton(" decline");
-             decline.setForeground(new Color(255,255,255));
-             decline.setBackground(new Color(0,204,255));
-             accept.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    boolean acc = FriendManagement.Request.approve(user, ConnectHub.currentUser);
-                    if (acc) {
-                        JOptionPane.showMessageDialog(null, user.getUsername() + " became a friend", "Message",
-                                JOptionPane.INFORMATION_MESSAGE);
-                        ConnectHub.currentUser.friendSuggestions.remove(user.getUserId());
-                        user.friendSuggestions.remove(ConnectHub.currentUser.getUserId());
-                        FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
-                        FilesManagement.map.put(user.getUserId(), user);
-                        FilesManagement.save(FilesManagement.map);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "There was an error.", "Message",
-                                JOptionPane.ERROR_MESSAGE);
+            accept.setForeground(new Color(255, 255, 255));
+            accept.setBackground(new Color(0, 204, 255));
+            JButton decline = new JButton(" decline");
+            decline.setForeground(new Color(255, 255, 255));
+            decline.setBackground(new Color(0, 204, 255));
+            accept.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        boolean acc = FriendManagement.Request.approve(user, ConnectHub.currentUser);
+                        if (acc) {
+                            JOptionPane.showMessageDialog(null, user.getUsername() + " became a friend", "Message",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            ConnectHub.currentUser.friendSuggestions.remove(user.getUserId());
+                            user.friendSuggestions.remove(ConnectHub.currentUser.getUserId());
+                            FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
+                            FilesManagement.map.put(user.getUserId(), user);
+                            FilesManagement.save(FilesManagement.map);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "There was an error.", "Message",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                    } catch (NoSuchAlgorithmException | IOException ex) {
+                        Logger.getLogger(NotificationsPanel.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (NoSuchAlgorithmException | IOException ex) {
-                    Logger.getLogger(NotificationsPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-        });
-        decline.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    boolean dec = FriendManagement.Request.decline(user, ConnectHub.currentUser);
-                    if (dec) {
-                        JOptionPane.showMessageDialog(null, user.getUsername() + " was declined", "Message",
-                                JOptionPane.INFORMATION_MESSAGE);
-                        ConnectHub.currentUser.friendSuggestions.remove(user.getUserId());
-                        user.friendSuggestions.remove(ConnectHub.currentUser.getUserId());
-                        FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
-                        FilesManagement.map.put(user.getUserId(), user);
-                        FilesManagement.save(FilesManagement.map);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "There was an error.", "Message",
-                                JOptionPane.ERROR_MESSAGE);
+            });
+            decline.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        boolean dec = FriendManagement.Request.decline(user, ConnectHub.currentUser);
+                        if (dec) {
+                            JOptionPane.showMessageDialog(null, user.getUsername() + " was declined", "Message",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            ConnectHub.currentUser.friendSuggestions.remove(user.getUserId());
+                            user.friendSuggestions.remove(ConnectHub.currentUser.getUserId());
+                            FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
+                            FilesManagement.map.put(user.getUserId(), user);
+                            FilesManagement.save(FilesManagement.map);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "There was an error.", "Message",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                    } catch (NoSuchAlgorithmException | IOException ex) {
+                        Logger.getLogger(NotificationsPanel.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (NoSuchAlgorithmException | IOException ex) {
-                    Logger.getLogger(NotificationsPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-        });
-         newPanel3.add(accept);
-         newPanel3.add(Box.createHorizontalStrut(30));
-            newPanel3.add( decline);
+            });
+            newPanel3.add(accept);
+            newPanel3.add(Box.createHorizontalStrut(30));
+            newPanel3.add(decline);
             newPanel3.setVisible(true);
 
         } else if (ConnectHub.currentUser.getFriends().contains(user.getUserId())) {
             JButton block = new JButton("Block");
-            block.setForeground(new Color(255,255,255));
-            block.setBackground(new Color(0,204,255));
+            block.setForeground(new Color(255, 255, 255));
+            block.setBackground(new Color(0, 204, 255));
             block.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -201,8 +201,8 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
                 }
             });
             JButton remove = new JButton("Remove");
-            remove.setForeground(new Color(255,255,255));
-            remove.setBackground(new Color(0,204,255));
+            remove.setForeground(new Color(255, 255, 255));
+            remove.setBackground(new Color(0, 204, 255));
             remove.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -228,64 +228,26 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
                 }
             });
             newPanel3.add(remove);
-           newPanel3.add(Box.createHorizontalStrut(30));
+            newPanel3.add(Box.createHorizontalStrut(30));
             newPanel3.add(block);
             remove.setVisible(true);
             newPanel3.setVisible(true);
         } else if (!(ConnectHub.currentUser.getFriends().contains(user.getUserId()))
                 && !(user.getBlockedBy().contains(ConnectHub.currentUser.getUserId()))) {
             JButton add = new JButton("Add ");
-            add.setForeground(new Color(255,255,255));
-            add.setBackground(new Color(0,204,255));
+            add.setForeground(new Color(255, 255, 255));
+            add.setBackground(new Color(0, 204, 255));
             add.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
                         boolean sen = FriendManagement.Request.send(ConnectHub.currentUser, user);
                         if (sen) {
-                            JOptionPane.showMessageDialog(null, "Sent a request to " +
-                                    user.getUsername(), "Message",
+                            JOptionPane.showMessageDialog(null, "Sent a request to " + user.getUsername(), "Message",
                                     JOptionPane.INFORMATION_MESSAGE);
                             ConnectHub.currentUser.friendSuggestions.remove(user.getUserId());
                             user.friendSuggestions.remove(ConnectHub.currentUser.getUserId());
-                            FilesManagement.map.put(ConnectHub.currentUser.getUserId(),
-                                    ConnectHub.currentUser);
-                            FilesManagement.map.put(user.getUserId(), user);
-                            FilesManagement.save(FilesManagement.map);
-                        } else {
-                                friendImage.setIcon(EditProfilePage.section("src\\main\\java\\icons\\profile-user.png",
-                                                null,
-                                                profilePh1.getWidth() + 1, profilePh1.getHeight() + 1));
-
-                        }
-                        friendImage.setPreferredSize(new Dimension(20, 20));
-                        JLabel friendUserName = new JLabel();
-                        String userf = friend.getUsername();
-                        friendUserName.setText(userf);
-                        JLabel friendStatus = new JLabel();
-                        String statusF = friend.getStatus();
-                        friendStatus.setText(statusF);
-                        newpanel.add(friendImage);
-                        newpanel.add(friendUserName);
-                        newpanel.add(friendStatus);
-                        partOfFriends1.add(newpanel);
-                }
-            });
-            
-            JButton block = new JButton("Block");
-            block.setForeground(new Color(255,255,255));
-            block.setBackground(new Color(0,204,255));
-            block.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        boolean sen = FriendManagement.Request.block(ConnectHub.currentUser, user);
-                        if (sen) {
-                            JOptionPane.showMessageDialog(null, "Blocked " + user.getUsername(),
-                                    "Message",
-                                    JOptionPane.INFORMATION_MESSAGE);
-                            FilesManagement.map.put(ConnectHub.currentUser.getUserId(),
-                                    ConnectHub.currentUser);
+                            FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
                             FilesManagement.map.put(user.getUserId(), user);
                             FilesManagement.save(FilesManagement.map);
                         } else {
@@ -293,8 +255,31 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
                                     JOptionPane.ERROR_MESSAGE);
                         }
                     } catch (NoSuchAlgorithmException | IOException ex) {
-                        Logger.getLogger(NotificationsPanel.class.getName()).log(Level.SEVERE, null,
-                                ex);
+                        Logger.getLogger(NotificationsPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+
+            JButton block = new JButton("Block");
+            block.setForeground(new Color(255, 255, 255));
+            block.setBackground(new Color(0, 204, 255));
+            block.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        boolean sen = FriendManagement.Request.block(ConnectHub.currentUser, user);
+                        if (sen) {
+                            JOptionPane.showMessageDialog(null, "Blocked " + user.getUsername(), "Message",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
+                            FilesManagement.map.put(user.getUserId(), user);
+                            FilesManagement.save(FilesManagement.map);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "There was an error.", "Message",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                    } catch (NoSuchAlgorithmException | IOException ex) {
+                        Logger.getLogger(NotificationsPanel.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             });
@@ -302,23 +287,19 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
             newPanel3.add(Box.createHorizontalStrut(30));
             newPanel3.add(block);
             newPanel3.setVisible(true);
-        }
-
-        else if (user.getBlockedBy().contains(ConnectHub.currentUser.getUserId())) {
+        } else if (user.getBlockedBy().contains(ConnectHub.currentUser.getUserId())) {
             JButton unblock = new JButton("Unblock");
-            unblock.setForeground(new Color(255,255,255));
-            unblock.setBackground(new Color(0,204,255));
+            unblock.setForeground(new Color(255, 255, 255));
+            unblock.setBackground(new Color(0, 204, 255));
             unblock.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
                         boolean sen = FriendManagement.Request.unBlock(ConnectHub.currentUser, user);
                         if (sen) {
-                            JOptionPane.showMessageDialog(null, "Unblocked " + user.getUsername(),
-                                    "Message",
+                            JOptionPane.showMessageDialog(null, "Unblocked " + user.getUsername(), "Message",
                                     JOptionPane.INFORMATION_MESSAGE);
-                            FilesManagement.map.put(ConnectHub.currentUser.getUserId(),
-                                    ConnectHub.currentUser);
+                            FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
                             FilesManagement.map.put(user.getUserId(), user);
                             FilesManagement.save(FilesManagement.map);
                         } else {
@@ -326,15 +307,13 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
                                     JOptionPane.ERROR_MESSAGE);
                         }
                     } catch (NoSuchAlgorithmException | IOException ex) {
-                        Logger.getLogger(NotificationsPanel.class.getName()).log(Level.SEVERE, null,
-                                ex);
+                        Logger.getLogger(NotificationsPanel.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+            });
 
-                setVisible(false);
-                setVisible(true);
-                this.invalidate();
-                this.repaint();
+            newPanel3.add(unblock);
+            newPanel3.setVisible(true);
         }
 
         setVisible(false);
@@ -566,74 +545,61 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
         FriendsPage.setVisible(true);
     }// GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
         // (optional) ">
         /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
-         * look and feel.
-         * For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        public static void main(String args[]) {
-                /* Set the Nimbus look and feel */
-                // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-                // (optional) ">
-                /*
                  * If Nimbus (introduced in Java SE 6) is not available, stay with the default
                  * look and feel.
                  * For details see
                  * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-                 */
-                try {
-                        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-                                        .getInstalledLookAndFeels()) {
-                                if ("Nimbus".equals(info.getName())) {
-                                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                                        break;
-                                }
-                        }
-                } catch (ClassNotFoundException ex) {
-                        java.util.logging.Logger.getLogger(ProfileManagmentPage.class.getName()).log(
-                                        java.util.logging.Level.SEVERE,
-                                        null, ex);
-                } catch (InstantiationException ex) {
-                        java.util.logging.Logger.getLogger(ProfileManagmentPage.class.getName()).log(
-                                        java.util.logging.Level.SEVERE,
-                                        null, ex);
-                } catch (IllegalAccessException ex) {
-                        java.util.logging.Logger.getLogger(ProfileManagmentPage.class.getName()).log(
-                                        java.util.logging.Level.SEVERE,
-                                        null, ex);
-                } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                        java.util.logging.Logger.getLogger(ProfileManagmentPage.class.getName()).log(
-                                        java.util.logging.Level.SEVERE,
-                                        null, ex);
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
+                    .getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
                 }
-                // </editor-fold>
-
-                /* Create and display the form */
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                        @SuppressWarnings("unused")
-                        public void run(User user) {
-                                try {
-                                        new ProfileManagmentPage(user).setVisible(true);
-                                } catch (IOException ex) {
-                                        Logger.getLogger(ProfileManagmentPage.class.getName()).log(Level.SEVERE, null,
-                                                        ex);
-                                }
-                        }
-
-                        @Override
-                        public void run() {
-                                throw new UnsupportedOperationException("Unimplemented method 'run'");
-                        }
-                });
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ProfileManagmentPage.class.getName()).log(
+                    java.util.logging.Level.SEVERE,
+                    null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ProfileManagmentPage.class.getName()).log(
+                    java.util.logging.Level.SEVERE,
+                    null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ProfileManagmentPage.class.getName()).log(
+                    java.util.logging.Level.SEVERE,
+                    null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ProfileManagmentPage.class.getName()).log(
+                    java.util.logging.Level.SEVERE,
+                    null, ex);
         }
+        // </editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @SuppressWarnings("unused")
+            public void run(User user) {
+                try {
+                    new ProfileManagmentPage(user).setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(ProfileManagmentPage.class.getName()).log(Level.SEVERE, null,
+                            ex);
+                }
+            }
+
+            @Override
+            public void run() {
+                throw new UnsupportedOperationException("Unimplemented method 'run'");
+            }
+        });
+    }
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JPanel changePanel1;

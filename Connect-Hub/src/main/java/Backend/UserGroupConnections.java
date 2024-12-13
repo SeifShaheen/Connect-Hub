@@ -80,4 +80,24 @@ public class UserGroupConnections {
         
         return list;
     }
+    
+    public ArrayList<Group> suggestions() throws IOException
+    {
+        ArrayList<Group> list = new ArrayList<>();
+        Map<String, Group> map = GroupsDataBase.read();
+        Operations operations = new Proxy();
+        if (map.isEmpty() || map == null) {
+            return list;
+        } else {
+                for (Map.Entry<String, Group> entry : map.entrySet()) {
+                    Group group = entry.getValue();
+                    if(!group.getMembers().contains(currentUser.getUserId())&& !group.getPrimaryAdmin().equals(currentUser.getUserId()) &&!group.getRequests().contains(currentUser.getUserId()))
+                    {
+                        list.add(group);
+                    }
+                    
+                }
+            }
+        return list;
+    }
 }

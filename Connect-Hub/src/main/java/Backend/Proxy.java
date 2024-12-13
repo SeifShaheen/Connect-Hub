@@ -224,7 +224,7 @@ public class Proxy implements Operations {
     @Override
     public void requestJoin(String member, String groupID) {
         try {
-            if(!isMember(member,groupID))
+            if(!isMember(member,groupID) && !GroupsDataBase.read().get(groupID).getRequests().contains(member) )
             {
                 operations.requestJoin(member, groupID);
             }

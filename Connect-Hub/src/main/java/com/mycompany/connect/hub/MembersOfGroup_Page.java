@@ -4,6 +4,7 @@
  */
 package com.mycompany.connect.hub;
 
+import Backend.Group;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -15,25 +16,25 @@ import javax.swing.JFrame;
  *
  * @author Etijah
  */
-public class FriendsPage extends javax.swing.JFrame {
+public class MembersOfGroup_Page extends javax.swing.JFrame {
 
     /**
      * Creates new form FriendsPage
      */
-    public FriendsPage(User user) {
+    public MembersOfGroup_Page(Group group) {
         initComponents();
         setVisible(true);
-        setTitle(user.getUsername() + "'s Friends");
+        setTitle(group.getGroupName() + "'s Members");
         setResizable(false);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(new Dimension(500, 200));
         this.setLayout(new GridLayout());
-        jLabel1.setText("Friends: " + user.getFriends().size());
+        jLabel1.setText("Members: " + (group.getMembers().size() - group.getAdmins().size()));
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-        ArrayList<String> friends = user.getFriends();
-        for (String f : friends) {
-            User friend = FilesManagement.map.get(f);
-            mainPanel.add(new FriendPanel(friend, user), BoxLayout.Y_AXIS);
+        ArrayList<String> members = group.getMembers();
+        for (String m : members) {
+                User member = FilesManagement.map.get(m);
+                mainPanel.add(new membersPanel(member, group), BoxLayout.Y_AXIS);
         }
         mainPanel.setVisible(true);
         mainPanel.revalidate();
@@ -48,7 +49,7 @@ public class FriendsPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         childPanel = new javax.swing.JPanel();
@@ -72,36 +73,32 @@ public class FriendsPage extends javax.swing.JFrame {
         javax.swing.GroupLayout childPanelLayout = new javax.swing.GroupLayout(childPanel);
         childPanel.setLayout(childPanelLayout);
         childPanelLayout.setHorizontalGroup(
-                childPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(childPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(friendImage, javax.swing.GroupLayout.PREFERRED_SIZE, 63,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(childPanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(childPanelLayout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(FriendUserName, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(childPanelLayout.createSequentialGroup()
-                                                .addGap(32, 32, 32)
-                                                .addComponent(FriendStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 91,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(78, Short.MAX_VALUE)));
+            childPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(childPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(friendImage, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(childPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(childPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(FriendUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(childPanelLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(FriendStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(78, Short.MAX_VALUE))
+        );
         childPanelLayout.setVerticalGroup(
-                childPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(childPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(friendImage, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
-                        .addGroup(childPanelLayout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(FriendUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 27,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(FriendStatus)
-                                .addContainerGap(12, Short.MAX_VALUE)));
+            childPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(childPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(friendImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(childPanelLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(FriendUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(FriendStatus)
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,19 +112,19 @@ public class FriendsPage extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 379,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap()));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 557,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -153,25 +150,26 @@ public class FriendsPage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FriendsPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(MembersOfGroup_Page.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FriendsPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(MembersOfGroup_Page.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FriendsPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(MembersOfGroup_Page.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FriendsPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(MembersOfGroup_Page.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         }
+        // </editor-fold>
         // </editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @SuppressWarnings("unused")
-            public void run(User user) {
-                new FriendsPage(user).setVisible(true);
+            public void run(Group group) {
+                new MembersOfGroup_Page(group).setVisible(true);
             }
 
             @Override

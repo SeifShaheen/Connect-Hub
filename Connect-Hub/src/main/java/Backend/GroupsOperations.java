@@ -4,10 +4,8 @@
  */
 package Backend;
 
-import com.mycompany.connect.hub.User;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,12 +14,14 @@ import java.util.logging.Logger;
  *
  * @author amrze
  */
-//This calss is used as a connection between group object and the operations performed
+// This calss is used as a connection between group object and the operations
+// performed
 public class GroupsOperations implements Operations {
 
+    @SuppressWarnings("unused")
     private Group group;
 
-    //CHECK IN THE DATA BASE if the user is normal, admin or primary
+    // CHECK IN THE DATA BASE if the user is normal, admin or primary
     @Override
     public void approveMember(String admin, String member, String groupID) {
         try {

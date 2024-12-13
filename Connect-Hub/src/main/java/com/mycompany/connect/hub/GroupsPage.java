@@ -6,34 +6,84 @@ package com.mycompany.connect.hub;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import Backend.Group;
+import Backend.UserGroupConnections;
 
 /**
  *
- * @author Etijah
+ * @author seifs
  */
-public class FriendsPage extends javax.swing.JFrame {
+public class GroupsPage extends javax.swing.JFrame {
+
+    static String groupName = null;
 
     /**
-     * Creates new form FriendsPage
+     * Creates new form GroupsPage
+     * 
+     * @throws IOException
      */
-    public FriendsPage(User user) {
+    public GroupsPage() throws IOException {
         initComponents();
+        UserGroupConnections u = new UserGroupConnections(ConnectHub.currentUser);
         setVisible(true);
-        setTitle(user.getUsername() + "'s Friends");
+        setTitle(ConnectHub.currentUser.getUsername() + "'s Groups");
         setResizable(false);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(new Dimension(500, 200));
         this.setLayout(new GridLayout());
-        jLabel1.setText("Friends: " + user.getFriends().size());
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-        ArrayList<String> friends = user.getFriends();
-        for (String f : friends) {
-            User friend = FilesManagement.map.get(f);
-            mainPanel.add(new FriendPanel(friend, user), BoxLayout.Y_AXIS);
+        JButton addGroupbtn = new JButton("Add New Group");
+        addGroupbtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new addGroupDialog(null, true);
+                    if (groupName != null) {
+                        JOptionPane.showMessageDialog(null, "Created " + groupName, "Message",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        new Group(groupName, ConnectHub.currentUser.getUserId());
+                    } else {
+                        JOptionPane.showMessageDialog(null, "There was an error.", "Message",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (NoSuchAlgorithmException | IOException ex) {
+                    Logger.getLogger(NotificationsPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        mainPanel.add(addGroupbtn);
+        JLabel jLabel1 = new JLabel();
+        jLabel1.setText("Primary Admin: " + u.getOwnerGroups().size());
+        mainPanel.add(jLabel1);
+        ArrayList<Group> owner = u.getOwnerGroups();
+        for (Group g : owner) {
+            mainPanel.add(new GroupPanel(g), BoxLayout.Y_AXIS);
+        }
+        JLabel admin = new JLabel("Admin: " + u.getAdminGroups().size());
+        mainPanel.add(admin);
+        ArrayList<Group> adminGroup = u.getAdminGroups();
+        for (Group g : adminGroup) {
+            mainPanel.add(new GroupPanel(g), BoxLayout.Y_AXIS);
+        }
+        JLabel member = new JLabel("Member: " + u.getMemberGroups().size());
+        mainPanel.add(member);
+        ArrayList<Group> memberGroup = u.getAdminGroups();
+        for (Group g : memberGroup) {
+            mainPanel.add(new GroupPanel(g), BoxLayout.Y_AXIS);
         }
         mainPanel.setVisible(true);
         mainPanel.revalidate();
@@ -153,30 +203,29 @@ public class FriendsPage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FriendsPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(GroupsPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FriendsPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(GroupsPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FriendsPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(GroupsPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FriendsPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(GroupsPage.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         }
+        // </editor-fold>
         // </editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @SuppressWarnings("unused")
-            public void run(User user) {
-                new FriendsPage(user).setVisible(true);
-            }
-
-            @Override
             public void run() {
-                throw new UnsupportedOperationException("Unimplemented method 'run'");
+                try {
+                    new GroupsPage().setVisible(true);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

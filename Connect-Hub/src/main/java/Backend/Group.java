@@ -1,12 +1,13 @@
 
 package Backend;
 
-import com.mycompany.connect.hub.ConnectHub;
+import com.mycompany.connect.hub.FilesManagement;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.UUID;
 
+//This Class responsible for the main components of the group
 public class Group {
     private String groupName;
     private String groupID;
@@ -16,8 +17,8 @@ public class Group {
     private ArrayList<String> admins;
     private ArrayList<String> requests;
     private ArrayList<Post> posts;
-    private ArrayList<Post> waitingPosts;
     private String primaryAdmin;
+    private ArrayList<String> leftUsers;
 
     public Group(String groupName, String userID) throws NoSuchAlgorithmException, IOException {
         this.groupID = UUID.randomUUID().toString();
@@ -26,11 +27,12 @@ public class Group {
         this.admins = new ArrayList<>();
         this.requests = new ArrayList<>();
         this.posts = new ArrayList<>();
-        this.waitingPosts = new ArrayList<>();
+        this.leftUsers = new ArrayList<>();
         this.primaryAdmin = userID;
         GroupsDataBase.save(this);
     }
 
+    // getters and setters that will be used
     public String getGroupName() {
         return groupName;
     }
@@ -39,25 +41,59 @@ public class Group {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getImagePath() {
         return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
     }
 
     public ArrayList<String> getMembers() {
         return members;
     }
 
+    public ArrayList<String> getAdmins() {
+        return admins;
+    }
+
+    public ArrayList<Post> getPosts() {
+        return posts;
+    }
+
+    public String getPrimaryAdmin() {
+        return primaryAdmin;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getGroupID() {
+        return this.groupID;
+    }
+
+    public ArrayList<String> getRequests() {
+        return requests;
+    }
+
+    public ArrayList<String> getLeftUsers() {
+        return leftUsers;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
     public void setMembers(ArrayList<String> members) {
         this.members = members;
     }
+
+    public void setAdmins(ArrayList<String> admins) {
+        this.admins = admins;
+    }
+
+    public void setPosts(ArrayList<Post> posts) {
+        this.posts = posts;
+    }
+
+    // Groups management methods
 
     public void approveMember(String userId) {
         this.requests.remove(userId);
@@ -77,14 +113,6 @@ public class Group {
         this.members.remove(userID);
     }
 
-    public ArrayList<String> getAdmins() {
-        return admins;
-    }
-
-    public void setAdmins(ArrayList<String> admins) {
-        this.admins = admins;
-    }
-
     public void promoteAdmin(String userId) {
         this.admins.add(userId);
     }
@@ -93,79 +121,55 @@ public class Group {
         this.admins.remove(userId);
     }
 
-    public String getPrimaryAdmin() {
-        return primaryAdmin;
-    }
-
-    public String getGroupID() {
-        return this.groupID;
-    }
-
-    public ArrayList<String> getRequests() {
-        return requests;
-    }
-
     public void addRequest(String UserID) {
         this.requests.add(UserID);
     }
 
     // content handling
-    public void approvePost(Post post) {
-        posts.add(post);
-        waitingPosts.remove(post);
-    }
 
     public void editPost(Post post, String text) {
+        posts.remove(post);
         post.setText(text);
+        posts.add(post);
     }
 
     public void editPost(Post post, String text, String imagePath) {
+        posts.remove(post);
         post.setText(text);
         post.setImagePath(imagePath);
+        posts.add(post);
     }
 
     public void removePost(Post post) {
         posts.remove(post);
     }
-    public void createPost(String member, String text)  {
-        Post post = (Post) PostsFactory.createContent(text,ConnectHub.currentUser);
+
+    public void createPost(String member, String text) throws IOException {
+        Post post = (Post) PostsFactory.createContent(text, FilesManagement.read().get(member));
+        posts.add(post);
+    }
+
+    public void createPost(String member, String text, String imagePath) throws IOException {
+        Post post = (Post) PostsFactory.createContent(text, imagePath, FilesManagement.read().get(member));
         post.setAuthorID(member);
-        waitingPosts.add(post);
-    }
-    public void createPost(String member, String text, String imagePath)  {
-        Post post = (Post) PostsFactory.createContent(text, imagePath,ConnectHub.currentUser);
-
-        post.setAuthorID(member);
-        waitingPosts.add(post);
+        posts.add(post);
     }
 
-    public ArrayList<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(ArrayList<Post> posts) {
-        this.posts = posts;
-    }
-
-    public ArrayList<Post> getWaitingPosts() {
-        return waitingPosts;
-    }
-
-    public void setWaitingPosts(ArrayList<Post> waitingPosts) {
-        this.waitingPosts = waitingPosts;
-    }
-
-    // we have to remove the group from the user newsfeed and from group suggestions
     public void leaveGroup(String userId) {
         this.members.remove(userId);
         if (this.admins.contains(userId)) {
             this.admins.remove(userId);
         }
+        addLeftUser(userId);
 
     }
 
     public void requestJoin(String member, String groupID) {
         this.requests.add(member);
+    }
+
+    public void addLeftUser(String userID) {
+        this.leftUsers.add(userID);
     }
 
 }

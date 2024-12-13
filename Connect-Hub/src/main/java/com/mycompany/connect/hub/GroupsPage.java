@@ -41,10 +41,10 @@ public class GroupsPage extends javax.swing.JFrame {
         UserGroupConnections u = new UserGroupConnections(ConnectHub.currentUser);
         setVisible(true);
         setTitle(ConnectHub.currentUser.getUsername() + "'s Groups");
-        setResizable(false);
+        // setResizable(false);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(new Dimension(500, 200));
-        this.setLayout(new GridLayout());
+        this.setLayout(new GridLayout(1,0));
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         JButton addGroupbtn = new JButton("Add New Group");
         addGroupbtn.addActionListener(new ActionListener() {

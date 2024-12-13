@@ -6,6 +6,7 @@ package Backend;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -144,7 +145,6 @@ public class GroupsOperations implements Operations {
     public void createPost(String UserID, String groupID, String text, String imagePath) {
         try {
             Group group = GroupsDataBase.read().get(groupID);
-
             group.createPost(UserID, text, imagePath);
             save(group);
         } catch (IOException ex) {
@@ -157,23 +157,31 @@ public class GroupsOperations implements Operations {
     @Override
     public void editPost(Post post, String UserId, String groupID, String text) {
         try {
-            Group group = GroupsDataBase.read().get(groupID);
-            group.editPost(post, text);
-            save(group);
+            Map<String, Group> map = GroupsDataBase.read();
+            Group g = map.get(groupID);
+            g.editPost(post, text);
+            map.put(g.getGroupID(), g);
+            save(map);
+            // Group group = GroupsDataBase.read().get(groupID);
+            // group.editPost(post, text);
+            // save(group);
         } catch (IOException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @Override
     public void editPost(Post post, String UserID, String groupID, String text, String imagePath) {
         try {
-            Group group = GroupsDataBase.read().get(groupID);
-            group.editPost(post, text, imagePath);
-            save(group);
+            // Group group = GroupsDataBase.read().get(groupID);
+            // group.editPost(post, text, imagePath);
+            Map<String, Group> map = GroupsDataBase.read();
+            Group g = map.get(groupID);
+            g.editPost(post, text, imagePath);
+            map.put(g.getGroupID(), g);
+            save(map);
         } catch (IOException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -184,24 +192,14 @@ public class GroupsOperations implements Operations {
     @Override
     public void deletePost(Post post, String UserID, String groupID) {
         try {
-            Group group = GroupsDataBase.read().get(groupID);
-            group.removePost(post);
-            save(group);
-        } catch (IOException ex) {
-            Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    @Override
-    public void approvePost(String UserID, String groupID, Post post) {
-
-        try {
-            Group group = GroupsDataBase.read().get(groupID);
-            group.getWaitingPosts().remove(post);
-            save(group);
+            Map<String, Group> map = GroupsDataBase.read();
+            Group g = map.get(groupID);
+            g.removePost(post);
+            map.put(g.getGroupID(), g);
+            save(map);
+            // Group group = GroupsDataBase.read().get(groupID);
+            // group.removePost(post);
+            // save(group);
         } catch (IOException ex) {
             Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {

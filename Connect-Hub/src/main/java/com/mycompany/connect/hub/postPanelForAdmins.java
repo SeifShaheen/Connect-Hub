@@ -102,11 +102,13 @@ public class postPanelForAdmins extends JPanel {
                 if (editImagePath == null) {
                     op.editPost(post, ConnectHub.currentUser.getUserId(), group.getGroupID(), editPostText);
                 } else {
-                    op.editPost(post, ConnectHub.currentUser.getUserId(), group.getGroupID(), editPostText, editImagePath);
+                    op.editPost(post, ConnectHub.currentUser.getUserId(), group.getGroupID(), editPostText,
+                            editImagePath);
                 }
             }
-        }
-        );
+        });
+        data.add(edit);
+        // data.add(delete);
         setBorder(new EmptyBorder(7, 5, 7, 5));
     }
 }

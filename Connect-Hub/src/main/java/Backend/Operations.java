@@ -10,6 +10,7 @@ package Backend;
  */
 public interface Operations {
     //group members handling methods
+    public void requestJoin(String member, String groupID);
     public void approveMember(String admin,String member, String groupID );
     public void declineMember(String admin,String member, String groupID);
     public void removeMember(String admin,String member, String groupID);

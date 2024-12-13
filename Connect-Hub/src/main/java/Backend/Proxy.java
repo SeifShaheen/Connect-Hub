@@ -8,7 +8,12 @@ import javax.swing.JOptionPane;
 
 public class Proxy implements Operations {
 
-    private Operations operations = new GroupsOperations();
+    public Operations operations;
+
+    public Proxy() {
+        this.operations=  new GroupsOperations();
+    }
+    
     
     //this function checks if the current user is admin
     public boolean isAdmin(String userID, String groupID) throws IOException {
@@ -210,6 +215,18 @@ public class Proxy implements Operations {
             if(isPrimaryAdmin(UserID, groupID)||isAdmin(UserID, groupID))
             {
                 operations.approvePost(UserID, groupID, post);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Proxy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void requestJoin(String member, String groupID) {
+        try {
+            if(!isMember(member,groupID))
+            {
+                operations.requestJoin(member, groupID);
             }
         } catch (IOException ex) {
             Logger.getLogger(Proxy.class.getName()).log(Level.SEVERE, null, ex);

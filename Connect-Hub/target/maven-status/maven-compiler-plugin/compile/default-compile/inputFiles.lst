@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 E:\Term 5\Connect-Hub\Connect-Hub\src\main\java\Backend\Contents.java
 E:\Term 5\Connect-Hub\Connect-Hub\src\main\java\Backend\Creation.java
 E:\Term 5\Connect-Hub\Connect-Hub\src\main\java\Backend\DateFormating.java
@@ -38,3 +39,45 @@ E:\Term 5\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\StoryP
 E:\Term 5\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\Suggestions.java
 E:\Term 5\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\User.java
 E:\Term 5\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\Validation.java
+=======
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\Backend\Contents.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\Backend\Creation.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\Backend\DateFormating.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\Backend\Group.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\Backend\GroupsDataBase.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\Backend\GroupsOperations.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\Backend\Operations.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\Backend\Post.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\Backend\PostsFactory.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\Backend\Proxy.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\Backend\StoriesFactory.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\Backend\Story.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\Backend\StoryMonitor.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\BlockedPage.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\BlockedPanel.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\ConnectHub.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\CreateUser.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\EditProfilePage.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\FilesManagement.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\FriendManagement.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\FriendPanel.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\FriendsPage.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\FriendSpecifications.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\Login.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\LoginWindow.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\LogOut.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\NewsfeedPage.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\Notifications.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\NotificationsPanel.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\PasswordHashing.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\postPanel.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\ProfileManagmentPage.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\ProjectsOpening.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\SendRequestPanel.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\SignIn.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\SignInWindow.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\StoryPanel.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\Suggestions.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\User.java
+C:\Users\Reem\Documents\GitHub\Connect-Hub\Connect-Hub\src\main\java\com\mycompany\connect\hub\Validation.java
+>>>>>>> 6981dd92b251db7bf10f20e4213d505b704bbf8c

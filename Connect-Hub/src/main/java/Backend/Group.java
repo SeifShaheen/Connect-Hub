@@ -1,6 +1,8 @@
 
 package Backend;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -17,7 +19,7 @@ public class Group {
     private ArrayList<Post> waitingPosts;
     private String primaryAdmin;
     
-    public Group(String groupName, String userID ) {
+    public Group(String groupName, String userID ) throws NoSuchAlgorithmException, IOException {
         this.groupID= UUID.randomUUID().toString();
         this.groupName=groupName;
         this.members=new ArrayList<>();
@@ -26,6 +28,7 @@ public class Group {
         this.posts=new ArrayList<>();
         this.waitingPosts=new ArrayList<>();
         this.primaryAdmin=userID;
+        GroupsDataBase.save(this);
     }
 
     public String getGroupName() {
@@ -167,7 +170,10 @@ public class Group {
         
     }
         
-        
+    public void requestJoin(String member, String groupID)
+    {
+        this.requests.add(member);
+    }
     
     
 }

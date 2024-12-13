@@ -4,6 +4,9 @@
  */
 package com.mycompany.connect.hub;
 
+import Backend.Group;
+import Backend.Post;
+import Backend.UserGroupConnections;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.IOException;
@@ -33,10 +36,33 @@ public class Notifications extends javax.swing.JFrame {
         jLabel1.setText("Requests: " + ConnectHub.currentUser.getRequestsRecieved().size());
         FriendSpecifications friendSpecifications = ConnectHub.currentUser;
         ArrayList<String> requests = friendSpecifications.getRequestsRecieved();
-        for (String f : requests) {
+        for (String f : requests) { //display friend requests
             User friend = FilesManagement.map.get(f);
             mainPanel.add(new NotificationsPanel(friend), BoxLayout.Y_AXIS);
         }
+        UserGroupConnections groupsManagement = new UserGroupConnections(ConnectHub.currentUser);
+        ArrayList<Group> memberGroups = groupsManagement.getMemberGroups();
+        ArrayList<Group> ownerGroups = groupsManagement.getMemberGroups();
+        if (ownerGroups.isEmpty() && memberGroups.isEmpty()) {
+            //no notifications    
+        } else if (ownerGroups.isEmpty() && !memberGroups.isEmpty()) { //if user is member not owmer 
+            for (Group group : memberGroups) {
+                if (!group.getAdmins().contains(ConnectHub.currentUser.getUserId())) { //if not admin
+                    displayPosts(group, ConnectHub.currentUser);
+                } else { //if admin
+                    displayPosts(group, ConnectHub.currentUser);
+                    displayrequestedPosts(group, ConnectHub.currentUser);
+                    displayJoinRequests(group, ConnectHub.currentUser);
+                }
+            }
+        } else if (!ownerGroups.isEmpty()) {
+            for (Group group : ownerGroups) {
+                displayPosts(group, ConnectHub.currentUser);
+                displayrequestedPosts(group, ConnectHub.currentUser);
+                displayJoinRequests(group, ConnectHub.currentUser);
+            }
+        }
+
         mainPanel.revalidate();
         mainPanel.update(mainPanel.getGraphics());
     }
@@ -130,6 +156,34 @@ public class Notifications extends javax.swing.JFrame {
             }
         });
     }
+
+    public void displayPosts(Group group, User user) throws IOException {
+        for (Post post : group.getPosts()) {
+            String note = "";
+            String author = FilesManagement.read().get(post.getAuthorID()).getUsername();
+            note += author + " has posted a post in " + group.getGroupName();
+            mainPanel.add(new NotificationsPanel(note), BoxLayout.Y_AXIS);
+        }
+    }
+
+    public void displayrequestedPosts(Group group, User user) throws IOException {
+        for (Post post : group.getWaitingPosts()) {
+            String note = "";
+            String author = FilesManagement.read().get(post.getAuthorID()).getUsername();
+            note += author + " requests posting a post in " + group.getGroupName();
+            mainPanel.add(new NotificationsPanel(note), BoxLayout.Y_AXIS);
+        }
+    }
+
+    public void displayJoinRequests(Group group, User user) throws IOException {
+        for (String id : group.getRequests()) {
+            String note = "";
+            String name = FilesManagement.read().get(id).getUsername();
+            note += name + " requests to join " + group.getGroupName();
+            mainPanel.add(new NotificationsPanel(note), BoxLayout.Y_AXIS);
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

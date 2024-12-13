@@ -13,6 +13,7 @@ import java.util.Map;
  *
  * @author Reem
  */
+//This class created to connect the user with the groups to get the groups that the user has joined and suggest new groups
 public class UserGroupConnections {
 
     private User currentUser = null;
@@ -20,7 +21,8 @@ public class UserGroupConnections {
     public UserGroupConnections(User currentUser) {
         this.currentUser = currentUser;
     }
-
+    
+    //this method to return a list that the user is member in it 
     public ArrayList<Group> getMemberGroups() throws IOException {
         ArrayList<Group> list = new ArrayList<>();
         Map<String, Group> map = GroupsDataBase.read();
@@ -40,7 +42,8 @@ public class UserGroupConnections {
         
         return list;
     }
-
+    
+    //this method to return a list that the user is owner in it 
     public ArrayList<Group> getOwnerGroups() throws IOException {
         ArrayList<Group> list = new ArrayList<>();
         Map<String, Group> map = GroupsDataBase.read();
@@ -60,7 +63,7 @@ public class UserGroupConnections {
         
         return list;
     }
-    
+    //this method to return a list that the user is admin in it 
     public ArrayList<Group> getAdminGroups() throws IOException {
         ArrayList<Group> list = new ArrayList<>();
         Map<String, Group> map = GroupsDataBase.read();
@@ -80,7 +83,7 @@ public class UserGroupConnections {
         
         return list;
     }
-    
+    //suggest new groups for the user
     public ArrayList<Group> suggestions() throws IOException
     {
         ArrayList<Group> list = new ArrayList<>();
@@ -91,7 +94,9 @@ public class UserGroupConnections {
         } else {
                 for (Map.Entry<String, Group> entry : map.entrySet()) {
                     Group group = entry.getValue();
-                    if(!group.getMembers().contains(currentUser.getUserId())&& !group.getPrimaryAdmin().equals(currentUser.getUserId()) &&!group.getRequests().contains(currentUser.getUserId()))
+                    //checks if the user is not in the group or has not left the group before suggestions
+                    if(!group.getMembers().contains(currentUser.getUserId())&& !group.getPrimaryAdmin().equals(currentUser.getUserId())
+                       &&!group.getRequests().contains(currentUser.getUserId()) && !group.getLeftUsers().contains(currentUser.getUserId()))
                     {
                         list.add(group);
                     }

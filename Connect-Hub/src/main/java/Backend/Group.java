@@ -40,6 +40,26 @@ public class Group {
     public String getDescription() {
         return description;
     }
+    
+    public String getImagePath() {
+        return imagePath;
+    }
+    
+    public ArrayList<String> getMembers() {
+        return members;
+    }
+    
+    public ArrayList<String> getAdmins() {
+        return admins;
+    }
+    
+    public ArrayList<Post> getPosts() {
+        return posts;
+    }
+    
+    public String getPrimaryAdmin() {
+        return primaryAdmin;
+    }
 
     public String getImagePath() {
         return imagePath;
@@ -66,8 +86,17 @@ public class Group {
     }
 
     public String getGroupID() {
+
         return this.groupID;
     }
+    
+    public ArrayList<String> getRequests() {
+        return requests;
+    }
+    
+    public ArrayList<String> getLeftUsers() {
+        return leftUsers;
+    }  
 
     public ArrayList<String> getRequests() {
         return requests;
@@ -84,6 +113,16 @@ public class Group {
     public void setMembers(ArrayList<String> members) {
         this.members = members;
     }
+    
+    public void setAdmins(ArrayList<String> admins) {
+        this.admins = admins;
+    }
+    
+    public void setPosts(ArrayList<Post> posts) {
+        this.posts = posts;
+    }
+
+    //Groups management methods
 
     public void setAdmins(ArrayList<String> admins) {
         this.admins = admins;
@@ -96,28 +135,30 @@ public class Group {
     // Groups management methods
 
     public void approveMember(String userId) {
+
         this.requests.remove(userId);
         this.members.add(userId);
     }
-
-    public void declineMember(String userId) {
+    public void declineMember(String userId)
+    {
         this.requests.remove(userId);
-    }
-
-    public void removeMember(String userID) {
+    } 
+    public void removeMember(String userID)
+    {
         this.members.remove(userID);
     }
-
-    public void removeAdmin(String userID) {
+    public void removeAdmin(String userID)
+    {
         this.admins.remove(userID);
         this.members.remove(userID);
     }
 
     public void promoteAdmin(String userId) {
+
         this.admins.add(userId);
     }
-
-    public void demoteAdmin(String userId) {
+    public void demoteAdmin(String userId)
+    {
         this.admins.remove(userId);
     }
 
@@ -129,18 +170,21 @@ public class Group {
 
     public void editPost(Post post, String text) {
         posts.remove(post);
+
         post.setText(text);
         posts.add(post);
     }
 
     public void editPost(Post post, String text, String imagePath) {
         posts.remove(post);
+
         post.setText(text);
         post.setImagePath(imagePath);
         posts.add(post);
     }
-
-    public void removePost(Post post) {
+    
+    public void removePost(Post post)
+    {
         posts.remove(post);
     }
 
@@ -156,17 +200,20 @@ public class Group {
     }
 
     public void leaveGroup(String userId) {
+
         this.members.remove(userId);
-        if (this.admins.contains(userId)) {
+        if(this.admins.contains(userId))
+        {
             this.admins.remove(userId);
         }
         addLeftUser(userId);
 
     }
-
-    public void requestJoin(String member, String groupID) {
+        
+    public void requestJoin(String member, String groupID)
+    {
         this.requests.add(member);
-    }
+    } 
 
     public void addLeftUser(String userID) {
         this.leftUsers.add(userID);

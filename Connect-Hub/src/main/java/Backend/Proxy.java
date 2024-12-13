@@ -210,18 +210,6 @@ public class Proxy implements Operations {
     }
 
     @Override
-    public void approvePost(String UserID, String groupID, Post post) {
-        try {
-            if(isPrimaryAdmin(UserID, groupID)||isAdmin(UserID, groupID))
-            {
-                operations.approvePost(UserID, groupID, post);
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(Proxy.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @Override
     public void requestJoin(String member, String groupID) {
         try {
             if(!isMember(member,groupID) && !GroupsDataBase.read().get(groupID).getRequests().contains(member) )

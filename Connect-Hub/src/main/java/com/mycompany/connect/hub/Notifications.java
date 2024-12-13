@@ -41,30 +41,29 @@ public class Notifications extends javax.swing.JFrame {
             mainPanel.add(new NotificationsPanel(friend), BoxLayout.Y_AXIS);
         }
         UserGroupConnections groupsManagement = new UserGroupConnections(ConnectHub.currentUser);
+        ArrayList<Group> ownerGroups = groupsManagement.getOwnerGroups();
         ArrayList<Group> memberGroups = groupsManagement.getMemberGroups();
-        ArrayList<Group> ownerGroups = groupsManagement.getMemberGroups();
+
         if (ownerGroups.isEmpty() && memberGroups.isEmpty()) {
-            //no notifications    
-        } else if (ownerGroups.isEmpty() && !memberGroups.isEmpty()) { //if user is member not owmer 
+            // No notifications
+        } else {
             for (Group group : memberGroups) {
-                if (!group.getAdmins().contains(ConnectHub.currentUser.getUserId())) { //if not admin
+                if (!group.getAdmins().contains(ConnectHub.currentUser.getUserId())) {
                     displayPosts(group, ConnectHub.currentUser);
-                } else { //if admin
+                } else {
                     displayPosts(group, ConnectHub.currentUser);
-                    displayrequestedPosts(group, ConnectHub.currentUser);
                     displayJoinRequests(group, ConnectHub.currentUser);
                 }
             }
-        } else if (!ownerGroups.isEmpty()) {
             for (Group group : ownerGroups) {
                 displayPosts(group, ConnectHub.currentUser);
-                displayrequestedPosts(group, ConnectHub.currentUser);
                 displayJoinRequests(group, ConnectHub.currentUser);
             }
         }
 
         mainPanel.revalidate();
-        mainPanel.update(mainPanel.getGraphics());
+        mainPanel.repaint();
+
     }
 
     /**
@@ -162,16 +161,7 @@ public class Notifications extends javax.swing.JFrame {
             String note = "";
             String author = FilesManagement.read().get(post.getAuthorID()).getUsername();
             note += author + " has posted a post in " + group.getGroupName();
-            mainPanel.add(new NotificationsPanel(note), BoxLayout.Y_AXIS);
-        }
-    }
-
-    public void displayrequestedPosts(Group group, User user) throws IOException {
-        for (Post post : group.getWaitingPosts()) {
-            String note = "";
-            String author = FilesManagement.read().get(post.getAuthorID()).getUsername();
-            note += author + " requests posting a post in " + group.getGroupName();
-            mainPanel.add(new NotificationsPanel(note), BoxLayout.Y_AXIS);
+            mainPanel.add(new NotificationsPanel(note, group), BoxLayout.Y_AXIS);
         }
     }
 
@@ -180,7 +170,7 @@ public class Notifications extends javax.swing.JFrame {
             String note = "";
             String name = FilesManagement.read().get(id).getUsername();
             note += name + " requests to join " + group.getGroupName();
-            mainPanel.add(new NotificationsPanel(note), BoxLayout.Y_AXIS);
+            mainPanel.add(new NotificationsPanel(note, group), BoxLayout.Y_AXIS);
         }
     }
 

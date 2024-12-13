@@ -20,7 +20,6 @@ public interface Operations {
     //content handling methods
     public void createPost(String UserID, String groupID , String text);
     public void createPost(String UserID, String groupID, String text, String imagePath);
-    public void approvePost(String UserID, String groupID,Post post);
     public void editPost(Post post, String UserID, String groupID ,String text);
     public void editPost(Post post, String UserID, String groupID, String text, String imagePath);
     public void deletePost(Post post,String UserID, String groupID); 

@@ -195,21 +195,6 @@ public class GroupsOperations implements Operations {
 
     }
 
-    @Override
-    public void approvePost(String UserID, String groupID, Post post) {
-
-        try {
-            Group group = GroupsDataBase.read().get(groupID);
-            group.getWaitingPosts().remove(post);
-            save(group);
-        } catch (IOException ex) {
-            Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(GroupsOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
     public void save(Group group) throws IOException, NoSuchAlgorithmException {
         GroupsDataBase.save(group);
     }

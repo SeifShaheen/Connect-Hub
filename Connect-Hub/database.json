@@ -8,9 +8,7 @@
     "status": "Online",
     "posts": [],
     "stories": [],
-    "friends": [
-      "1bd2de40-3173-462c-aa47-e358643d00d1"
-    ],
+    "friends": [],
     "requestsSent": [
       "4f7eeb69-d687-4055-a5a2-e54135d22b79"
     ],
@@ -30,9 +28,7 @@
     "status": "Offline",
     "posts": [],
     "stories": [],
-    "friends": [
-      "a1959bc4-8af8-4f8f-b022-bff1f62916dd"
-    ],
+    "friends": [],
     "requestsSent": [],
     "requestsRecieved": [],
     "friendSuggestions": [
@@ -40,7 +36,9 @@
       "4f7eeb69-d687-4055-a5a2-e54135d22b79"
     ],
     "blocked": [],
-    "blockedBy": []
+    "blockedBy": [
+      "a1959bc4-8af8-4f8f-b022-bff1f62916dd"
+    ]
   },
   "4f7eeb69-d687-4055-a5a2-e54135d22b79": {
     "userId": "4f7eeb69-d687-4055-a5a2-e54135d22b79",

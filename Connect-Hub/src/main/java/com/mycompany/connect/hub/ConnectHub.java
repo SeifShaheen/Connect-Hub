@@ -4,9 +4,6 @@
  */
 package com.mycompany.connect.hub;
 
-import Backend.Group;
-import Backend.Operations;
-import Backend.Proxy;
 import Backend.StoryMonitor;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -17,9 +14,10 @@ import java.security.NoSuchAlgorithmException;
  */
 public class ConnectHub {
 
-    static User currentUser= null;
+    static User currentUser = null;
+
     public static void main(String[] args) throws NoSuchAlgorithmException, IOException, InterruptedException {
         new ProjectsOpening().setVisible(true);
         StoryMonitor.checkExpiredStories();
-        }
+    }
 }

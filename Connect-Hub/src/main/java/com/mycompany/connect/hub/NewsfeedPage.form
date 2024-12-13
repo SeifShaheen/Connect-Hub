@@ -248,6 +248,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="groupsSuggestbtn">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="groupsSuggestbtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

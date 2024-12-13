@@ -1,14 +1,3 @@
-{"posts": [
-    {
-        "contentID": 0,
-        "authorId": 1,
-        "content": "i am posting right now",
-        "timestamp": "2024-12-03 22:30:49"
-    },
-    {
-        "contentID": 0,
-        "authorId": 1,
-        "content": "a new post after 10 sec",
-        "timestamp": "2024-12-03 22:30:59"
-    }
-]}
+{
+    
+}

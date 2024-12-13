@@ -19,20 +19,20 @@ public class Group {
     private ArrayList<Post> posts;
     private String primaryAdmin;
     private ArrayList<String> leftUsers;
-    
-    public Group(String groupName, String userID ) throws NoSuchAlgorithmException, IOException {
-        this.groupID= UUID.randomUUID().toString();
-        this.groupName=groupName;
-        this.members=new ArrayList<>();
-        this.admins=new ArrayList<>();
-        this.requests=new ArrayList<>();
-        this.posts=new ArrayList<>();
-        this.leftUsers=new ArrayList<>();     
-        this.primaryAdmin=userID;
+
+    public Group(String groupName, String userID) throws NoSuchAlgorithmException, IOException {
+        this.groupID = UUID.randomUUID().toString();
+        this.groupName = groupName;
+        this.members = new ArrayList<>();
+        this.admins = new ArrayList<>();
+        this.requests = new ArrayList<>();
+        this.posts = new ArrayList<>();
+        this.leftUsers = new ArrayList<>();
+        this.primaryAdmin = userID;
         GroupsDataBase.save(this);
     }
-    
-    //getters and setters that will be used
+
+    // getters and setters that will be used
     public String getGroupName() {
         return groupName;
     }
@@ -61,11 +61,32 @@ public class Group {
         return primaryAdmin;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public ArrayList<String> getMembers() {
+        return members;
+    }
+
+    public ArrayList<String> getAdmins() {
+        return admins;
+    }
+
+    public ArrayList<Post> getPosts() {
+        return posts;
+    }
+
+    public String getPrimaryAdmin() {
+        return primaryAdmin;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    public String getGroupID(){
+
+    public String getGroupID() {
+
         return this.groupID;
     }
     
@@ -77,9 +98,17 @@ public class Group {
         return leftUsers;
     }  
 
+    public ArrayList<String> getRequests() {
+        return requests;
+    }
+
+    public ArrayList<String> getLeftUsers() {
+        return leftUsers;
+    }
+
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
-    }  
+    }
 
     public void setMembers(ArrayList<String> members) {
         this.members = members;
@@ -95,8 +124,18 @@ public class Group {
 
     //Groups management methods
 
-    public void approveMember(String userId)
-    {
+    public void setAdmins(ArrayList<String> admins) {
+        this.admins = admins;
+    }
+
+    public void setPosts(ArrayList<Post> posts) {
+        this.posts = posts;
+    }
+
+    // Groups management methods
+
+    public void approveMember(String userId) {
+
         this.requests.remove(userId);
         this.members.add(userId);
     }
@@ -113,9 +152,9 @@ public class Group {
         this.admins.remove(userID);
         this.members.remove(userID);
     }
-    
-    public void promoteAdmin(String userId)
-    {
+
+    public void promoteAdmin(String userId) {
+
         this.admins.add(userId);
     }
     public void demoteAdmin(String userId)
@@ -126,45 +165,49 @@ public class Group {
     public void addRequest(String UserID) {
         this.requests.add(UserID);
     }
-    
-    //content handling
-    
-    public void editPost(Post post,String text)
-    {
+
+    // content handling
+
+    public void editPost(Post post, String text) {
+        posts.remove(post);
+
         post.setText(text);
+        posts.add(post);
     }
-    
-    public void editPost(Post post,String text,String imagePath)
-    {
+
+    public void editPost(Post post, String text, String imagePath) {
+        posts.remove(post);
+
         post.setText(text);
         post.setImagePath(imagePath);
+        posts.add(post);
     }
     
     public void removePost(Post post)
     {
         posts.remove(post);
     }
-    
-    public void createPost(String member, String text) throws IOException  {
-        Post post = (Post) PostsFactory.createContent(text , FilesManagement.read().get(member));
-        posts.add(post); 
+
+    public void createPost(String member, String text) throws IOException {
+        Post post = (Post) PostsFactory.createContent(text, FilesManagement.read().get(member));
+        posts.add(post);
     }
 
-    public void createPost(String member, String text, String imagePath) throws IOException  {
-        Post post = (Post) PostsFactory.createContent(text, imagePath ,FilesManagement.read().get(member));
+    public void createPost(String member, String text, String imagePath) throws IOException {
+        Post post = (Post) PostsFactory.createContent(text, imagePath, FilesManagement.read().get(member));
         post.setAuthorID(member);
         posts.add(post);
     }
-    
-    public void leaveGroup(String userId)
-    {
+
+    public void leaveGroup(String userId) {
+
         this.members.remove(userId);
         if(this.admins.contains(userId))
         {
             this.admins.remove(userId);
         }
         addLeftUser(userId);
-        
+
     }
         
     public void requestJoin(String member, String groupID)
@@ -175,7 +218,5 @@ public class Group {
     public void addLeftUser(String userID) {
         this.leftUsers.add(userID);
     }
-    
-    
-    
+
 }

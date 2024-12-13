@@ -4,16 +4,18 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class Proxy implements Operations {
 
     public Operations operations;
 
     public Proxy() {
-        this.operations = new GroupsOperations();
+        this.operations=  new GroupsOperations();
     }
-
-    // this function checks if the current user is admin
+    
+    
+    //this function checks if the current user is admin
     public boolean isAdmin(String userID, String groupID) throws IOException {
         Map<String, Group> map = GroupsDataBase.read();
         if (map.keySet().contains(groupID)) {
@@ -76,9 +78,8 @@ public class Proxy implements Operations {
     @Override
     public void removeMember(String admin, String member, String groupID) {
         try {
-            // admin or primary admin try to remove a member that is not in the admins list
-            if ((isAdmin(admin, groupID) || isPrimaryAdmin(admin, groupID)) && isMember(member, groupID)
-                    && !isAdmin(member, groupID)) {
+            //admin or primary admin try to remove a member that is not in the admins list
+            if ((isAdmin(admin, groupID) || isPrimaryAdmin(admin, groupID)) && isMember(member, groupID) && !isAdmin(member, groupID)) {
                 operations.removeMember(admin, member, groupID);
             }
         } catch (IOException ex) {
@@ -86,10 +87,9 @@ public class Proxy implements Operations {
         }
 
     }
-
     @Override
     public void removeAdmin(String admin, String member, String groupID) {
-        // primary admin try to remove admins
+        //primary admin try to remove admins
         try {
             if (isPrimaryAdmin(admin, groupID) && isAdmin(member, groupID)) {
                 operations.removeAdmin(admin, member, groupID);
@@ -125,34 +125,37 @@ public class Proxy implements Operations {
         }
     }
 
+    
     @Override
     public void deleteGroup(String UserID, String groupID) {
         try {
-            if (isPrimaryAdmin(UserID, groupID)) {
+            if(isPrimaryAdmin(UserID, groupID))
+            {
                 operations.deleteGroup(UserID, groupID);
             }
         } catch (IOException ex) {
             Logger.getLogger(Proxy.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+            
     }
 
     @Override
     public void leaveGroup(String UserID, String groupID) {
         try {
-            if (!isPrimaryAdmin(UserID, groupID)) {
+            if(!isPrimaryAdmin(UserID, groupID))
+            {
                 operations.leaveGroup(UserID, groupID);
             }
         } catch (IOException ex) {
             Logger.getLogger(Proxy.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+                
     }
 
     @Override
     public void createPost(String UserID, String groupID, String text) {
         try {
-            if (isPrimaryAdmin(UserID, groupID) || isAdmin(UserID, groupID) || isMember(UserID, groupID)) {
+            if(isPrimaryAdmin(UserID,groupID)|| isAdmin(UserID, groupID)||isMember(UserID, groupID)){
                 operations.createPost(UserID, groupID, text);
             }
         } catch (IOException ex) {
@@ -163,8 +166,8 @@ public class Proxy implements Operations {
     @Override
     public void createPost(String UserID, String groupID, String text, String imagePath) {
         try {
-            if (isPrimaryAdmin(UserID, groupID) || isAdmin(UserID, groupID) || isMember(UserID, groupID)) {
-                operations.createPost(UserID, groupID, text, imagePath);
+            if(isPrimaryAdmin(UserID,groupID)|| isAdmin(UserID, groupID)||isMember(UserID, groupID)){
+                operations.createPost(UserID, groupID, text,imagePath);
             }
         } catch (IOException ex) {
             Logger.getLogger(Proxy.class.getName()).log(Level.SEVERE, null, ex);
@@ -174,20 +177,20 @@ public class Proxy implements Operations {
     @Override
     public void editPost(Post post, String UserID, String groupID, String text) {
         try {
-            if (isPrimaryAdmin(UserID, groupID) || isAdmin(UserID, groupID) || isMember(UserID, groupID)) {
-                operations.editPost(post, UserID, groupID, text);
+            if(isPrimaryAdmin(UserID,groupID)|| isAdmin(UserID, groupID)||isMember(UserID, groupID)){
+                operations.editPost(post,UserID, groupID, text);
             }
         } catch (IOException ex) {
             Logger.getLogger(Proxy.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
 
     @Override
     public void editPost(Post post, String UserID, String groupID, String text, String imagePath) {
         try {
-            if (isPrimaryAdmin(UserID, groupID) || isAdmin(UserID, groupID) || isMember(UserID, groupID)) {
-                operations.editPost(post, UserID, groupID, text, imagePath);
+            if(isPrimaryAdmin(UserID,groupID)|| isAdmin(UserID, groupID)||isMember(UserID, groupID)){
+                operations.editPost(post,UserID, groupID, text, imagePath);
             }
         } catch (IOException ex) {
             Logger.getLogger(Proxy.class.getName()).log(Level.SEVERE, null, ex);
@@ -195,10 +198,11 @@ public class Proxy implements Operations {
     }
 
     @Override
-    public void deletePost(Post post, String UserID, String groupID) {
+    public void deletePost(Post post,String UserID, String groupID) {
         try {
-            if (isPrimaryAdmin(UserID, groupID) || isAdmin(UserID, groupID)) {
-                operations.deletePost(post, UserID, groupID);
+            if(isPrimaryAdmin(UserID, groupID)||isAdmin(UserID, groupID))
+            {
+                operations.deletePost(post,UserID,groupID);
             }
         } catch (IOException ex) {
             Logger.getLogger(Proxy.class.getName()).log(Level.SEVERE, null, ex);
@@ -208,7 +212,8 @@ public class Proxy implements Operations {
     @Override
     public void approvePost(String UserID, String groupID, Post post) {
         try {
-            if (isPrimaryAdmin(UserID, groupID) || isAdmin(UserID, groupID)) {
+            if(isPrimaryAdmin(UserID, groupID)||isAdmin(UserID, groupID))
+            {
                 operations.approvePost(UserID, groupID, post);
             }
         } catch (IOException ex) {
@@ -219,12 +224,15 @@ public class Proxy implements Operations {
     @Override
     public void requestJoin(String member, String groupID) {
         try {
-            if (!isMember(member, groupID)) {
+            if(!isMember(member,groupID) && !GroupsDataBase.read().get(groupID).getRequests().contains(member) )
+            {
                 operations.requestJoin(member, groupID);
             }
         } catch (IOException ex) {
             Logger.getLogger(Proxy.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+
 
 }

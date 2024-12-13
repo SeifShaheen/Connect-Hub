@@ -15,7 +15,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.lang.model.util.ElementScanner14;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -30,35 +29,36 @@ import javax.swing.JPanel;
  * @author Etijah
  */
 public class ProfileManagmentPage extends javax.swing.JFrame {
-    static User user;
+        static User user;
 
-    /**
-     * Creates new form ProfileManagmentPage
-     */
-    public ProfileManagmentPage(User user) throws IOException {
-        initComponents();
-        ProfileManagmentPage.user = user;
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setVisible(true);
-        // setResizable(false);
-        setTitle(user.getUsername());
-        partOfFriends1.setVisible(true);
-        setSize(new Dimension(420, 643));
-        // ..............add cover Photo..............
-        String coverPath = user.getCoverPhotoPath();
-        if (coverPath != null) {
-            coverPh1.setIcon(EditProfilePage.section(coverPath, null, coverPh1.getWidth(), coverPh1.getHeight()));
-        }
+        /**
+         * Creates new form ProfileManagmentPage
+         */
+        public ProfileManagmentPage(User user) throws IOException {
+                initComponents();
+                ProfileManagmentPage.user = user;
+                this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                setVisible(true);
+                // setResizable(false);
+                setTitle(user.getUsername());
+                partOfFriends1.setVisible(true);
+                setSize(new Dimension(420, 643));
+                // ..............add cover Photo..............
+                String coverPath = user.getCoverPhotoPath();
+                if (coverPath != null) {
+                        coverPh1.setIcon(EditProfilePage.section(coverPath, null, coverPh1.getWidth(),
+                                        coverPh1.getHeight()));
+                }
 
-        // ............add profile photo..............
-        String profilePhoPath = user.getProfilePhotoPath();
-        if (profilePhoPath != null) {
-            profilePh1.setIcon(
-                    EditProfilePage.section(profilePhoPath, null, profilePh1.getWidth(), profilePh1.getHeight()));
-        } else {
-            profilePh1.setIcon(EditProfilePage.section("src\\main\\java\\icons\\profile-user.png", null,
-                    profilePh1.getWidth() + 1, profilePh1.getHeight() + 1));
-
+                // ............add profile photo..............
+                String profilePhoPath = user.getProfilePhotoPath();
+                if (profilePhoPath != null) {
+                        profilePh1.setIcon(
+                                        EditProfilePage.section(profilePhoPath, null, profilePh1.getWidth(),
+                                                        profilePh1.getHeight()));
+                } else {
+                        profilePh1.setIcon(EditProfilePage.section("src\\main\\java\\icons\\profile-user.png", null,
+                                        profilePh1.getWidth() + 1, profilePh1.getHeight() + 1));
         }
         // ...................add user name......................
         String use = user.getUsername();
@@ -253,13 +253,22 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
                             FilesManagement.map.put(user.getUserId(), user);
                             FilesManagement.save(FilesManagement.map);
                         } else {
-                            JOptionPane.showMessageDialog(null, "There was an error.", "Message",
-                                    JOptionPane.ERROR_MESSAGE);
+                                friendImage.setIcon(EditProfilePage.section("src\\main\\java\\icons\\profile-user.png",
+                                                null,
+                                                profilePh1.getWidth() + 1, profilePh1.getHeight() + 1));
+
                         }
-                    } catch (NoSuchAlgorithmException | IOException ex) {
-                        Logger.getLogger(NotificationsPanel.class.getName()).log(Level.SEVERE, null,
-                                ex);
-                    }
+                        friendImage.setPreferredSize(new Dimension(20, 20));
+                        JLabel friendUserName = new JLabel();
+                        String userf = friend.getUsername();
+                        friendUserName.setText(userf);
+                        JLabel friendStatus = new JLabel();
+                        String statusF = friend.getStatus();
+                        friendStatus.setText(statusF);
+                        newpanel.add(friendImage);
+                        newpanel.add(friendUserName);
+                        newpanel.add(friendStatus);
+                        partOfFriends1.add(newpanel);
                 }
             });
             
@@ -321,9 +330,11 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
                                 ex);
                     }
                 }
-            });
-            newPanel3.add(unblock);
-            newPanel3.setVisible(true);
+
+                setVisible(false);
+                setVisible(true);
+                this.invalidate();
+                this.repaint();
         }
 
         setVisible(false);
@@ -568,63 +579,79 @@ public class ProfileManagmentPage extends javax.swing.JFrame {
          * For details see
          * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProfileManagmentPage.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProfileManagmentPage.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProfileManagmentPage.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProfileManagmentPage.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
-        }
-        // </editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @SuppressWarnings("unused")
-            public void run(User user) {
+        public static void main(String args[]) {
+                /* Set the Nimbus look and feel */
+                // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+                // (optional) ">
+                /*
+                 * If Nimbus (introduced in Java SE 6) is not available, stay with the default
+                 * look and feel.
+                 * For details see
+                 * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+                 */
                 try {
-                    new ProfileManagmentPage(user).setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(ProfileManagmentPage.class.getName()).log(Level.SEVERE, null, ex);
+                        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
+                                        .getInstalledLookAndFeels()) {
+                                if ("Nimbus".equals(info.getName())) {
+                                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                                        break;
+                                }
+                        }
+                } catch (ClassNotFoundException ex) {
+                        java.util.logging.Logger.getLogger(ProfileManagmentPage.class.getName()).log(
+                                        java.util.logging.Level.SEVERE,
+                                        null, ex);
+                } catch (InstantiationException ex) {
+                        java.util.logging.Logger.getLogger(ProfileManagmentPage.class.getName()).log(
+                                        java.util.logging.Level.SEVERE,
+                                        null, ex);
+                } catch (IllegalAccessException ex) {
+                        java.util.logging.Logger.getLogger(ProfileManagmentPage.class.getName()).log(
+                                        java.util.logging.Level.SEVERE,
+                                        null, ex);
+                } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+                        java.util.logging.Logger.getLogger(ProfileManagmentPage.class.getName()).log(
+                                        java.util.logging.Level.SEVERE,
+                                        null, ex);
                 }
-            }
+                // </editor-fold>
 
-            @Override
-            public void run() {
-                throw new UnsupportedOperationException("Unimplemented method 'run'");
-            }
-        });
-    }
+                /* Create and display the form */
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                        @SuppressWarnings("unused")
+                        public void run(User user) {
+                                try {
+                                        new ProfileManagmentPage(user).setVisible(true);
+                                } catch (IOException ex) {
+                                        Logger.getLogger(ProfileManagmentPage.class.getName()).log(Level.SEVERE, null,
+                                                        ex);
+                                }
+                        }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel changePanel1;
-    private javax.swing.JLabel coverPh1;
-    private javax.swing.JTextArea currentBio1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JPanel newPanel3;
-    private javax.swing.JPanel partOfFriends1;
-    private javax.swing.JPanel postsPanel3;
-    private javax.swing.JLabel profilePh1;
-    private javax.swing.JLabel userName1;
-    // End of variables declaration//GEN-END:variables
+                        @Override
+                        public void run() {
+                                throw new UnsupportedOperationException("Unimplemented method 'run'");
+                        }
+                });
+        }
+
+        // Variables declaration - do not modify//GEN-BEGIN:variables
+        private javax.swing.JPanel changePanel1;
+        private javax.swing.JLabel coverPh1;
+        private javax.swing.JTextArea currentBio1;
+        private javax.swing.JButton jButton3;
+        private javax.swing.JButton jButton4;
+        private javax.swing.JLabel jLabel7;
+        private javax.swing.JLabel jLabel8;
+        private javax.swing.JPanel jPanel5;
+        private javax.swing.JPanel jPanel7;
+        private javax.swing.JScrollPane jScrollPane3;
+        private javax.swing.JScrollPane jScrollPane5;
+        private javax.swing.JScrollPane jScrollPane6;
+        private javax.swing.JPanel newPanel3;
+        private javax.swing.JPanel partOfFriends1;
+        private javax.swing.JPanel postsPanel3;
+        private javax.swing.JLabel profilePh1;
+        private javax.swing.JLabel userName1;
+        // End of variables declaration//GEN-END:variables
 }

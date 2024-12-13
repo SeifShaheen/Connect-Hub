@@ -58,6 +58,7 @@ public abstract class FriendSpecifications {
         blocked.remove(user.getUserId());
     }
 
+    
     public void addFriendSuggestions(String friendSuggestions) {
         this.friendSuggestions.add(friendSuggestions);
     }

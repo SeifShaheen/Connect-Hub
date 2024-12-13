@@ -4,6 +4,8 @@
  */
 package com.mycompany.connect.hub;
 
+import Backend.Group;
+import Backend.GroupsDataBase;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -36,7 +38,7 @@ public class SearchFram extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("rawtypes")
-    private ArrayList getAccount() {
+    private ArrayList getAccount() throws IOException {
         ArrayList<String> accounts = new ArrayList<>();
         for (String key : FilesManagement.map.keySet()) {
             User acct = FilesManagement.map.get(key);
@@ -44,32 +46,48 @@ public class SearchFram extends javax.swing.JFrame {
                 accounts.add(acct.getUsername());
             }
         }
+        for (String key : GroupsDataBase.read().keySet()) {
+            Group group = GroupsDataBase.read().get(key);
+            accounts.add(group.getGroupName());
+            
+        }
+        
         return accounts;
     }
 
     @SuppressWarnings("unchecked")
     private void bindData() {
-        ArrayList<String> accounts = getAccount();
-        for (String c : accounts) {
+        ArrayList<String> accounts;
+        try {
+            accounts = getAccount();
+             for (String c : accounts) {
             daefaultListModel.addElement(c);
         }
         accountList.setModel(daefaultListModel);
         accountList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        } catch (IOException ex) {
+            Logger.getLogger(SearchFram.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
 
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
     private void searchFilter(String SearchTerm) {
-        DefaultListModel filteredTtems = new DefaultListModel();
-        ArrayList<String> accounts = getAccount();
-        for (String c : accounts) {
-            String accountName = c.toString().toLowerCase();
-            if (accountName.contains(SearchTerm.toLowerCase())) {
-                filteredTtems.addElement(c);
+        try {
+            DefaultListModel filteredTtems = new DefaultListModel();
+            ArrayList<String> accounts = getAccount();
+            for (String c : accounts) {
+                String accountName = c.toString().toLowerCase();
+                if (accountName.contains(SearchTerm.toLowerCase())) {
+                    filteredTtems.addElement(c);
+                }
             }
+            daefaultListModel = filteredTtems;
+            accountList.setModel(daefaultListModel);
+        } catch (IOException ex) {
+            Logger.getLogger(SearchFram.class.getName()).log(Level.SEVERE, null, ex);
         }
-        daefaultListModel = filteredTtems;
-        accountList.setModel(daefaultListModel);
     }
 
     /**

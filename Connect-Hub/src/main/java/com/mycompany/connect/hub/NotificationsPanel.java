@@ -5,6 +5,8 @@
 package com.mycompany.connect.hub;
 
 import Backend.Group;
+import Backend.Operations;
+import Backend.Proxy;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -65,7 +67,7 @@ public class NotificationsPanel extends JPanel {
         but.setLayout(new BoxLayout(but, BoxLayout.Y_AXIS));
         but.add(accept);
         but.add(decline);
-        add(but,BorderLayout.EAST);
+        add(but, BorderLayout.EAST);
         setBorder(new EmptyBorder(7, 5, 7, 5));
         accept.addActionListener(new ActionListener() {
             @Override
@@ -114,7 +116,7 @@ public class NotificationsPanel extends JPanel {
 
         setBorder(BorderFactory.createLineBorder(Color.black));
     }
-    
+
     //for group notifications
     public NotificationsPanel(String line, Group group) {
         setLayout(new BorderLayout());
@@ -144,6 +146,61 @@ public class NotificationsPanel extends JPanel {
                     Logger.getLogger(NotificationsPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+        });
+
+        setBorder(BorderFactory.createLineBorder(Color.black));
+    }
+
+    //for group notifications but for the admin
+    public NotificationsPanel(String line, Group group, String userId , String requested) {
+        setLayout(new BorderLayout());
+
+        // Add notification
+        JPanel messagePanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        JLabel messageLabel = new JLabel(line);
+        messagePanel.add(messageLabel);
+        this.add(messagePanel, BorderLayout.CENTER);
+
+        //add View button
+        JButton viewButton = new JButton("View");
+        JButton acceptButton = new JButton("Accept");
+        JButton declineButton = new JButton("Decline");
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.TRAILING));
+        buttonPanel.add(viewButton);
+        buttonPanel.add(acceptButton);
+        buttonPanel.add(declineButton);
+        this.add(buttonPanel, BorderLayout.EAST);
+
+        setBorder(new EmptyBorder(7, 5, 7, 5));
+
+        //action listener for the View button
+        viewButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new GroupFrame(group);
+                } catch (IOException ex) {
+                    Logger.getLogger(NotificationsPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        //action listener for the accept button
+        acceptButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Operations op = new Proxy();
+                op.approveMember(userId, requested , group.getGroupID());
+            }
+        });
+
+        //action listener for the decline button
+        declineButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Operations op = new Proxy();
+                op.declineMember(userId, requested , group.getGroupID());            }
         });
 
         setBorder(BorderFactory.createLineBorder(Color.black));

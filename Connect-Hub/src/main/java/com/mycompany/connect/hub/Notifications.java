@@ -158,10 +158,12 @@ public class Notifications extends javax.swing.JFrame {
 
     public void displayPosts(Group group, User user) throws IOException {
         for (Post post : group.getPosts()) {
-            String note = "";
-            String author = FilesManagement.read().get(post.getAuthorID()).getUsername();
-            note += author + " has posted a post in " + group.getGroupName();
-            mainPanel.add(new NotificationsPanel(note, group), BoxLayout.Y_AXIS);
+            if (!post.getAuthorID().equals(user.getUserId())) {
+                String note = "";
+                String author = FilesManagement.read().get(post.getAuthorID()).getUsername();
+                note += author + " has posted a post in " + group.getGroupName();
+                mainPanel.add(new NotificationsPanel(note, group), BoxLayout.Y_AXIS);
+            }
         }
     }
 
@@ -170,7 +172,7 @@ public class Notifications extends javax.swing.JFrame {
             String note = "";
             String name = FilesManagement.read().get(id).getUsername();
             note += name + " requests to join " + group.getGroupName();
-            mainPanel.add(new NotificationsPanel(note, group), BoxLayout.Y_AXIS);
+            mainPanel.add(new NotificationsPanel(note, group, user.getUserId(), id), BoxLayout.Y_AXIS);
         }
     }
 

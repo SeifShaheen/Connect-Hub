@@ -10,6 +10,7 @@ Backend\PostsFactory.class
 com\mycompany\connect\hub\SearchFram$4.class
 com\mycompany\connect\hub\EditProfilePage$2.class
 com\mycompany\connect\hub\FriendPanel$1.class
+com\mycompany\connect\hub\NotificationsPanel$4.class
 com\mycompany\connect\hub\ProfileManagmentPage$2.class
 com\mycompany\connect\hub\GroupFrame$5.class
 com\mycompany\connect\hub\Searching.class
@@ -20,7 +21,6 @@ com\mycompany\connect\hub\BlockedPage.class
 com\mycompany\connect\hub\EditProfilePage$1.class
 com\mycompany\connect\hub\ProfileManagmentPage$5.class
 Backend\Contents.class
-com\mycompany\connect\hub\FriendsPage.class
 Backend\GroupsDataBase.class
 com\mycompany\connect\hub\addGroupDialog.class
 com\mycompany\connect\hub\ProfileManagmentPage$9.class
@@ -38,6 +38,7 @@ Backend\Proxy.class
 com\mycompany\connect\hub\ProfileManagmentPage$4.class
 com\mycompany\connect\hub\GroupFrame$6.class
 com\mycompany\connect\hub\editPostDialog$3$1.class
+com\mycompany\connect\hub\NotificationsPanel$5.class
 com\mycompany\connect\hub\NewsfeedPage$11.class
 com\mycompany\connect\hub\BlockedPage$1.class
 com\mycompany\connect\hub\GroupFrame$7.class
@@ -51,6 +52,7 @@ com\mycompany\connect\hub\NewsfeedPage$12.class
 com\mycompany\connect\hub\Suggestions.class
 com\mycompany\connect\hub\membersPanel$2.class
 com\mycompany\connect\hub\GroupFrame$4.class
+com\mycompany\connect\hub\NotificationsPanel$6.class
 Backend\Group.class
 com\mycompany\connect\hub\EditProfilePage$3.class
 com\mycompany\connect\hub\GroupSuggetPanel$1.class

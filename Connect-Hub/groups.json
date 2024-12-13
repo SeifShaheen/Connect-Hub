@@ -21,15 +21,28 @@
     "posts": [],
     "primaryAdmin": "1bd2de40-3173-462c-aa47-e358643d00d1"
   },
-  "f250978b-1165-4f2d-bc40-100b453f21b0": {
-    "groupName": "REEM IS HERE",
-    "groupID": "f250978b-1165-4f2d-bc40-100b453f21b0",
-    "members": [],
-    "admins": [],
-    "requests": [
+  "8887312d-0c2e-42d2-9bf7-1e2accb02405": {
+    "groupName": "reeee",
+    "groupID": "8887312d-0c2e-42d2-9bf7-1e2accb02405",
+    "members": [
       "6402d130-636b-4381-993b-50a3def3f3ee"
     ],
-    "posts": [],
+    "admins": [],
+    "requests": [],
+    "posts": [
+      {
+        "text": "hi i am reem",
+        "timestamp": "2024-12-13 22:12:01",
+        "contentID": "8d0de219-91fd-43a6-acf5-29c069eed340",
+        "authorID": "638aa9c7-7b48-4160-bf31-0fa3d12e2e33"
+      },
+      {
+        "text": "hi i am reem too",
+        "timestamp": "2024-12-13 22:22:34",
+        "contentID": "f64e6aac-d723-4954-a16d-957280b47076",
+        "authorID": "6402d130-636b-4381-993b-50a3def3f3ee"
+      }
+    ],
     "primaryAdmin": "638aa9c7-7b48-4160-bf31-0fa3d12e2e33",
     "leftUsers": []
   }

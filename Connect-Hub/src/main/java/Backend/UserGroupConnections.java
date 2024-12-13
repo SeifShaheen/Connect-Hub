@@ -91,7 +91,7 @@ public class UserGroupConnections {
         } else {
                 for (Map.Entry<String, Group> entry : map.entrySet()) {
                     Group group = entry.getValue();
-                    if(!group.getMembers().contains(currentUser.getUserId())&& !group.getPrimaryAdmin().equals(currentUser.getUserId()))
+                    if(!group.getMembers().contains(currentUser.getUserId())&& !group.getPrimaryAdmin().equals(currentUser.getUserId()) &&!group.getRequests().contains(currentUser.getUserId()))
                     {
                         list.add(group);
                     }

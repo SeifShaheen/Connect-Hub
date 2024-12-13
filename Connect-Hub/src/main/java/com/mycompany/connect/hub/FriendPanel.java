@@ -25,7 +25,7 @@ import javax.swing.JPanel;
  */
 public class FriendPanel extends JPanel {
 
-    public FriendPanel(User user) {
+    public FriendPanel(User friend, User user) {
         // User user=ConnectHub.CurrentUser;
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.setBackground(Color.white);
@@ -36,8 +36,8 @@ public class FriendPanel extends JPanel {
         JLabel friendImage = new JLabel();
         JButton remove = new JButton("Remove");
         JButton block = new JButton("Block");
-        if (user.profilePhotoPath != null) {
-            friendImage.setIcon(EditProfilePage.section(user.profilePhotoPath, null, 25, 25));
+        if (friend.profilePhotoPath != null) {
+            friendImage.setIcon(EditProfilePage.section(friend.profilePhotoPath, null, 25, 25));
         } else {
             friendImage.setIcon(EditProfilePage.section("src\\main\\java\\icons\\profile-user.png", null, 25, 25));
         }
@@ -45,12 +45,12 @@ public class FriendPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    boolean sen = FriendManagement.Request.unFriend(ConnectHub.currentUser, user);
+                    boolean sen = FriendManagement.Request.unFriend(ConnectHub.currentUser, friend);
                     if (sen) {
-                        JOptionPane.showMessageDialog(null, "Removed " + user.getUsername(), "Message",
+                        JOptionPane.showMessageDialog(null, "Removed " + friend.getUsername(), "Message",
                                 JOptionPane.INFORMATION_MESSAGE);
                         FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
-                        FilesManagement.map.put(user.getUserId(), user);
+                        FilesManagement.map.put(friend.getUserId(), friend);
                         FilesManagement.save(FilesManagement.map);
                     } else {
                         JOptionPane.showMessageDialog(null, "There was an error.", "Message",
@@ -65,12 +65,12 @@ public class FriendPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    boolean sen = FriendManagement.Request.block(ConnectHub.currentUser, user);
+                    boolean sen = FriendManagement.Request.block(ConnectHub.currentUser, friend);
                     if (sen) {
-                        JOptionPane.showMessageDialog(null, "Blocked " + user.getUsername(), "Message",
+                        JOptionPane.showMessageDialog(null, "Blocked " + friend.getUsername(), "Message",
                                 JOptionPane.INFORMATION_MESSAGE);
                         FilesManagement.map.put(ConnectHub.currentUser.getUserId(), ConnectHub.currentUser);
-                        FilesManagement.map.put(user.getUserId(), user);
+                        FilesManagement.map.put(friend.getUserId(), friend);
                         FilesManagement.save(FilesManagement.map);
                     } else {
                         JOptionPane.showMessageDialog(null, "There was an error.", "Message",
@@ -84,14 +84,16 @@ public class FriendPanel extends JPanel {
         // friendImage.setPreferredSize(new Dimension(50, 50));
         friendImage.setHorizontalAlignment(JLabel.LEFT);
         friendImage.setBackground(Color.white);
-        JLabel friendUserName = new JLabel(user.getUsername());
-        JLabel friendStatus = new JLabel(user.getStatus());
+        JLabel friendUserName = new JLabel(friend.getUsername());
+        JLabel friendStatus = new JLabel(friend.getStatus());
         nameStatusPanel.add(friendUserName);
         nameStatusPanel.add(friendStatus);
         this.add(friendImage);
         this.add(nameStatusPanel);
-        this.add(block);
-        this.add(remove);
+        if (ConnectHub.currentUser.getUserId() == user.getUserId()) {
+            this.add(block);
+            this.add(remove);
+        }
         setBorder(BorderFactory.createLineBorder(Color.black));
     }
 

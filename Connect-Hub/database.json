@@ -5,7 +5,7 @@
     "username": "seif",
     "password": "$2a$10$LvhHlL.gwo0dP.4Y7lmfkuDCD84MqT5J693M7Mo.gek25Xj3aK.gO",
     "dateOfBirth": "2003-12-29",
-    "status": "Offline",
+    "status": "Online",
     "posts": [],
     "stories": [],
     "friends": [
@@ -15,7 +15,9 @@
       "4f7eeb69-d687-4055-a5a2-e54135d22b79"
     ],
     "requestsRecieved": [],
-    "friendSuggestions": [],
+    "friendSuggestions": [
+      "e0081bf2-f879-4dc4-8c1e-d4a88e85ea55"
+    ],
     "blocked": [],
     "blockedBy": []
   },
@@ -34,6 +36,7 @@
     "requestsSent": [],
     "requestsRecieved": [],
     "friendSuggestions": [
+      "e0081bf2-f879-4dc4-8c1e-d4a88e85ea55",
       "4f7eeb69-d687-4055-a5a2-e54135d22b79"
     ],
     "blocked": [],

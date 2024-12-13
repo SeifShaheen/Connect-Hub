@@ -6,7 +6,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.UUID;
 
-
 public class Group {
     private String groupName;
     private String groupID;
@@ -18,16 +17,16 @@ public class Group {
     private ArrayList<Post> posts;
     private ArrayList<Post> waitingPosts;
     private String primaryAdmin;
-    
-    public Group(String groupName, String userID ) throws NoSuchAlgorithmException, IOException {
-        this.groupID= UUID.randomUUID().toString();
-        this.groupName=groupName;
-        this.members=new ArrayList<>();
-        this.admins=new ArrayList<>();
-        this.requests=new ArrayList<>();
-        this.posts=new ArrayList<>();
-        this.waitingPosts=new ArrayList<>();
-        this.primaryAdmin=userID;
+
+    public Group(String groupName, String userID) throws NoSuchAlgorithmException, IOException {
+        this.groupID = UUID.randomUUID().toString();
+        this.groupName = groupName;
+        this.members = new ArrayList<>();
+        this.admins = new ArrayList<>();
+        this.requests = new ArrayList<>();
+        this.posts = new ArrayList<>();
+        this.waitingPosts = new ArrayList<>();
+        this.primaryAdmin = userID;
         GroupsDataBase.save(this);
     }
 
@@ -59,25 +58,24 @@ public class Group {
         this.members = members;
     }
 
-    public void approveMember(String userId)
-    {
+    public void approveMember(String userId) {
         this.requests.remove(userId);
         this.members.add(userId);
     }
-    public void declineMember(String userId)
-    {
+
+    public void declineMember(String userId) {
         this.requests.remove(userId);
-    } 
-    public void removeMember(String userID)
-    {
+    }
+
+    public void removeMember(String userID) {
         this.members.remove(userID);
     }
-    public void removeAdmin(String userID)
-    {
+
+    public void removeAdmin(String userID) {
         this.admins.remove(userID);
         this.members.remove(userID);
     }
-    
+
     public ArrayList<String> getAdmins() {
         return admins;
     }
@@ -85,21 +83,20 @@ public class Group {
     public void setAdmins(ArrayList<String> admins) {
         this.admins = admins;
     }
-    
-    public void promoteAdmin(String userId)
-    {
+
+    public void promoteAdmin(String userId) {
         this.admins.add(userId);
     }
-    public void demoteAdmin(String userId)
-    {
+
+    public void demoteAdmin(String userId) {
         this.admins.remove(userId);
     }
 
     public String getPrimaryAdmin() {
         return primaryAdmin;
     }
-    
-    public String getGroupID(){
+
+    public String getGroupID() {
         return this.groupID;
     }
 
@@ -110,33 +107,33 @@ public class Group {
     public void addRequest(String UserID) {
         this.requests.add(UserID);
     }
-    
-    //content handling
-    public void approvePost(Post post)
-    {
+
+    // content handling
+    public void approvePost(Post post) {
         posts.add(post);
         waitingPosts.remove(post);
     }
-    public void editPost(Post post,String text)
-    {
+
+    public void editPost(Post post, String text) {
         post.setText(text);
     }
-    public void editPost(Post post,String text,String imagePath)
-    {
+
+    public void editPost(Post post, String text, String imagePath) {
         post.setText(text);
         post.setImagePath(imagePath);
     }
-    public void removePost(Post post)
-    {
+
+    public void removePost(Post post) {
         posts.remove(post);
     }
-    public void createPost(String member, String text)  {
+
+    public void createPost(String member, String text) {
         Post post = (Post) PostsFactory.createContent(text);
         post.setAuthorID(member);
-        waitingPosts.add(post); 
+        waitingPosts.add(post);
     }
 
-    public void createPost(String member, String text, String imagePath)  {
+    public void createPost(String member, String text, String imagePath) {
         Post post = (Post) PostsFactory.createContent(text, imagePath);
         post.setAuthorID(member);
         waitingPosts.add(post);
@@ -157,23 +154,18 @@ public class Group {
     public void setWaitingPosts(ArrayList<Post> waitingPosts) {
         this.waitingPosts = waitingPosts;
     }
-    
-   
+
     // we have to remove the group from the user newsfeed and from group suggestions
-    public void leaveGroup(String userId)
-    {
+    public void leaveGroup(String userId) {
         this.members.remove(userId);
-        if(this.admins.contains(userId))
-        {
+        if (this.admins.contains(userId)) {
             this.admins.remove(userId);
         }
-        
+
     }
-        
-    public void requestJoin(String member, String groupID)
-    {
+
+    public void requestJoin(String member, String groupID) {
         this.requests.add(member);
     }
-    
-    
+
 }

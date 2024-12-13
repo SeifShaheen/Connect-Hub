@@ -8,20 +8,6 @@
       "1bd2de40-3173-462c-aa47-e358643d00d1"
     ],
     "posts": [],
-    "waitingPosts": [
-      {
-        "text": "sief",
-        "timestamp": "2024-12-13 19:32:07",
-        "contentID": "b8f65514-fbc0-4ae2-ac91-15554a47561d",
-        "authorID": "a1959bc4-8af8-4f8f-b022-bff1f62916dd"
-      },
-      {
-        "text": "seif",
-        "timestamp": "2024-12-13 21:03:55",
-        "contentID": "dcab0297-fb87-4238-8e8c-075c86cb3084",
-        "authorID": "a1959bc4-8af8-4f8f-b022-bff1f62916dd"
-      }
-    ],
     "primaryAdmin": "a1959bc4-8af8-4f8f-b022-bff1f62916dd"
   },
   "e7cd8d52-592d-4de6-bda3-6a211981ef07": {
@@ -33,7 +19,31 @@
       "a1959bc4-8af8-4f8f-b022-bff1f62916dd"
     ],
     "posts": [],
-    "waitingPosts": [],
     "primaryAdmin": "1bd2de40-3173-462c-aa47-e358643d00d1"
+  },
+  "8887312d-0c2e-42d2-9bf7-1e2accb02405": {
+    "groupName": "reeee",
+    "groupID": "8887312d-0c2e-42d2-9bf7-1e2accb02405",
+    "members": [
+      "6402d130-636b-4381-993b-50a3def3f3ee"
+    ],
+    "admins": [],
+    "requests": [],
+    "posts": [
+      {
+        "text": "hi i am reem",
+        "timestamp": "2024-12-13 22:12:01",
+        "contentID": "8d0de219-91fd-43a6-acf5-29c069eed340",
+        "authorID": "638aa9c7-7b48-4160-bf31-0fa3d12e2e33"
+      },
+      {
+        "text": "hi i am reem too",
+        "timestamp": "2024-12-13 22:22:34",
+        "contentID": "f64e6aac-d723-4954-a16d-957280b47076",
+        "authorID": "6402d130-636b-4381-993b-50a3def3f3ee"
+      }
+    ],
+    "primaryAdmin": "638aa9c7-7b48-4160-bf31-0fa3d12e2e33",
+    "leftUsers": []
   }
 }

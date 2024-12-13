@@ -52,7 +52,8 @@
     "friends": [],
     "requestsSent": [],
     "requestsRecieved": [
-      "a1959bc4-8af8-4f8f-b022-bff1f62916dd"
+      "a1959bc4-8af8-4f8f-b022-bff1f62916dd",
+      "638aa9c7-7b48-4160-bf31-0fa3d12e2e33"
     ],
     "friendSuggestions": [
       "1bd2de40-3173-462c-aa47-e358643d00d1"
@@ -71,7 +72,9 @@
     "stories": [],
     "friends": [],
     "requestsSent": [],
-    "requestsRecieved": [],
+    "requestsRecieved": [
+      "638aa9c7-7b48-4160-bf31-0fa3d12e2e33"
+    ],
     "friendSuggestions": [
       "1bd2de40-3173-462c-aa47-e358643d00d1",
       "4f7eeb69-d687-4055-a5a2-e54135d22b79"
@@ -99,6 +102,55 @@
     "requestsSent": [],
     "requestsRecieved": [],
     "friendSuggestions": [],
+    "blocked": [],
+    "blockedBy": []
+  },
+  "638aa9c7-7b48-4160-bf31-0fa3d12e2e33": {
+    "userId": "638aa9c7-7b48-4160-bf31-0fa3d12e2e33",
+    "email": "reem1@gmail.com",
+    "username": "reem",
+    "password": "$2a$10$Xd.e1X5uCV1DwykpwHlqU.d/PBLUdHmZ1IXoZ7E/07RI62GnwV4ZG",
+    "dateOfBirth": "2004-10-22",
+    "status": "Offline",
+    "posts": [],
+    "stories": [],
+    "friends": [
+      "6402d130-636b-4381-993b-50a3def3f3ee"
+    ],
+    "requestsSent": [
+      "4f7eeb69-d687-4055-a5a2-e54135d22b79",
+      "e0081bf2-f879-4dc4-8c1e-d4a88e85ea55"
+    ],
+    "requestsRecieved": [],
+    "friendSuggestions": [
+      "a1959bc4-8af8-4f8f-b022-bff1f62916dd",
+      "24e3764e-8f0e-4bd9-81ff-820cfaf71d49",
+      "1bd2de40-3173-462c-aa47-e358643d00d1"
+    ],
+    "blocked": [],
+    "blockedBy": []
+  },
+  "6402d130-636b-4381-993b-50a3def3f3ee": {
+    "userId": "6402d130-636b-4381-993b-50a3def3f3ee",
+    "email": "reem11@gmail.com",
+    "username": "reem dd",
+    "password": "$2a$10$xuYCsHej8A07txoIvhFxlujdeg94rnsx8GF1omT.GDhCt8eMnnhTi",
+    "dateOfBirth": "2004-11-20",
+    "status": "Online",
+    "posts": [],
+    "stories": [],
+    "friends": [
+      "638aa9c7-7b48-4160-bf31-0fa3d12e2e33"
+    ],
+    "requestsSent": [],
+    "requestsRecieved": [],
+    "friendSuggestions": [
+      "a1959bc4-8af8-4f8f-b022-bff1f62916dd",
+      "1bd2de40-3173-462c-aa47-e358643d00d1",
+      "e0081bf2-f879-4dc4-8c1e-d4a88e85ea55",
+      "24e3764e-8f0e-4bd9-81ff-820cfaf71d49",
+      "4f7eeb69-d687-4055-a5a2-e54135d22b79"
+    ],
     "blocked": [],
     "blockedBy": []
   }

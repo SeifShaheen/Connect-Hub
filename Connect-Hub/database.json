@@ -8,9 +8,11 @@
     "status": "Offline",
     "posts": [],
     "stories": [],
-    "friends": [],
-    "requestsSent": [
+    "friends": [
       "1bd2de40-3173-462c-aa47-e358643d00d1"
+    ],
+    "requestsSent": [
+      "4f7eeb69-d687-4055-a5a2-e54135d22b79"
     ],
     "requestsRecieved": [],
     "friendSuggestions": [],
@@ -26,12 +28,53 @@
     "status": "Offline",
     "posts": [],
     "stories": [],
+    "friends": [
+      "a1959bc4-8af8-4f8f-b022-bff1f62916dd"
+    ],
+    "requestsSent": [],
+    "requestsRecieved": [],
+    "friendSuggestions": [
+      "4f7eeb69-d687-4055-a5a2-e54135d22b79"
+    ],
+    "blocked": [],
+    "blockedBy": []
+  },
+  "4f7eeb69-d687-4055-a5a2-e54135d22b79": {
+    "userId": "4f7eeb69-d687-4055-a5a2-e54135d22b79",
+    "email": "nada111@gmail.com",
+    "username": "noo",
+    "password": "$2a$10$90WIbyZYcT8frUBM2qi3r.Yd1HoXzSw8dXzunzhPDekJmtQXh9ZPO",
+    "dateOfBirth": "2000-11-02",
+    "status": "Online",
+    "posts": [],
+    "stories": [],
     "friends": [],
     "requestsSent": [],
     "requestsRecieved": [
       "a1959bc4-8af8-4f8f-b022-bff1f62916dd"
     ],
-    "friendSuggestions": [],
+    "friendSuggestions": [
+      "1bd2de40-3173-462c-aa47-e358643d00d1"
+    ],
+    "blocked": [],
+    "blockedBy": []
+  },
+  "e0081bf2-f879-4dc4-8c1e-d4a88e85ea55": {
+    "userId": "e0081bf2-f879-4dc4-8c1e-d4a88e85ea55",
+    "email": "reem@gmail.com",
+    "username": "reem",
+    "password": "$2a$10$wf8lMkgz7jM5ol.n27BGuu2.YxJSlZbTjmpImJW53YjaMRxHnTFWi",
+    "dateOfBirth": "2003-12-29",
+    "status": "Online",
+    "posts": [],
+    "stories": [],
+    "friends": [],
+    "requestsSent": [],
+    "requestsRecieved": [],
+    "friendSuggestions": [
+      "1bd2de40-3173-462c-aa47-e358643d00d1",
+      "4f7eeb69-d687-4055-a5a2-e54135d22b79"
+    ],
     "blocked": [],
     "blockedBy": []
   }

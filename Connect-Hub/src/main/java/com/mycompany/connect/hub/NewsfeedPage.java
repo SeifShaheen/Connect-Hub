@@ -398,7 +398,7 @@ public class NewsfeedPage extends javax.swing.JFrame {
     }// GEN-LAST:event_blockedbtnActionPerformed
 
     private void friendsbtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_friendsbtnActionPerformed
-        new FriendsPage();
+        new FriendsPage(ConnectHub.currentUser);
     }// GEN-LAST:event_friendsbtnActionPerformed
 
     private void userbtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_userbtnActionPerformed
@@ -426,7 +426,7 @@ public class NewsfeedPage extends javax.swing.JFrame {
     }// GEN-LAST:event_friendSuggestionActionPerformed
 
     private void searchbtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchbtnActionPerformed
-        // opens search page to search to a specific person
+        new SearchFram();
     }// GEN-LAST:event_searchbtnActionPerformed
 
     private void refreshbtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_refreshbtnActionPerformed

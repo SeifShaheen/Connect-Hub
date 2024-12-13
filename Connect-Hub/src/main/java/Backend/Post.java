@@ -4,6 +4,7 @@
  */
 package Backend;
 
+import com.mycompany.connect.hub.User;
 import java.util.Date;
 import java.util.UUID;
 
@@ -17,17 +18,19 @@ public class Post implements Contents {
     private String authorID;
 
     // overloaded constructors for posts based on the passed arguments
-    public Post(String text) {
+    public Post(String text,User author) {
         this.text = text;
         this.timestamp = DateFormating.date(new Date());
         this.contentID = UUID.randomUUID().toString();
+        this.authorID = author.getUserId();
     }
 
-    public Post(String text, String imagePath) {
+    public Post(String text, String imagePath,User author) {
         this.text = text;
         this.imagePath = imagePath;
         this.timestamp = DateFormating.date(new Date());
         this.contentID = UUID.randomUUID().toString();
+        this.authorID = author.getUserId();
     }
 
     @Override
@@ -47,6 +50,9 @@ public class Post implements Contents {
 
     public void setAuthorID(String authorID) {
         this.authorID = authorID;
+    }
+    public String getAuthorID() {
+        return this.authorID;
     }
 
     public void setText(String text) {

@@ -1,6 +1,7 @@
 
 package Backend;
 
+import com.mycompany.connect.hub.ConnectHub;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -131,13 +132,13 @@ public class Group {
         posts.remove(post);
     }
     public void createPost(String member, String text)  {
-        Post post = (Post) PostsFactory.createContent(text);
+        Post post = (Post) PostsFactory.createContent(text,ConnectHub.currentUser);
         post.setAuthorID(member);
         waitingPosts.add(post); 
     }
 
     public void createPost(String member, String text, String imagePath)  {
-        Post post = (Post) PostsFactory.createContent(text, imagePath);
+        Post post = (Post) PostsFactory.createContent(text, imagePath,ConnectHub.currentUser);
         post.setAuthorID(member);
         waitingPosts.add(post);
     }

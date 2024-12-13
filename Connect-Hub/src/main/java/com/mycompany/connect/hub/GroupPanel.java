@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Backend.Group;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,7 +39,11 @@ public class GroupPanel extends JPanel {
         view.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // new group page
+                try {
+                    new GroupFrame(group);
+                } catch (IOException ex) {
+                    Logger.getLogger(GroupPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         // friendImage.setPreferredSize(new Dimension(50, 50));

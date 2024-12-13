@@ -6,12 +6,15 @@ package com.mycompany.connect.hub;
 
 import Backend.Group;
 import Backend.GroupsDataBase;
+import java.awt.Component;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
 /**
@@ -39,48 +42,73 @@ public class SearchFram extends javax.swing.JFrame {
 
     @SuppressWarnings("rawtypes")
     private ArrayList getAccount() throws IOException {
-        ArrayList<String> accounts = new ArrayList<>();
+        ArrayList<Object> accounts = new ArrayList<>();
         for (String key : FilesManagement.map.keySet()) {
             User acct = FilesManagement.map.get(key);
             if (!(ConnectHub.currentUser.getBlockedBy().contains(acct.getUserId()))) {
-                accounts.add(acct.getUsername());
+                accounts.add(acct);
             }
         }
         for (String key : GroupsDataBase.read().keySet()) {
             Group group = GroupsDataBase.read().get(key);
-            accounts.add(group.getGroupName());
-            
+            accounts.add(group);
+
         }
-        
+
         return accounts;
     }
 
     @SuppressWarnings("unchecked")
     private void bindData() {
-        ArrayList<String> accounts;
+        ArrayList<Object> accounts;
         try {
             accounts = getAccount();
-             for (String c : accounts) {
-            daefaultListModel.addElement(c);
-        }
-        accountList.setModel(daefaultListModel);
-        accountList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            for (Object c : accounts) {
+                daefaultListModel.addElement(c);
+            }
+            accountList.setModel(daefaultListModel);
+            accountList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            accountList.setCellRenderer(new DefaultListCellRenderer() {
+                @Override
+                public Component getListCellRendererComponent(
+                        JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                    // Call parent method to retain default styling
+                    super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+                    // Customize the text display
+                    if (value instanceof User) {
+                        User user = (User) value;
+                        setText(user.getUsername()); // Display the username instead of the object's hash
+                    } else {
+                        Group user = (Group) value;
+                        setText(user.getGroupName()); // Display the group name instead of the object's hash
+
+                    }
+                    return this;
+                }
+            });
         } catch (IOException ex) {
             Logger.getLogger(SearchFram.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
 
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     private void searchFilter(String SearchTerm) {
         try {
             DefaultListModel filteredTtems = new DefaultListModel();
-            ArrayList<String> accounts = getAccount();
-            for (String c : accounts) {
-                String accountName = c.toString().toLowerCase();
-                if (accountName.contains(SearchTerm.toLowerCase())) {
-                    filteredTtems.addElement(c);
+            ArrayList<Object> accounts = getAccount();
+            for (Object c : accounts) {
+                if (c instanceof User) {
+                    String accountName = ((User) c).getUsername().toLowerCase();
+                    if (accountName.contains(SearchTerm.toLowerCase())) {
+                        filteredTtems.addElement(c);
+                    }
+                } else {
+                    String accountName = ((Group) c).getGroupName().toLowerCase();
+                    if (accountName.contains(SearchTerm.toLowerCase())) {
+                        filteredTtems.addElement(c);
+                    }
                 }
             }
             daefaultListModel = filteredTtems;
@@ -185,17 +213,21 @@ public class SearchFram extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void accountListMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_accountListMouseClicked
-        ScearchBar.setText(accountList.getSelectedValue());
-        Searching search = new Searching();
-        User user = search.getUser(accountList.getSelectedValue());
-        if (!(user.equals(null))) {
+        Object clicked = accountList.getSelectedValue();
+        if (clicked instanceof User) {
+            ScearchBar.setText(((User) clicked).getUsername());
             try {
-                new ProfileManagmentPage(user);
+                new ProfileManagmentPage((User) clicked);
+            } catch (IOException ex) {
+                Logger.getLogger(SearchFram.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                new GroupFrame((Group) clicked);
             } catch (IOException ex) {
                 Logger.getLogger(SearchFram.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }// GEN-LAST:event_accountListMouseClicked
 
     private void ScearchBarKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_ScearchBarKeyReleased

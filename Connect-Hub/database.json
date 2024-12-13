@@ -5,7 +5,7 @@
     "username": "seif",
     "password": "$2a$10$LvhHlL.gwo0dP.4Y7lmfkuDCD84MqT5J693M7Mo.gek25Xj3aK.gO",
     "dateOfBirth": "2003-12-29",
-    "status": "Offline",
+    "status": "Online",
     "posts": [],
     "stories": [],
     "friends": [],
@@ -25,7 +25,7 @@
     "username": "nada",
     "password": "$2a$10$JMMjGMRaZnFFLfarxu71q.yx1bMUOhMyEgs/ZtScQVCT/A1JEBdf.",
     "dateOfBirth": "2004-04-13",
-    "status": "Offline",
+    "status": "Online",
     "posts": [],
     "stories": [],
     "friends": [],
@@ -75,6 +75,29 @@
       "1bd2de40-3173-462c-aa47-e358643d00d1",
       "4f7eeb69-d687-4055-a5a2-e54135d22b79"
     ],
+    "blocked": [],
+    "blockedBy": []
+  },
+  "24e3764e-8f0e-4bd9-81ff-820cfaf71d49": {
+    "userId": "24e3764e-8f0e-4bd9-81ff-820cfaf71d49",
+    "email": "nada@yahoo.com",
+    "username": "nada",
+    "password": "$2a$10$1ue/8CDmhF6ubwD1RYKM/eb9p.6xKWA0mxgR9XEPega2hyxril2Qq",
+    "dateOfBirth": "2004-04-13",
+    "status": "Online",
+    "posts": [
+      {
+        "text": "i am the first nada",
+        "timestamp": "2024-12-13 15:58:36",
+        "contentID": "91937594-9c16-4e74-8f7a-01f1df3937b1",
+        "authorID": "24e3764e-8f0e-4bd9-81ff-820cfaf71d49"
+      }
+    ],
+    "stories": [],
+    "friends": [],
+    "requestsSent": [],
+    "requestsRecieved": [],
+    "friendSuggestions": [],
     "blocked": [],
     "blockedBy": []
   }

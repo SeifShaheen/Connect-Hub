@@ -152,14 +152,14 @@ public class User extends FriendSpecifications {
 
     // Content creation methods
     public void createPost(String text) throws IOException, NoSuchAlgorithmException {
-        Post post = (Post) PostsFactory.createContent(text);
+        Post post = (Post) PostsFactory.createContent(text,ConnectHub.currentUser);
         post.setAuthorID(userId);
         posts.add(post);
         FilesManagement.save(this);
     }
 
     public void createPost(String text, String imagePath) throws NoSuchAlgorithmException, IOException {
-        Post post = (Post) PostsFactory.createContent(text, imagePath);
+        Post post = (Post) PostsFactory.createContent(text, imagePath,ConnectHub.currentUser);
         post.setAuthorID(userId);
         posts.add(post);
         FilesManagement.save(this);

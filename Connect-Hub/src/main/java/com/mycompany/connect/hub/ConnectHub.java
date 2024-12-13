@@ -14,7 +14,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class ConnectHub {
 
-    static User currentUser = null;
+    public static User currentUser = null;
 
     public static void main(String[] args) throws NoSuchAlgorithmException, IOException, InterruptedException {
         new ProjectsOpening().setVisible(true);

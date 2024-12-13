@@ -4,14 +4,16 @@
  */
 package Backend;
 
+import com.mycompany.connect.hub.User;
+
 public class PostsFactory {
 
-    public static Contents createContent(String text) {
-        return new Post(text);
+    public static Contents createContent(String text,User author) {
+        return new Post(text,author);
     }
 
-    public static Contents createContent(String text, String imagePath) {
-        return new Post(text, imagePath);
+    public static Contents createContent(String text, String imagePath,User author) {
+        return new Post(text, imagePath,author);
     }
 
 }

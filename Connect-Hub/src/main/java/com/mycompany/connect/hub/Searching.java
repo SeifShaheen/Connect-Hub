@@ -15,13 +15,13 @@ public class Searching {
     }
 
     public User getUser(String UserName) {
-
         for (String key : FilesManagement.map.keySet()) {
             User acct = FilesManagement.map.get(key);
 
             if (acct.getUsername().equals(UserName))
                 return acct;
         }
+        
         return null;
     }
 

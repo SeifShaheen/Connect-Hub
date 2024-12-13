@@ -403,7 +403,7 @@ public class NewsfeedPage extends javax.swing.JFrame {
 
     private void userbtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_userbtnActionPerformed
         try {
-            new ProfileManagmentPage();
+            new ProfileManagmentPage(ConnectHub.currentUser);
         } catch (IOException e) {
             e.printStackTrace();
         }

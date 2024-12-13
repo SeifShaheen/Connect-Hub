@@ -1,12 +1,19 @@
 {
-  "3b29dab2-4901-443b-8283-b59f7efa9525": {
-    "groupName": "seif fans",
-    "groupID": "3b29dab2-4901-443b-8283-b59f7efa9525",
+  "8ced3c26-c062-4715-9563-f57cd3aeef7e": {
+    "groupName": "Seif fans",
+    "groupID": "8ced3c26-c062-4715-9563-f57cd3aeef7e",
     "members": [],
     "admins": [],
     "requests": [],
     "posts": [],
-    "waitingPosts": [],
+    "waitingPosts": [
+      {
+        "text": "sief",
+        "timestamp": "2024-12-13 19:32:07",
+        "contentID": "b8f65514-fbc0-4ae2-ac91-15554a47561d",
+        "authorID": "a1959bc4-8af8-4f8f-b022-bff1f62916dd"
+      }
+    ],
     "primaryAdmin": "a1959bc4-8af8-4f8f-b022-bff1f62916dd"
   }
 }
